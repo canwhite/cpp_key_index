@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/Users/zack/Desktop/cpp_key_index/build",
+  "command": "/opt/homebrew/opt/llvm/bin/clang++ -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -o CMakeFiles/APP.dir/start.cpp.o -c /Users/zack/Desktop/cpp_key_index/start.cpp",
+  "file": "/Users/zack/Desktop/cpp_key_index/start.cpp",
+  "output": "CMakeFiles/APP.dir/start.cpp.o"
+}
+]
