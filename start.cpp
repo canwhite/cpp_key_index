@@ -107,11 +107,41 @@ int main(){
     int value = result.get();
     cout << value << endl;
 
-    //TODO: callback
+    //---callback
+    int x = 10;
+    //因为这里引用捕获了，所以内部可以修改x的值
+    auto lambda = [&x]() mutable { 
+        //这里能换行主要是因为endl
+        cout << "x = " << x << endl; 
+        x += 10; 
+    }; // lambda captures x by reference
 
-    //TODO:String
+    lambda();
+    cout << "After lambda, x = " << x << endl;
 
-    //TODO:Static Function
+    //---String
+    string str1;
+    string str2 = "Hello World";
+    string str3 = str2 + " How are you?";
+    cout << str3 << endl;
+    int len = str2.length();
+    // 比较两个std::string对象
+    if (str2 != str3) {
+        cout << "str2 and str3 are not the same." << endl;
+    }
+    // 遍历std::string对象中的字符
+    for (char c : str3) {
+        cout << c << ' ';
+    }
+    //单纯换行
+    cout << endl;
+    // 获取和设置std::string对象中的特定字符
+    char firstChar = str3[0];
+    str3[0] = 'h';
+
+
+
+    //---Static Function
 
 
 
