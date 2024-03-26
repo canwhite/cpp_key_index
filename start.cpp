@@ -36,6 +36,24 @@ class Student {
             cout << "Name: " << name << ", Age: " << age << endl;
         }
 };
+
+class MyStatic
+{
+//public一般定义一些get和set方法,用于modal的取用
+public:
+    static int GetCount(){
+        return m_count;
+    }
+    static void SetCount(int count){
+        m_count = count;
+    }
+//private一般定义一些
+private:
+    static int m_count;
+}; //注意类定义完了要加分号
+
+// 注意static属性是类，所以不能加在方法里，因为方法里是到那个位置才初始化
+int MyStatic::m_count = 0;  // 静态成员的初始化
     
 int main(){
     
@@ -142,6 +160,10 @@ int main(){
 
 
     //---Static Function
+    //TODO, Static，
+    MyStatic::SetCount(10);
+    int count = MyStatic::GetCount();
+    cout << count << endl;
 
 
 

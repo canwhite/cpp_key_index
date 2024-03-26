@@ -9,7 +9,7 @@
       "type": "cmake",
       "request": "launch",
       "cmakeDebugType": "script",
-      "scriptPath": "/opt/homebrew/Cellar/cmake/3.28.3/bin/cmake",
+      "scriptPath": "/opt/homebrew/bin/cmake",
     }
   ]
 }
