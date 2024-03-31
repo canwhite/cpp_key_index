@@ -62,8 +62,10 @@ int main(){
 
     // //----对象数组
     const int arraySize = 5;
-
-    MyClass** myArray = new MyClass*[arraySize];  // 创建指向对象指针的指针数组
+    
+    //声明的时候**, 实例化的时候*
+    //创建指向对象指针的指针数组
+    MyClass** myArray = new MyClass*[arraySize];  
 
     // 创建对象并将指针存储在数组中
     for (int i = 0; i < arraySize; ++i) {
@@ -76,11 +78,12 @@ int main(){
         myArray[i]->printValue();  // 通过指针调用对象的成员函数
     }
 
-    // 释放对象内存
+    // 释放单个对象内存
     for (int i = 0; i < arraySize; ++i) {
         delete myArray[i];  // 使用 delete 运算符释放对象内存
     }
-    delete[] myArray;  // 释放指针数组的内存
+    // 释放数组内存
+    delete[] myArray;  
     myArray = nullptr;
 
 
@@ -88,39 +91,37 @@ int main(){
     // 创建一个空的 std::vector<Student> 容器
     vector<Student> students;
 
-    // 向容器中添加 5 个 Student 对象
+    //push 和 pop
     students.push_back(Student("Alice", 18));
     students.push_back(Student("Bob", 19));
     students.push_back(Student("Charlie", 20));
     students.push_back(Student("David", 21));
     students.push_back(Student("Eve", 22));
 
-    // 显示容器中的元素个数
+    //pop，移除最后一个实例
+    students.pop_back();
+
+    // 长度
     cout << "The size of the vector is: " << students.size() << endl;
 
-    // 使用下标访问容器中的第一个元素，并调用其成员函数
-    students[0].show();
-
-    // 使用迭代器访问容器中的最后一个元素，并修改其成员变量
-    students.back().name = "Eva";
-
-    // 使用 for 循环遍历容器中的所有元素，并显示它们的信息
+    //循环展示，auto
     for (auto s : students) {
         s.show();
     }
 
-    // 从容器中删除第二个元素，并将后面的元素向前移动
+    cout << "---erase---" << endl;
+
+    // 删除某个,发音， ɪˈreɪs 抹去，后边接index
     students.erase(students.begin() + 1);
 
-    // 显示容器中的元素个数
-    cout << "The size of the vector is: " << students.size() << endl;
-
-    for (auto s : students) {
-        s.show();
+    //循环展示，注意这里的&并不是取地址符，而是表示引用
+    for(Student& student : students) {
+        student.show();
     }
 
 
-    //---async
+    //---async ，第一个参数是类方法，第二个参数是action function
+    //其他基本上和别的
     future<int> result = async(launch::async,asyncFunction);
     int value = result.get();
     cout << value << endl;
