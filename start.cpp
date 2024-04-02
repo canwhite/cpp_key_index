@@ -82,6 +82,10 @@ int main(){
     
     //声明的时候**, 实例化的时候*
     //创建指向对象指针的指针数组
+    //MyClass** myArray 表示 myArray 是一个指向指针的指针，
+    //这些指针是指向MyClass对象的。
+    //new MyClass*[arraySize] 则动态地创建了一个含有 arraySize 个元素的数组。
+    //每一个元素都是一个可以指向MyClass的指针。
     MyClass** myArray = new MyClass*[arraySize];  
 
     // 创建对象并将指针存储在数组中
@@ -104,7 +108,7 @@ int main(){
     myArray = nullptr;
 
 
-    //---容器--这个是自动释放的
+    //---容器--这个是自动释放的，动态数组
     // 创建一个空的 std::vector<Student> 容器
     vector<Student> students;
 
