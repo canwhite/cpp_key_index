@@ -55,6 +55,23 @@ private:
 // 注意static属性是类，所以不能加在方法里，因为方法里是到那个位置才初始化
 int MyStatic::m_count = 0;  // 静态成员的初始化
     
+class Base{
+public:
+    virtual void show(){
+        cout << "In Base \n"; 
+    };
+};
+
+//继承实现
+//: 继承，访问修饰符
+class Derived: public Base{
+public:
+    void show(){
+        cout << "In Derived \n";
+    };
+};
+
+
 int main(){
     
     //TODO: 输入和输出，目前暂缺输入
@@ -166,6 +183,14 @@ int main(){
     int count = MyStatic::GetCount();
     cout << count << endl;
 
+
+    //指向对象的指针
+    Derived* obj = new Derived();
+    obj->show();
+
+    //对象
+    Derived obj1;
+    obj1.show();
 
 
     return  0;
