@@ -88,6 +88,7 @@ public:
 
 
 //cb，前边的bool是返回值，然后int是参数
+//当然cb如果想更简单，可以用auto
 void print_if(vector<int> const& vec, function<bool(int)> pred) {
     for(int i : vec) {
         if(pred(i)) {
