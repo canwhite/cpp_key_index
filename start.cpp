@@ -132,7 +132,7 @@ int main(){
 
     cout << "---erase---" << endl;
 
-    // 删除某个,发音， ɪˈreɪs 抹去，后边接index
+    // 删除某个，后边接index
     students.erase(students.begin() + 1);
 
     //循环展示，注意这里的&并不是取地址符，而是表示引用
