@@ -1,6 +1,7 @@
 #include <iostream>
 #include <future>
 #include <vector>
+#include <map>
 #include <memory>
 using namespace std; //可以使用标准库里的符号和方法
 
@@ -124,6 +125,7 @@ int main(){
 
     //---容器--这个是自动释放的，动态数组
     // 创建一个空的 std::vector<Student> 容器
+    //这个可以理解为Java的List
     vector<Student> students;
 
     //push 和 pop
@@ -144,15 +146,6 @@ int main(){
         s.show();
     }
 
-
-    //关于auto，表示类型的自动推导
-    vector<int> v = {1, 2, 3, 4, 5};
-    for (auto it = v.begin(); it != v.end(); ++it) {
-        cout << *it << endl;
-    }
-
-    cout << "---erase---" << endl;
-
     // 删除某个，后边接index
     students.erase(students.begin() + 1);
 
@@ -160,6 +153,16 @@ int main(){
     for(Student& student : students) {
         student.show();
     }
+    //关于auto，表示类型的自动推导
+    vector<int> v = {1, 2, 3, 4, 5};
+    for (auto it = v.begin(); it != v.end(); ++it) {
+        //这里为什么要加*
+        cout << *it << endl;
+    }
+
+    //上述两个的区别是：
+    //简单来说，&在此被用于创建数组元素的引用，而*在此被用于通过迭代器访问元素的值。
+    //使用引用是为了更改原对象，而*只是访问值
 
 
     //---async ，第一个参数是类方法，第二个参数是action function
@@ -251,7 +254,46 @@ int main(){
     auto bb = make_shared<B>();
     aa->setB(bb);
     bb->setA(aa);
+
+    //终于像是脚本语言了
+    auto vv = vector<int>{}; 
+    vv.push_back(1);
+    vv.push_back(2);
+    //这里用迭代器，不改变原引用
+    for (auto i = vv.begin(); i != vv.end(); i++)
+    {
+        //注意这里的begin和end是地址，我们这里取值
+        cout << *i << endl;
+    }
+
+
+    // 定义一个map对象，map也会自动释放
+    map<int, string> mapStudent;
     
+    // 第一种 用insert函數插入pair
+    mapStudent.insert(pair<int, string>(000, "student_zero"));
+    
+    // 第二种 用insert函数插入value_type数据
+    mapStudent.insert(map<int, string>::value_type(001, "student_one"));
+    
+    // 改
+    mapStudent[000] = "student_first";
+    mapStudent[456] = "student_second";
+
+    //删除
+    mapStudent.erase(001);
+
+    //查 , 从key找
+    if (mapStudent.find(000) != mapStudent.end()) {
+        cout << "Found!" << endl;
+    }
+
+    //循环
+    for (const auto &[key, value] : mapStudent) {
+        cout << key << ":" << value << endl;
+    }
+
+
     
 
 
