@@ -51,7 +51,7 @@ build cmake_object_order_depends_target_APP: phony || .
 
 build CMakeFiles/APP.dir/start.cpp.o: CXX_COMPILER__APP_unscanned_Debug /Users/zack/Desktop/cpp_key_index/start.cpp || cmake_object_order_depends_target_APP
   DEP_FILE = CMakeFiles/APP.dir/start.cpp.o.d
-  FLAGS = -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk
   OBJECT_DIR = CMakeFiles/APP.dir
   OBJECT_FILE_DIR = CMakeFiles/APP.dir
 
