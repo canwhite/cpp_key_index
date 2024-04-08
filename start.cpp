@@ -87,6 +87,16 @@ public:
 };
 
 
+//cb，前边的bool是返回值，然后int是参数
+void print_if(vector<int> const& vec, function<bool(int)> pred) {
+    for(int i : vec) {
+        if(pred(i)) {
+            std::cout << i << '\n';
+        }
+    }
+}
+
+
 int main(){
     
     //TODO: 输入和输出，目前暂缺输入
@@ -224,8 +234,8 @@ int main(){
     obj1.show();
 
     //注意，以下这些14之后才能用
-    //一些好用的c++特性
-    auto lam= [] (int x, int y) -> int { return x + y; };
+    //一些好用的c++特性, 在14之前，auto都不可以定义参数，但是14之后可以了
+    auto lam= [] (auto x, auto y) -> auto { return x + y; };
     int r = lam(5, 6);  // result is 11
 
 
@@ -297,6 +307,9 @@ int main(){
     }
 
 
+    vector<int> vvv = {1, 2, 3, 4, 5, 6};
+    //cb传入
+    print_if(vvv, [](int i){ return i % 2 == 0; });
     
 
 
