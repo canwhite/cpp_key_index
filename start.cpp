@@ -169,6 +169,9 @@ int main(){
     //其他基本上和别的
     future<int> result = async(launch::async,asyncFunction);
     int value = result.get();
+    // 当然这样更好用
+    // auto result = async(launch::async,asyncFunction);
+    // auto value = result.get();
     cout << value << endl;
 
     //---callback
