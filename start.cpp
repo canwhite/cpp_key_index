@@ -187,7 +187,7 @@ int main(){
     //使用引用是为了更改原对象，而*只是访问值
 
 
-    //改
+    //改-一般是在遍历的过程中改
     //for_each和transform
    
     auto modify = [](Student& s) 
@@ -201,14 +201,21 @@ int main(){
         }
     };
     // 使用 for_each 代替 find_if
-    std::for_each(students.begin(), students.end(), modify);
+    for_each(students.begin(), students.end(), modify);
 
-
+    //transform, 这个可以类比为JS中的map
+    //注意回调里得到的是引用或者值，如果是基本数据类型就是值，如果是对象就是引用
+    transform(students.begin(), students.end(), students.begin(), [](Student& student){ 
+        student.age *= 2;
+        return student;
+    });
 
 
     //查
     //find，对于基本数据类型的数组
     //注意这里返回的是一个迭代器，应该用下边的方法输出迭代器所对应的值
+    //我们可以理解为，迭代器类似于一个指向容器内部元素的指针。
+    //利用迭代器，我们可以访问到它所指向的元素。
     auto it = find(v.begin(), v.end(), 3);
     if (it != v.end()) {
         std::cout <<  "Index" << *it << std::endl;
@@ -218,8 +225,10 @@ int main(){
 
     //find_if，对于动态数组
     //这里需要使用&，因为Student是一个引用类型
+    // 注意回调里得到的是引用或者值，如果是基本数据类型就是值，如果是对象就是引用
     auto compare = [](const Student& s)  { return s.getName() == "Alice"; };
     // 使用 find_if 进行查找
+
     auto its = std::find_if(students.begin(), students.end(), compare);
     // 检查查找结果
     if (its != students.end()) {
@@ -227,19 +236,6 @@ int main(){
     } else {
         std::cout << "Bob not found." << std::endl;
     }
-
-
-
-
-
-    
-
-
-
-
-
-
-
 
 
     //---async ，第一个参数是类方法，第二个参数是action function
