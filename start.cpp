@@ -177,6 +177,7 @@ int main(){
 
     //关于auto，表示类型的自动推导
     vector<int> v = {1, 2, 3, 4, 5};
+    //迭代器返回的是指针
     for (auto it = v.begin(); it != v.end(); ++it) {
         //这里为什么要加*
         cout << *it << endl;
@@ -230,7 +231,7 @@ int main(){
     // 使用 find_if 进行查找
 
     auto its = std::find_if(students.begin(), students.end(), compare);
-    // 检查查找结果
+    // 上述返回的是指针，如果没有返回就等于end()
     if (its != students.end()) {
         std::cout << "Found Bob!" << std::endl;
     } else {
@@ -347,7 +348,7 @@ int main(){
     map<int, string> mapStudent;
     
     // 第一种 用insert函數插入pair
-    // 添加的时候注意有个pair
+    // 注意这里加的是pair，是一对儿的意思
     mapStudent.insert(pair<int, string>(000, "student_zero"));
     
     // 第二种 用insert函数插入value_type数据
@@ -360,15 +361,28 @@ int main(){
     //删除
     mapStudent.erase(001);
 
-    //查 , 从key找
+    //查 , 从key找，看这里find返回的也是迭代器指针
     if (mapStudent.find(000) != mapStudent.end()) {
         cout << "Found!" << endl;
     }
 
-    //循环
+    //循环-解构循环
     for (const auto &[key, value] : mapStudent) {
         cout << key << ":" << value << endl;
     }
+
+    //循环-pair循环
+    for(const auto &pair : mapStudent){
+        cout << pair.first  << ":" << pair.second << endl;
+    }
+
+    //对于transform，实际上是先取到值在操作
+    //map转数组,这里也是初始化vector的一种方法,先根据map长度生成一个数组
+    //注意vector也是通过size获取长度
+    vector<string> values(mapStudent.size());
+    transform(mapStudent.begin(), mapStudent.end(), values.begin(), [](const std::pair<int, std::string>& pair) {
+        return pair.second;
+    }); 
 
 
     vector<int> vvv = {1, 2, 3, 4, 5, 6};
