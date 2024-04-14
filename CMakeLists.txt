@@ -21,3 +21,6 @@ set(CMAKE_CXX_COMPILER "/opt/homebrew/opt/llvm/bin/clang++")
 
 #生成可执行文件
 add_executable(${APP_NAME} ${SOURCE_FILES})
+
+
+#TODO，引入ffmpeg

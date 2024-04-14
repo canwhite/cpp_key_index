@@ -23,6 +23,15 @@ APP_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 APP_SOURCE_DIR:STATIC=/Users/zack/Desktop/cpp_key_index
 
+//Path to a library.
+AVCODEC_LIBRARY:FILEPATH=/opt/homebrew/lib/libavcodec.dylib
+
+//Path to a library.
+AVFORMAT_LIBRARY:FILEPATH=/opt/homebrew/lib/libavformat.dylib
+
+//Path to a library.
+AVUTIL_LIBRARY:FILEPATH=/opt/homebrew/lib/libavutil.dylib
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
 
