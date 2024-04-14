@@ -2,6 +2,7 @@
 #include <future>
 #include <vector>
 #include <map>
+#include <algorithm> //find等方法
 #include <memory>
 using namespace std; //可以使用标准库里的符号和方法
 
@@ -37,6 +38,15 @@ class Student {
         void show() {
             cout << "Name: " << name << ", Age: " << age << endl;
         }
+
+        //get和set
+        string getName() const{
+            return name;
+        }
+        void setName(string sname) {
+            name = sname;
+        }
+        
 };
 
 class MyStatic
@@ -164,6 +174,7 @@ int main(){
     for(Student& student : students) {
         student.show();
     }
+
     //关于auto，表示类型的自动推导
     vector<int> v = {1, 2, 3, 4, 5};
     for (auto it = v.begin(); it != v.end(); ++it) {
@@ -174,6 +185,61 @@ int main(){
     //上述两个的区别是：
     //简单来说，&在此被用于创建数组元素的引用，而*在此被用于通过迭代器访问元素的值。
     //使用引用是为了更改原对象，而*只是访问值
+
+
+    //改
+    //for_each和transform
+   
+    auto modify = [](Student& s) 
+    {
+        if (s.getName() == "Alice") 
+        {
+            // 修改 Alice 的属性
+            s.setName("Bob");
+            // 打印信息
+            std::cout << "Modified Alice's name to Bob!" << std::endl;
+        }
+    };
+    // 使用 for_each 代替 find_if
+    std::for_each(students.begin(), students.end(), modify);
+
+
+
+
+    //查
+    //find，对于基本数据类型的数组
+    //注意这里返回的是一个迭代器，应该用下边的方法输出迭代器所对应的值
+    auto it = find(v.begin(), v.end(), 3);
+    if (it != v.end()) {
+        std::cout <<  "Index" << *it << std::endl;
+    } else {
+        std::cout << "3 not found in vector v" << std::endl;
+    }
+
+    //find_if，对于动态数组
+    //这里需要使用&，因为Student是一个引用类型
+    auto compare = [](const Student& s)  { return s.getName() == "Alice"; };
+    // 使用 find_if 进行查找
+    auto its = std::find_if(students.begin(), students.end(), compare);
+    // 检查查找结果
+    if (its != students.end()) {
+        std::cout << "Found Bob!" << std::endl;
+    } else {
+        std::cout << "Bob not found." << std::endl;
+    }
+
+
+
+
+
+    
+
+
+
+
+
+
+
 
 
     //---async ，第一个参数是类方法，第二个参数是action function
@@ -285,6 +351,7 @@ int main(){
     map<int, string> mapStudent;
     
     // 第一种 用insert函數插入pair
+    // 添加的时候注意有个pair
     mapStudent.insert(pair<int, string>(000, "student_zero"));
     
     // 第二种 用insert函数插入value_type数据
