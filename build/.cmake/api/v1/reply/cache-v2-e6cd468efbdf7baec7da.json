@@ -1,0 +1,4715 @@
+{
+	"entries" : 
+	[
+		{
+			"name" : "APP_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Users/zack/Desktop/cpp_key_index/build"
+		},
+		{
+			"name" : "APP_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "APP_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Users/zack/Desktop/cpp_key_index"
+		},
+		{
+			"name" : "AVCODEC_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVCODEC_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_FOUND",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "AVCODEC_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVCODEC_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVCODEC_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-lavcodec"
+		},
+		{
+			"name" : "AVCODEC_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "AVCODEC_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "avcodec"
+		},
+		{
+			"name" : "AVCODEC_LIBRARY",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/lib/libavcodec.dylib"
+		},
+		{
+			"name" : "AVCODEC_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "AVCODEC_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_MODULE_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "libavcodec"
+		},
+		{
+			"name" : "AVCODEC_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0"
+		},
+		{
+			"name" : "AVCODEC_STATIC_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVCODEC_STATIC_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_STATIC_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_STATIC_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVCODEC_STATIC_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libvpx/1.13.1/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/aribb24/1.0.4/lib;-L/opt/homebrew/Cellar/dav1d/1.4.1/lib;-L/opt/homebrew/Cellar/libvmaf/3.0.0/lib;-L/opt/homebrew/Cellar/aom/3.8.2/lib;-L/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;-L/opt/homebrew/Cellar/openjpeg/2.5.2/lib;-L/opt/homebrew/Cellar/opus/1.5.1/lib;-L/opt/homebrew/Cellar/rav1e/0.7.1/lib;-L/opt/homebrew/Cellar/speex/1.2.1/lib;-L/opt/homebrew/Cellar/svt-av1/2.0.0/lib;-L/opt/homebrew/Cellar/libvorbis/1.3.7/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/x264/r3108/lib;-L/opt/homebrew/Cellar/x265/3.6/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libx11/1.8.9/lib;-lavcodec;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lwebpmux;-liconv;-lm;-llzma;-laribb24;-ldav1d;-lopencore-amrwb;-lsnappy;-lstdc++;-framework;AudioToolbox;-laom;-lvmaf;-ljxl;-ljxl_threads;-lmp3lame;-lm;-lopencore-amrnb;-lopenjp2;-lopus;-lrav1e;-lspeex;-lSvtAv1Enc;-ltheoraenc;-ltheoradec;-logg;-lvorbis;-lvorbisenc;-lwebp;-lx264;-lx265;-lxvidcore;-pthread;-lz;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-lswresample;-lm;-lsoxr;-lavutil;-pthread;-lm;-framework;VideoToolbox;-lX11;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "AVCODEC_STATIC_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-framework;AudioToolbox;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "AVCODEC_STATIC_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_STATIC_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "avcodec;vpx;m;vpx;m;vpx;m;vpx;m;webpmux;iconv;m;lzma;aribb24;dav1d;opencore-amrwb;snappy;stdc++;aom;vmaf;jxl;jxl_threads;mp3lame;m;opencore-amrnb;openjp2;opus;rav1e;speex;SvtAv1Enc;theoraenc;theoradec;ogg;vorbis;vorbisenc;webp;x264;x265;xvidcore;z;swresample;m;soxr;avutil;m;X11"
+		},
+		{
+			"name" : "AVCODEC_STATIC_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libvpx/1.13.1/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/aribb24/1.0.4/lib;/opt/homebrew/Cellar/dav1d/1.4.1/lib;/opt/homebrew/Cellar/libvmaf/3.0.0/lib;/opt/homebrew/Cellar/aom/3.8.2/lib;/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;/opt/homebrew/Cellar/openjpeg/2.5.2/lib;/opt/homebrew/Cellar/opus/1.5.1/lib;/opt/homebrew/Cellar/rav1e/0.7.1/lib;/opt/homebrew/Cellar/speex/1.2.1/lib;/opt/homebrew/Cellar/svt-av1/2.0.0/lib;/opt/homebrew/Cellar/libvorbis/1.3.7/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/x264/r3108/lib;/opt/homebrew/Cellar/x265/3.6/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libx11/1.8.9/lib"
+		},
+		{
+			"name" : "AVCODEC_STATIC_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_STATIC_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_STATIC_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_STATIC_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "61.3.100"
+		},
+		{
+			"name" : "AVCODEC_libavcodec_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_libavcodec_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_libavcodec_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVCODEC_libavcodec_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVDEVICE_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_FOUND",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "AVDEVICE_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVDEVICE_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVDEVICE_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-lavdevice"
+		},
+		{
+			"name" : "AVDEVICE_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "AVDEVICE_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "avdevice"
+		},
+		{
+			"name" : "AVDEVICE_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "AVDEVICE_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_MODULE_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "libavdevice"
+		},
+		{
+			"name" : "AVDEVICE_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0"
+		},
+		{
+			"name" : "AVDEVICE_STATIC_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVDEVICE_STATIC_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_STATIC_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_STATIC_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVDEVICE_STATIC_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libxcb/1.16.1/lib;-L/opt/homebrew/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libsamplerate/0.2.2/lib;-L/opt/homebrew/Cellar/rubberband/3.3.0/lib;-L/opt/homebrew/Cellar/harfbuzz/8.4.0/lib;-L/opt/homebrew/Cellar/libvmaf/3.0.0/lib;-L/opt/homebrew/Cellar/tesseract/5.3.4_1/lib;-L/opt/homebrew/Cellar/libarchive/3.7.2/lib;-L/opt/homebrew/Cellar/libass/0.17.1_1/lib;-L/opt/homebrew/Cellar/libvidstab/1.1.1/lib;-L/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;-L/opt/homebrew/Cellar/zimg/3.0.5/lib;-L/opt/homebrew/opt/freetype/lib;-L/opt/homebrew/Cellar/fontconfig/2.15.0/lib;-L/opt/homebrew/opt/freetype/lib;-L/opt/homebrew/opt/openvino/lib/pkgconfig/../..//lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libbluray/1.3.4/lib;-L/opt/homebrew/Cellar/gnutls/3.8.4/lib;-L/opt/homebrew/Cellar/librist/0.2.10_1/lib;-L/opt/homebrew/Cellar/srt/1.5.3/lib;-L/opt/homebrew/Cellar/libssh/0.10.6/lib;-L/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libvpx/1.13.1/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/aribb24/1.0.4/lib;-L/opt/homebrew/Cellar/dav1d/1.4.1/lib;-L/opt/homebrew/Cellar/libvmaf/3.0.0/lib;-L/opt/homebrew/Cellar/aom/3.8.2/lib;-L/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;-L/opt/homebrew/Cellar/openjpeg/2.5.2/lib;-L/opt/homebrew/Cellar/opus/1.5.1/lib;-L/opt/homebrew/Cellar/rav1e/0.7.1/lib;-L/opt/homebrew/Cellar/speex/1.2.1/lib;-L/opt/homebrew/Cellar/svt-av1/2.0.0/lib;-L/opt/homebrew/Cellar/libvorbis/1.3.7/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/x264/r3108/lib;-L/opt/homebrew/Cellar/x265/3.6/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libx11/1.8.9/lib;-lavdevice;-framework;Foundation;-framework;AudioToolbox;-framework;CoreAudio;-lm;-framework;AVFoundation;-framework;CoreVideo;-framework;CoreMedia;-framework;CoreGraphics;-lxcb;-lxcb-shm;-lxcb-shape;-lxcb-xfixes;-framework;AudioToolbox;-pthread;-lSDL2;-lavfilter;-framework;OpenGL;-pthread;-lm;-lrubberband;-framework;Accelerate;-lsamplerate;-lstdc++;-lharfbuzz;-lvmaf;-ltesseract;-larchive;-lcurl;-lass;-lvidstab;-lm;-framework;Metal;-framework;VideoToolbox;-lzmq;-lzimg;-framework;CoreImage;-framework;AppKit;-lfontconfig;-lfreetype;-lopenvino_onnx_frontend;-lopenvino_paddle_frontend;-lopenvino_pytorch_frontend;-lopenvino_tensorflow_frontend;-lopenvino_tensorflow_lite_frontend;-lopenvino_c;-lopenvino;-ltbb;-lpugixml;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-lswscale;-lm;-lpostproc;-lm;-lavformat;-lm;-lxml2;-lbz2;-lbluray;-lz;-lgnutls;-lrist;-lsrt;-lssh;-lzmq;-lavcodec;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lwebpmux;-liconv;-lm;-llzma;-laribb24;-ldav1d;-lopencore-amrwb;-lsnappy;-lstdc++;-framework;AudioToolbox;-laom;-lvmaf;-ljxl;-ljxl_threads;-lmp3lame;-lm;-lopencore-amrnb;-lopenjp2;-lopus;-lrav1e;-lspeex;-lSvtAv1Enc;-ltheoraenc;-ltheoradec;-logg;-lvorbis;-lvorbisenc;-lwebp;-lx264;-lx265;-lxvidcore;-pthread;-lz;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-lswresample;-lm;-lsoxr;-lavutil;-pthread;-lm;-framework;VideoToolbox;-lX11;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "AVDEVICE_STATIC_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-framework;Foundation;-framework;AudioToolbox;-framework;CoreAudio;-framework;AVFoundation;-framework;CoreVideo;-framework;CoreMedia;-framework;CoreGraphics;-framework;AudioToolbox;-pthread;-framework;OpenGL;-pthread;-framework;Accelerate;-framework;Metal;-framework;VideoToolbox;-framework;CoreImage;-framework;AppKit;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-framework;AudioToolbox;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "AVDEVICE_STATIC_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_STATIC_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "avdevice;m;xcb;xcb-shm;xcb-shape;xcb-xfixes;SDL2;avfilter;m;rubberband;samplerate;stdc++;harfbuzz;vmaf;tesseract;archive;curl;ass;vidstab;m;zmq;zimg;fontconfig;freetype;openvino_onnx_frontend;openvino_paddle_frontend;openvino_pytorch_frontend;openvino_tensorflow_frontend;openvino_tensorflow_lite_frontend;openvino_c;openvino;tbb;pugixml;swscale;m;postproc;m;avformat;m;xml2;bz2;bluray;z;gnutls;rist;srt;ssh;zmq;avcodec;vpx;m;vpx;m;vpx;m;vpx;m;webpmux;iconv;m;lzma;aribb24;dav1d;opencore-amrwb;snappy;stdc++;aom;vmaf;jxl;jxl_threads;mp3lame;m;opencore-amrnb;openjp2;opus;rav1e;speex;SvtAv1Enc;theoraenc;theoradec;ogg;vorbis;vorbisenc;webp;x264;x265;xvidcore;z;swresample;m;soxr;avutil;m;X11"
+		},
+		{
+			"name" : "AVDEVICE_STATIC_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libxcb/1.16.1/lib;/opt/homebrew/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libsamplerate/0.2.2/lib;/opt/homebrew/Cellar/rubberband/3.3.0/lib;/opt/homebrew/Cellar/harfbuzz/8.4.0/lib;/opt/homebrew/Cellar/libvmaf/3.0.0/lib;/opt/homebrew/Cellar/tesseract/5.3.4_1/lib;/opt/homebrew/Cellar/libarchive/3.7.2/lib;/opt/homebrew/Cellar/libass/0.17.1_1/lib;/opt/homebrew/Cellar/libvidstab/1.1.1/lib;/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;/opt/homebrew/Cellar/zimg/3.0.5/lib;/opt/homebrew/opt/freetype/lib;/opt/homebrew/Cellar/fontconfig/2.15.0/lib;/opt/homebrew/opt/freetype/lib;/opt/homebrew/opt/openvino/lib/pkgconfig/../..//lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libbluray/1.3.4/lib;/opt/homebrew/Cellar/gnutls/3.8.4/lib;/opt/homebrew/Cellar/librist/0.2.10_1/lib;/opt/homebrew/Cellar/srt/1.5.3/lib;/opt/homebrew/Cellar/libssh/0.10.6/lib;/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libvpx/1.13.1/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/aribb24/1.0.4/lib;/opt/homebrew/Cellar/dav1d/1.4.1/lib;/opt/homebrew/Cellar/libvmaf/3.0.0/lib;/opt/homebrew/Cellar/aom/3.8.2/lib;/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;/opt/homebrew/Cellar/openjpeg/2.5.2/lib;/opt/homebrew/Cellar/opus/1.5.1/lib;/opt/homebrew/Cellar/rav1e/0.7.1/lib;/opt/homebrew/Cellar/speex/1.2.1/lib;/opt/homebrew/Cellar/svt-av1/2.0.0/lib;/opt/homebrew/Cellar/libvorbis/1.3.7/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/x264/r3108/lib;/opt/homebrew/Cellar/x265/3.6/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libx11/1.8.9/lib"
+		},
+		{
+			"name" : "AVDEVICE_STATIC_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_STATIC_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_STATIC_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_STATIC_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "61.1.100"
+		},
+		{
+			"name" : "AVDEVICE_libavdevice_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_libavdevice_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_libavdevice_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVDEVICE_libavdevice_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVFILTER_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_FOUND",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "AVFILTER_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVFILTER_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVFILTER_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-lavfilter"
+		},
+		{
+			"name" : "AVFILTER_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "AVFILTER_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "avfilter"
+		},
+		{
+			"name" : "AVFILTER_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "AVFILTER_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_MODULE_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "libavfilter"
+		},
+		{
+			"name" : "AVFILTER_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0"
+		},
+		{
+			"name" : "AVFILTER_STATIC_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVFILTER_STATIC_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_STATIC_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_STATIC_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVFILTER_STATIC_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libsamplerate/0.2.2/lib;-L/opt/homebrew/Cellar/rubberband/3.3.0/lib;-L/opt/homebrew/Cellar/harfbuzz/8.4.0/lib;-L/opt/homebrew/Cellar/libvmaf/3.0.0/lib;-L/opt/homebrew/Cellar/tesseract/5.3.4_1/lib;-L/opt/homebrew/Cellar/libarchive/3.7.2/lib;-L/opt/homebrew/Cellar/libass/0.17.1_1/lib;-L/opt/homebrew/Cellar/libvidstab/1.1.1/lib;-L/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;-L/opt/homebrew/Cellar/zimg/3.0.5/lib;-L/opt/homebrew/opt/freetype/lib;-L/opt/homebrew/Cellar/fontconfig/2.15.0/lib;-L/opt/homebrew/opt/freetype/lib;-L/opt/homebrew/opt/openvino/lib/pkgconfig/../..//lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libbluray/1.3.4/lib;-L/opt/homebrew/Cellar/gnutls/3.8.4/lib;-L/opt/homebrew/Cellar/librist/0.2.10_1/lib;-L/opt/homebrew/Cellar/srt/1.5.3/lib;-L/opt/homebrew/Cellar/libssh/0.10.6/lib;-L/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libvpx/1.13.1/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/aribb24/1.0.4/lib;-L/opt/homebrew/Cellar/dav1d/1.4.1/lib;-L/opt/homebrew/Cellar/libvmaf/3.0.0/lib;-L/opt/homebrew/Cellar/aom/3.8.2/lib;-L/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;-L/opt/homebrew/Cellar/openjpeg/2.5.2/lib;-L/opt/homebrew/Cellar/opus/1.5.1/lib;-L/opt/homebrew/Cellar/rav1e/0.7.1/lib;-L/opt/homebrew/Cellar/speex/1.2.1/lib;-L/opt/homebrew/Cellar/svt-av1/2.0.0/lib;-L/opt/homebrew/Cellar/libvorbis/1.3.7/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/x264/r3108/lib;-L/opt/homebrew/Cellar/x265/3.6/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libx11/1.8.9/lib;-lavfilter;-framework;OpenGL;-pthread;-lm;-lrubberband;-framework;Accelerate;-lsamplerate;-lstdc++;-lharfbuzz;-lvmaf;-ltesseract;-larchive;-lcurl;-lass;-lvidstab;-lm;-framework;Metal;-framework;VideoToolbox;-lzmq;-lzimg;-framework;CoreImage;-framework;AppKit;-lfontconfig;-lfreetype;-lopenvino_onnx_frontend;-lopenvino_paddle_frontend;-lopenvino_pytorch_frontend;-lopenvino_tensorflow_frontend;-lopenvino_tensorflow_lite_frontend;-lopenvino_c;-lopenvino;-ltbb;-lpugixml;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-lswscale;-lm;-lpostproc;-lm;-lavformat;-lm;-lxml2;-lbz2;-lbluray;-lz;-lgnutls;-lrist;-lsrt;-lssh;-lzmq;-lavcodec;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lwebpmux;-liconv;-lm;-llzma;-laribb24;-ldav1d;-lopencore-amrwb;-lsnappy;-lstdc++;-framework;AudioToolbox;-laom;-lvmaf;-ljxl;-ljxl_threads;-lmp3lame;-lm;-lopencore-amrnb;-lopenjp2;-lopus;-lrav1e;-lspeex;-lSvtAv1Enc;-ltheoraenc;-ltheoradec;-logg;-lvorbis;-lvorbisenc;-lwebp;-lx264;-lx265;-lxvidcore;-pthread;-lz;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-lswresample;-lm;-lsoxr;-lavutil;-pthread;-lm;-framework;VideoToolbox;-lX11;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "AVFILTER_STATIC_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-framework;OpenGL;-pthread;-framework;Accelerate;-framework;Metal;-framework;VideoToolbox;-framework;CoreImage;-framework;AppKit;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-framework;AudioToolbox;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "AVFILTER_STATIC_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_STATIC_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "avfilter;m;rubberband;samplerate;stdc++;harfbuzz;vmaf;tesseract;archive;curl;ass;vidstab;m;zmq;zimg;fontconfig;freetype;openvino_onnx_frontend;openvino_paddle_frontend;openvino_pytorch_frontend;openvino_tensorflow_frontend;openvino_tensorflow_lite_frontend;openvino_c;openvino;tbb;pugixml;swscale;m;postproc;m;avformat;m;xml2;bz2;bluray;z;gnutls;rist;srt;ssh;zmq;avcodec;vpx;m;vpx;m;vpx;m;vpx;m;webpmux;iconv;m;lzma;aribb24;dav1d;opencore-amrwb;snappy;stdc++;aom;vmaf;jxl;jxl_threads;mp3lame;m;opencore-amrnb;openjp2;opus;rav1e;speex;SvtAv1Enc;theoraenc;theoradec;ogg;vorbis;vorbisenc;webp;x264;x265;xvidcore;z;swresample;m;soxr;avutil;m;X11"
+		},
+		{
+			"name" : "AVFILTER_STATIC_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libsamplerate/0.2.2/lib;/opt/homebrew/Cellar/rubberband/3.3.0/lib;/opt/homebrew/Cellar/harfbuzz/8.4.0/lib;/opt/homebrew/Cellar/libvmaf/3.0.0/lib;/opt/homebrew/Cellar/tesseract/5.3.4_1/lib;/opt/homebrew/Cellar/libarchive/3.7.2/lib;/opt/homebrew/Cellar/libass/0.17.1_1/lib;/opt/homebrew/Cellar/libvidstab/1.1.1/lib;/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;/opt/homebrew/Cellar/zimg/3.0.5/lib;/opt/homebrew/opt/freetype/lib;/opt/homebrew/Cellar/fontconfig/2.15.0/lib;/opt/homebrew/opt/freetype/lib;/opt/homebrew/opt/openvino/lib/pkgconfig/../..//lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libbluray/1.3.4/lib;/opt/homebrew/Cellar/gnutls/3.8.4/lib;/opt/homebrew/Cellar/librist/0.2.10_1/lib;/opt/homebrew/Cellar/srt/1.5.3/lib;/opt/homebrew/Cellar/libssh/0.10.6/lib;/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libvpx/1.13.1/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/aribb24/1.0.4/lib;/opt/homebrew/Cellar/dav1d/1.4.1/lib;/opt/homebrew/Cellar/libvmaf/3.0.0/lib;/opt/homebrew/Cellar/aom/3.8.2/lib;/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;/opt/homebrew/Cellar/openjpeg/2.5.2/lib;/opt/homebrew/Cellar/opus/1.5.1/lib;/opt/homebrew/Cellar/rav1e/0.7.1/lib;/opt/homebrew/Cellar/speex/1.2.1/lib;/opt/homebrew/Cellar/svt-av1/2.0.0/lib;/opt/homebrew/Cellar/libvorbis/1.3.7/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/x264/r3108/lib;/opt/homebrew/Cellar/x265/3.6/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libx11/1.8.9/lib"
+		},
+		{
+			"name" : "AVFILTER_STATIC_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_STATIC_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_STATIC_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_STATIC_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "10.1.100"
+		},
+		{
+			"name" : "AVFILTER_libavfilter_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_libavfilter_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_libavfilter_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFILTER_libavfilter_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVFORMAT_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_FOUND",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "AVFORMAT_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVFORMAT_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVFORMAT_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-lavformat"
+		},
+		{
+			"name" : "AVFORMAT_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "AVFORMAT_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "avformat"
+		},
+		{
+			"name" : "AVFORMAT_LIBRARY",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/lib/libavformat.dylib"
+		},
+		{
+			"name" : "AVFORMAT_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "AVFORMAT_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_MODULE_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "libavformat"
+		},
+		{
+			"name" : "AVFORMAT_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0"
+		},
+		{
+			"name" : "AVFORMAT_STATIC_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVFORMAT_STATIC_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_STATIC_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_STATIC_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVFORMAT_STATIC_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libbluray/1.3.4/lib;-L/opt/homebrew/Cellar/gnutls/3.8.4/lib;-L/opt/homebrew/Cellar/librist/0.2.10_1/lib;-L/opt/homebrew/Cellar/srt/1.5.3/lib;-L/opt/homebrew/Cellar/libssh/0.10.6/lib;-L/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libvpx/1.13.1/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/aribb24/1.0.4/lib;-L/opt/homebrew/Cellar/dav1d/1.4.1/lib;-L/opt/homebrew/Cellar/libvmaf/3.0.0/lib;-L/opt/homebrew/Cellar/aom/3.8.2/lib;-L/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;-L/opt/homebrew/Cellar/openjpeg/2.5.2/lib;-L/opt/homebrew/Cellar/opus/1.5.1/lib;-L/opt/homebrew/Cellar/rav1e/0.7.1/lib;-L/opt/homebrew/Cellar/speex/1.2.1/lib;-L/opt/homebrew/Cellar/svt-av1/2.0.0/lib;-L/opt/homebrew/Cellar/libvorbis/1.3.7/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/x264/r3108/lib;-L/opt/homebrew/Cellar/x265/3.6/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libx11/1.8.9/lib;-lavformat;-lm;-lxml2;-lbz2;-lbluray;-lz;-lgnutls;-lrist;-lsrt;-lssh;-lzmq;-lavcodec;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lwebpmux;-liconv;-lm;-llzma;-laribb24;-ldav1d;-lopencore-amrwb;-lsnappy;-lstdc++;-framework;AudioToolbox;-laom;-lvmaf;-ljxl;-ljxl_threads;-lmp3lame;-lm;-lopencore-amrnb;-lopenjp2;-lopus;-lrav1e;-lspeex;-lSvtAv1Enc;-ltheoraenc;-ltheoradec;-logg;-lvorbis;-lvorbisenc;-lwebp;-lx264;-lx265;-lxvidcore;-pthread;-lz;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-lswresample;-lm;-lsoxr;-lavutil;-pthread;-lm;-framework;VideoToolbox;-lX11;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "AVFORMAT_STATIC_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-framework;AudioToolbox;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "AVFORMAT_STATIC_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_STATIC_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "avformat;m;xml2;bz2;bluray;z;gnutls;rist;srt;ssh;zmq;avcodec;vpx;m;vpx;m;vpx;m;vpx;m;webpmux;iconv;m;lzma;aribb24;dav1d;opencore-amrwb;snappy;stdc++;aom;vmaf;jxl;jxl_threads;mp3lame;m;opencore-amrnb;openjp2;opus;rav1e;speex;SvtAv1Enc;theoraenc;theoradec;ogg;vorbis;vorbisenc;webp;x264;x265;xvidcore;z;swresample;m;soxr;avutil;m;X11"
+		},
+		{
+			"name" : "AVFORMAT_STATIC_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libbluray/1.3.4/lib;/opt/homebrew/Cellar/gnutls/3.8.4/lib;/opt/homebrew/Cellar/librist/0.2.10_1/lib;/opt/homebrew/Cellar/srt/1.5.3/lib;/opt/homebrew/Cellar/libssh/0.10.6/lib;/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libvpx/1.13.1/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/aribb24/1.0.4/lib;/opt/homebrew/Cellar/dav1d/1.4.1/lib;/opt/homebrew/Cellar/libvmaf/3.0.0/lib;/opt/homebrew/Cellar/aom/3.8.2/lib;/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;/opt/homebrew/Cellar/openjpeg/2.5.2/lib;/opt/homebrew/Cellar/opus/1.5.1/lib;/opt/homebrew/Cellar/rav1e/0.7.1/lib;/opt/homebrew/Cellar/speex/1.2.1/lib;/opt/homebrew/Cellar/svt-av1/2.0.0/lib;/opt/homebrew/Cellar/libvorbis/1.3.7/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/x264/r3108/lib;/opt/homebrew/Cellar/x265/3.6/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libx11/1.8.9/lib"
+		},
+		{
+			"name" : "AVFORMAT_STATIC_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_STATIC_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_STATIC_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_STATIC_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "61.1.100"
+		},
+		{
+			"name" : "AVFORMAT_libavformat_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_libavformat_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_libavformat_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVFORMAT_libavformat_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVUTIL_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_FOUND",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "AVUTIL_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVUTIL_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVUTIL_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-lavutil"
+		},
+		{
+			"name" : "AVUTIL_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "AVUTIL_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "avutil"
+		},
+		{
+			"name" : "AVUTIL_LIBRARY",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/lib/libavutil.dylib"
+		},
+		{
+			"name" : "AVUTIL_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "AVUTIL_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_MODULE_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "libavutil"
+		},
+		{
+			"name" : "AVUTIL_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0"
+		},
+		{
+			"name" : "AVUTIL_STATIC_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVUTIL_STATIC_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_STATIC_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_STATIC_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "AVUTIL_STATIC_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libx11/1.8.9/lib;-lavutil;-pthread;-lm;-framework;VideoToolbox;-lX11;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "AVUTIL_STATIC_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "AVUTIL_STATIC_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_STATIC_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "avutil;m;X11"
+		},
+		{
+			"name" : "AVUTIL_STATIC_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libx11/1.8.9/lib"
+		},
+		{
+			"name" : "AVUTIL_STATIC_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_STATIC_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_STATIC_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_STATIC_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "59.8.100"
+		},
+		{
+			"name" : "AVUTIL_libavutil_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_libavutil_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_libavutil_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "AVUTIL_libavutil_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_ADDR2LINE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "CMAKE_ADDR2LINE-NOTFOUND"
+		},
+		{
+			"name" : "CMAKE_AR",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/ar"
+		},
+		{
+			"name" : "CMAKE_BUILD_TYPE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "No help, variable specified on the command line."
+				}
+			],
+			"type" : "STRING",
+			"value" : "Debug"
+		},
+		{
+			"name" : "CMAKE_CACHEFILE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "This is the directory where this CMakeCache.txt was created"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/Users/zack/Desktop/cpp_key_index/build"
+		},
+		{
+			"name" : "CMAKE_CACHE_MAJOR_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Major version of cmake used to create the current loaded cache"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "3"
+		},
+		{
+			"name" : "CMAKE_CACHE_MINOR_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Minor version of cmake used to create the current loaded cache"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "29"
+		},
+		{
+			"name" : "CMAKE_CACHE_PATCH_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Patch version of cmake used to create the current loaded cache"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "0"
+		},
+		{
+			"name" : "CMAKE_COMMAND",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to CMake executable."
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/cmake/3.29.0/bin/cmake"
+		},
+		{
+			"name" : "CMAKE_CPACK_COMMAND",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to cpack program executable."
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/cmake/3.29.0/bin/cpack"
+		},
+		{
+			"name" : "CMAKE_CTEST_COMMAND",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to ctest program executable."
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/cmake/3.29.0/bin/ctest"
+		},
+		{
+			"name" : "CMAKE_CXX_COMPILER",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "No help, variable specified on the command line."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/clang++"
+		},
+		{
+			"name" : "CMAKE_CXX_FLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the CXX compiler during all build types."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_CXX_FLAGS_DEBUG",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the CXX compiler during DEBUG builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : "-g"
+		},
+		{
+			"name" : "CMAKE_CXX_FLAGS_MINSIZEREL",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the CXX compiler during MINSIZEREL builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : "-Os -DNDEBUG"
+		},
+		{
+			"name" : "CMAKE_CXX_FLAGS_RELEASE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the CXX compiler during RELEASE builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : "-O3 -DNDEBUG"
+		},
+		{
+			"name" : "CMAKE_CXX_FLAGS_RELWITHDEBINFO",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the CXX compiler during RELWITHDEBINFO builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : "-O2 -g -DNDEBUG"
+		},
+		{
+			"name" : "CMAKE_C_COMPILER",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "No help, variable specified on the command line."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/clang"
+		},
+		{
+			"name" : "CMAKE_C_FLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the C compiler during all build types."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_C_FLAGS_DEBUG",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the C compiler during DEBUG builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : "-g"
+		},
+		{
+			"name" : "CMAKE_C_FLAGS_MINSIZEREL",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the C compiler during MINSIZEREL builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : "-Os -DNDEBUG"
+		},
+		{
+			"name" : "CMAKE_C_FLAGS_RELEASE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the C compiler during RELEASE builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : "-O3 -DNDEBUG"
+		},
+		{
+			"name" : "CMAKE_C_FLAGS_RELWITHDEBINFO",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the C compiler during RELWITHDEBINFO builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : "-O2 -g -DNDEBUG"
+		},
+		{
+			"name" : "CMAKE_DLLTOOL",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "CMAKE_DLLTOOL-NOTFOUND"
+		},
+		{
+			"name" : "CMAKE_EDIT_COMMAND",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to cache edit program executable."
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/cmake/3.27.3/bin/ccmake"
+		},
+		{
+			"name" : "CMAKE_EXECUTABLE_FORMAT",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Executable file format"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "MACHO"
+		},
+		{
+			"name" : "CMAKE_EXE_LINKER_FLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during all build types."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_EXE_LINKER_FLAGS_DEBUG",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during DEBUG builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_EXE_LINKER_FLAGS_MINSIZEREL",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during MINSIZEREL builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_EXE_LINKER_FLAGS_RELEASE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during RELEASE builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during RELWITHDEBINFO builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_EXPORT_COMPILE_COMMANDS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "No help, variable specified on the command line."
+				}
+			],
+			"type" : "BOOL",
+			"value" : "TRUE"
+		},
+		{
+			"name" : "CMAKE_EXTRA_GENERATOR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Name of external makefile project generator."
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_FIND_PACKAGE_REDIRECTS_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake."
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Users/zack/Desktop/cpp_key_index/build/CMakeFiles/pkgRedirects"
+		},
+		{
+			"name" : "CMAKE_GENERATOR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Name of generator."
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "Ninja"
+		},
+		{
+			"name" : "CMAKE_GENERATOR_INSTANCE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Generator instance identifier."
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_GENERATOR_PLATFORM",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Name of generator platform."
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_GENERATOR_TOOLSET",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Name of generator toolset."
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_HOME_DIRECTORY",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Source directory with the top level CMakeLists.txt file for this project"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/Users/zack/Desktop/cpp_key_index"
+		},
+		{
+			"name" : "CMAKE_INSTALL_NAME_TOOL",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/install_name_tool"
+		},
+		{
+			"name" : "CMAKE_INSTALL_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Install path prefix, prepended onto install directories."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/local"
+		},
+		{
+			"name" : "CMAKE_LINKER",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/ld"
+		},
+		{
+			"name" : "CMAKE_MAKE_PROGRAM",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Program used to build from build.ninja files."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/local/bin/ninja"
+		},
+		{
+			"name" : "CMAKE_MODULE_LINKER_FLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of modules during all build types."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_MODULE_LINKER_FLAGS_DEBUG",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of modules during DEBUG builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of modules during MINSIZEREL builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_MODULE_LINKER_FLAGS_RELEASE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of modules during RELEASE builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of modules during RELWITHDEBINFO builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_NM",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/nm"
+		},
+		{
+			"name" : "CMAKE_NUMBER_OF_MAKEFILES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "number of local generators"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "CMAKE_OBJCOPY",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "CMAKE_OBJCOPY-NOTFOUND"
+		},
+		{
+			"name" : "CMAKE_OBJDUMP",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/objdump"
+		},
+		{
+			"name" : "CMAKE_OSX_ARCHITECTURES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Build architectures for OSX"
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_OSX_DEPLOYMENT_TARGET",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Minimum OS X version to target for deployment (at runtime); newer APIs weak linked. Set to empty string for default value."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_OSX_SYSROOT",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The product will be built against the headers and libraries located inside the indicated SDK."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk"
+		},
+		{
+			"name" : "CMAKE_PLATFORM_INFO_INITIALIZED",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Platform information initialized"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "CMAKE_PROJECT_DESCRIPTION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_PROJECT_HOMEPAGE_URL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_PROJECT_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "APP"
+		},
+		{
+			"name" : "CMAKE_RANLIB",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/ranlib"
+		},
+		{
+			"name" : "CMAKE_READELF",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "CMAKE_READELF-NOTFOUND"
+		},
+		{
+			"name" : "CMAKE_ROOT",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to CMake installation."
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/cmake/3.29.0/share/cmake"
+		},
+		{
+			"name" : "CMAKE_SHARED_LINKER_FLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of shared libraries during all build types."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_SHARED_LINKER_FLAGS_DEBUG",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of shared libraries during DEBUG builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of shared libraries during MINSIZEREL builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_SHARED_LINKER_FLAGS_RELEASE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of shared libraries during RELEASE builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of shared libraries during RELWITHDEBINFO builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_SKIP_INSTALL_RPATH",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "If set, runtime paths are not added when installing shared libraries, but are added when building."
+				}
+			],
+			"type" : "BOOL",
+			"value" : "NO"
+		},
+		{
+			"name" : "CMAKE_SKIP_RPATH",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "If set, runtime paths are not added when using shared libraries."
+				}
+			],
+			"type" : "BOOL",
+			"value" : "NO"
+		},
+		{
+			"name" : "CMAKE_STATIC_LINKER_FLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of static libraries during all build types."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_STATIC_LINKER_FLAGS_DEBUG",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of static libraries during DEBUG builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_STATIC_LINKER_FLAGS_MINSIZEREL",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of static libraries during MINSIZEREL builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_STATIC_LINKER_FLAGS_RELEASE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of static libraries during RELEASE builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Flags used by the linker during the creation of static libraries during RELWITHDEBINFO builds."
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_STRIP",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/strip"
+		},
+		{
+			"name" : "CMAKE_TAPI",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/tapi"
+		},
+		{
+			"name" : "CMAKE_UNAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "uname command"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/usr/bin/uname"
+		},
+		{
+			"name" : "CMAKE_VERBOSE_MAKEFILE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "If this value is on, makefiles will be generated without the .SILENT directive, and all commands will be echoed to the console during the make.  This is useful for debugging only. With Visual Studio IDE projects all commands are done without /nologo."
+				}
+			],
+			"type" : "BOOL",
+			"value" : "FALSE"
+		},
+		{
+			"name" : "FFMPEG_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "FFMPEG_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_FOUND",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "FFMPEG_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "FFMPEG_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-lavformat;-lavcodec;-lavutil;-lswscale"
+		},
+		{
+			"name" : "FFMPEG_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "avformat;avcodec;avutil;swscale"
+		},
+		{
+			"name" : "FFMPEG_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "FFMPEG_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_MODULE_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_STATIC_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "FFMPEG_STATIC_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_STATIC_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_STATIC_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "FFMPEG_STATIC_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libbluray/1.3.4/lib;-L/opt/homebrew/Cellar/gnutls/3.8.4/lib;-L/opt/homebrew/Cellar/librist/0.2.10_1/lib;-L/opt/homebrew/Cellar/srt/1.5.3/lib;-L/opt/homebrew/Cellar/libssh/0.10.6/lib;-L/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libvpx/1.13.1/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/aribb24/1.0.4/lib;-L/opt/homebrew/Cellar/dav1d/1.4.1/lib;-L/opt/homebrew/Cellar/libvmaf/3.0.0/lib;-L/opt/homebrew/Cellar/aom/3.8.2/lib;-L/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;-L/opt/homebrew/Cellar/openjpeg/2.5.2/lib;-L/opt/homebrew/Cellar/opus/1.5.1/lib;-L/opt/homebrew/Cellar/rav1e/0.7.1/lib;-L/opt/homebrew/Cellar/speex/1.2.1/lib;-L/opt/homebrew/Cellar/svt-av1/2.0.0/lib;-L/opt/homebrew/Cellar/libvorbis/1.3.7/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/x264/r3108/lib;-L/opt/homebrew/Cellar/x265/3.6/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libx11/1.8.9/lib;-lavformat;-lm;-lxml2;-lbz2;-lbluray;-lz;-lgnutls;-lrist;-lsrt;-lssh;-lzmq;-lavcodec;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lwebpmux;-liconv;-lm;-llzma;-laribb24;-ldav1d;-lopencore-amrwb;-lsnappy;-lstdc++;-framework;AudioToolbox;-laom;-lvmaf;-ljxl;-ljxl_threads;-lmp3lame;-lm;-lopencore-amrnb;-lopenjp2;-lopus;-lrav1e;-lspeex;-lSvtAv1Enc;-ltheoraenc;-ltheoradec;-logg;-lvorbis;-lvorbisenc;-lwebp;-lx264;-lx265;-lxvidcore;-pthread;-lz;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-lswresample;-lm;-lsoxr;-lswscale;-lm;-lavutil;-pthread;-lm;-framework;VideoToolbox;-lX11;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "FFMPEG_STATIC_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-framework;AudioToolbox;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "FFMPEG_STATIC_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_STATIC_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "avformat;m;xml2;bz2;bluray;z;gnutls;rist;srt;ssh;zmq;avcodec;vpx;m;vpx;m;vpx;m;vpx;m;webpmux;iconv;m;lzma;aribb24;dav1d;opencore-amrwb;snappy;stdc++;aom;vmaf;jxl;jxl_threads;mp3lame;m;opencore-amrnb;openjp2;opus;rav1e;speex;SvtAv1Enc;theoraenc;theoradec;ogg;vorbis;vorbisenc;webp;x264;x265;xvidcore;z;swresample;m;soxr;swscale;m;avutil;m;X11"
+		},
+		{
+			"name" : "FFMPEG_STATIC_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libbluray/1.3.4/lib;/opt/homebrew/Cellar/gnutls/3.8.4/lib;/opt/homebrew/Cellar/librist/0.2.10_1/lib;/opt/homebrew/Cellar/srt/1.5.3/lib;/opt/homebrew/Cellar/libssh/0.10.6/lib;/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libvpx/1.13.1/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/aribb24/1.0.4/lib;/opt/homebrew/Cellar/dav1d/1.4.1/lib;/opt/homebrew/Cellar/libvmaf/3.0.0/lib;/opt/homebrew/Cellar/aom/3.8.2/lib;/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;/opt/homebrew/Cellar/openjpeg/2.5.2/lib;/opt/homebrew/Cellar/opus/1.5.1/lib;/opt/homebrew/Cellar/rav1e/0.7.1/lib;/opt/homebrew/Cellar/speex/1.2.1/lib;/opt/homebrew/Cellar/svt-av1/2.0.0/lib;/opt/homebrew/Cellar/libvorbis/1.3.7/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/x264/r3108/lib;/opt/homebrew/Cellar/x265/3.6/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libx11/1.8.9/lib"
+		},
+		{
+			"name" : "FFMPEG_STATIC_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_STATIC_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_STATIC_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_STATIC_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "FFMPEG_libavcodec_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "FFMPEG_libavcodec_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "FFMPEG_libavcodec_MODULE_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "libavcodec"
+		},
+		{
+			"name" : "FFMPEG_libavcodec_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0"
+		},
+		{
+			"name" : "FFMPEG_libavcodec_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "61.3.100"
+		},
+		{
+			"name" : "FFMPEG_libavformat_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "FFMPEG_libavformat_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "FFMPEG_libavformat_MODULE_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "libavformat"
+		},
+		{
+			"name" : "FFMPEG_libavformat_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0"
+		},
+		{
+			"name" : "FFMPEG_libavformat_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "61.1.100"
+		},
+		{
+			"name" : "FFMPEG_libavutil_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "FFMPEG_libavutil_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "FFMPEG_libavutil_MODULE_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "libavutil"
+		},
+		{
+			"name" : "FFMPEG_libavutil_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0"
+		},
+		{
+			"name" : "FFMPEG_libavutil_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "59.8.100"
+		},
+		{
+			"name" : "FFMPEG_libswscale_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "FFMPEG_libswscale_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "FFMPEG_libswscale_MODULE_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "libswscale"
+		},
+		{
+			"name" : "FFMPEG_libswscale_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0"
+		},
+		{
+			"name" : "FFMPEG_libswscale_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "8.1.100"
+		},
+		{
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Details about finding PkgConfig"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "[/opt/homebrew/bin/pkg-config][v0.29.2()]"
+		},
+		{
+			"name" : "PKG_CONFIG_ARGN",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Arguments to supply to pkg-config"
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "PKG_CONFIG_EXECUTABLE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "pkg-config executable"
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/bin/pkg-config"
+		},
+		{
+			"name" : "SWSCALE_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "SWSCALE_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_FOUND",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "SWSCALE_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "SWSCALE_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "SWSCALE_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-lswscale"
+		},
+		{
+			"name" : "SWSCALE_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "SWSCALE_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "swscale"
+		},
+		{
+			"name" : "SWSCALE_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		},
+		{
+			"name" : "SWSCALE_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_MODULE_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "libswscale"
+		},
+		{
+			"name" : "SWSCALE_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0"
+		},
+		{
+			"name" : "SWSCALE_STATIC_CFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-I/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "SWSCALE_STATIC_CFLAGS_I",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_STATIC_CFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_STATIC_INCLUDE_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/include"
+		},
+		{
+			"name" : "SWSCALE_STATIC_LDFLAGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libx11/1.8.9/lib;-lswscale;-lm;-lavutil;-pthread;-lm;-framework;VideoToolbox;-lX11;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "SWSCALE_STATIC_LDFLAGS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices"
+		},
+		{
+			"name" : "SWSCALE_STATIC_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_STATIC_LIBRARIES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "swscale;m;avutil;m;X11"
+		},
+		{
+			"name" : "SWSCALE_STATIC_LIBRARY_DIRS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libx11/1.8.9/lib"
+		},
+		{
+			"name" : "SWSCALE_STATIC_LIBS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_STATIC_LIBS_L",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_STATIC_LIBS_OTHER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_STATIC_LIBS_PATHS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "8.1.100"
+		},
+		{
+			"name" : "SWSCALE_libswscale_INCLUDEDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_libswscale_LIBDIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_libswscale_PREFIX",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "SWSCALE_libswscale_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "__pkg_config_arguments_AVCODEC",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "REQUIRED;libavcodec"
+		},
+		{
+			"name" : "__pkg_config_arguments_AVDEVICE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "REQUIRED;libavdevice"
+		},
+		{
+			"name" : "__pkg_config_arguments_AVFILTER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "REQUIRED;libavfilter"
+		},
+		{
+			"name" : "__pkg_config_arguments_AVFORMAT",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "REQUIRED;libavformat"
+		},
+		{
+			"name" : "__pkg_config_arguments_AVUTIL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "REQUIRED;libavutil"
+		},
+		{
+			"name" : "__pkg_config_arguments_FFMPEG",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "REQUIRED;IMPORTED_TARGET;libavformat;libavcodec;libavutil;libswscale"
+		},
+		{
+			"name" : "__pkg_config_arguments_SWSCALE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "REQUIRED;libswscale"
+		},
+		{
+			"name" : "__pkg_config_checked_AVCODEC",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "__pkg_config_checked_AVDEVICE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "__pkg_config_checked_AVFILTER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "__pkg_config_checked_AVFORMAT",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "__pkg_config_checked_AVUTIL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "__pkg_config_checked_FFMPEG",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "__pkg_config_checked_SWSCALE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "pkgcfg_lib_AVCODEC_avcodec",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavcodec.dylib"
+		},
+		{
+			"name" : "pkgcfg_lib_AVDEVICE_avdevice",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavdevice.dylib"
+		},
+		{
+			"name" : "pkgcfg_lib_AVFILTER_avfilter",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavfilter.dylib"
+		},
+		{
+			"name" : "pkgcfg_lib_AVFORMAT_avformat",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavformat.dylib"
+		},
+		{
+			"name" : "pkgcfg_lib_AVUTIL_avutil",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavutil.dylib"
+		},
+		{
+			"name" : "pkgcfg_lib_FFMPEG_avcodec",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavcodec.dylib"
+		},
+		{
+			"name" : "pkgcfg_lib_FFMPEG_avformat",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavformat.dylib"
+		},
+		{
+			"name" : "pkgcfg_lib_FFMPEG_avutil",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavutil.dylib"
+		},
+		{
+			"name" : "pkgcfg_lib_FFMPEG_swscale",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib/libswscale.dylib"
+		},
+		{
+			"name" : "pkgcfg_lib_SWSCALE_swscale",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib/libswscale.dylib"
+		},
+		{
+			"name" : "prefix_result",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/opt/homebrew/Cellar/ffmpeg/7.0/lib"
+		}
+	],
+	"kind" : "cache",
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

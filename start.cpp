@@ -5,7 +5,10 @@
 #include <algorithm> //find等方法
 #include <memory>
 using namespace std; //可以使用标准库里的符号和方法
-
+extern "C" {
+#include <libavformat/avformat.h>
+#include <libavcodec/avcodec.h>
+}
 
 int asyncFunction() {
     return 43;

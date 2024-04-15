@@ -19,8 +19,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_C_COMPILER "/opt/homebrew/opt/llvm/bin/clang")
 set(CMAKE_CXX_COMPILER "/opt/homebrew/opt/llvm/bin/clang++")
 
+#通过find_package管理三方lib
+find_package(PkgConfig REQUIRED)
+
+#相当于同时引入.h文件
+pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavutil libswscale)
+
 #生成可执行文件
 add_executable(${APP_NAME} ${SOURCE_FILES})
 
-
-#TODO，引入ffmpeg
+#link引入ffmpeg，PkgConfig
+target_link_libraries(${APP_NAME} PkgConfig::FFMPEG)
