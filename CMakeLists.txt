@@ -22,11 +22,19 @@ set(CMAKE_CXX_COMPILER "/opt/homebrew/opt/llvm/bin/clang++")
 #通过find_package管理三方lib
 find_package(PkgConfig REQUIRED)
 
-#相当于同时引入.h文件
-pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavutil libswscale)
+# 1. ffmpeg手动导入
+# pkg_check_modules(FFMPEG REQUIRED libavcodec libavformat libavutil)
+# # 全局目标可用，如果在后边target_include_directories不行的时候可考虑这种
+# include_directories(${FFMPEG_INCLUDE_DIRS})
+# link_directories(${FFMPEG_LIBRARY_DIRS})
 
-#生成可执行文件
+# 2. ffmpeg imported target导入，推荐
+pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavutil libswscale) 
+
 add_executable(${APP_NAME} ${SOURCE_FILES})
 
-#link引入ffmpeg，PkgConfig
+# 1. ffmpeg手动导入
+# target_link_libraries(${APP_NAME} ${FFMPEG_LIBRARIES})
+
+# 2. impoted target
 target_link_libraries(${APP_NAME} PkgConfig::FFMPEG)
