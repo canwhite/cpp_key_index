@@ -49,12 +49,12 @@ cmake_ninja_workdir = /Users/zack/Desktop/cpp_key_index/build/
 
 build cmake_object_order_depends_target_APP: phony || .
 
-build CMakeFiles/APP.dir/start.cpp.o: CXX_COMPILER__APP_unscanned_Debug /Users/zack/Desktop/cpp_key_index/start.cpp || cmake_object_order_depends_target_APP
-  DEP_FILE = CMakeFiles/APP.dir/start.cpp.o.d
+build CMakeFiles/APP.dir/ffmpeg/0_decoder.cpp.o: CXX_COMPILER__APP_unscanned_Debug /Users/zack/Desktop/cpp_key_index/ffmpeg/0_decoder.cpp || cmake_object_order_depends_target_APP
+  DEP_FILE = CMakeFiles/APP.dir/ffmpeg/0_decoder.cpp.o.d
   FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk
   INCLUDES = -isystem /opt/homebrew/Cellar/ffmpeg/7.0/include
   OBJECT_DIR = CMakeFiles/APP.dir
-  OBJECT_FILE_DIR = CMakeFiles/APP.dir
+  OBJECT_FILE_DIR = CMakeFiles/APP.dir/ffmpeg
 
 
 # =============================================================================
@@ -64,7 +64,7 @@ build CMakeFiles/APP.dir/start.cpp.o: CXX_COMPILER__APP_unscanned_Debug /Users/z
 #############################################
 # Link the executable APP
 
-build APP: CXX_EXECUTABLE_LINKER__APP_Debug CMakeFiles/APP.dir/start.cpp.o | /opt/homebrew/Cellar/ffmpeg/7.0/lib/libavformat.dylib /opt/homebrew/Cellar/ffmpeg/7.0/lib/libavcodec.dylib /opt/homebrew/Cellar/ffmpeg/7.0/lib/libavutil.dylib /opt/homebrew/Cellar/ffmpeg/7.0/lib/libswscale.dylib
+build APP: CXX_EXECUTABLE_LINKER__APP_Debug CMakeFiles/APP.dir/ffmpeg/0_decoder.cpp.o | /opt/homebrew/Cellar/ffmpeg/7.0/lib/libavformat.dylib /opt/homebrew/Cellar/ffmpeg/7.0/lib/libavcodec.dylib /opt/homebrew/Cellar/ffmpeg/7.0/lib/libavutil.dylib /opt/homebrew/Cellar/ffmpeg/7.0/lib/libswscale.dylib
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk
   LINK_LIBRARIES = /opt/homebrew/Cellar/ffmpeg/7.0/lib/libavformat.dylib  /opt/homebrew/Cellar/ffmpeg/7.0/lib/libavcodec.dylib  /opt/homebrew/Cellar/ffmpeg/7.0/lib/libavutil.dylib  /opt/homebrew/Cellar/ffmpeg/7.0/lib/libswscale.dylib
   OBJECT_DIR = CMakeFiles/APP.dir

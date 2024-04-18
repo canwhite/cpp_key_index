@@ -394,9 +394,7 @@ int main(){
     //cb传入
     print_if(vvv, [](int i){ return i % 2 == 0; });
     
-    // 初始化所有组件
-    // av_register_all(); //新版的会自动初始化
-    AVFormatContext *pFormatCtx = avformat_alloc_context();
+    
 
 
 
