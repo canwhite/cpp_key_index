@@ -67,24 +67,24 @@ int main(){
     }
 
     //获取解码器
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
+    AVCodecParameters *pCodecPar =  pFormatCtx->streams[video_stream_index]->codecpar;
+    //查找适合当前视频的解码器，注意这里需要一个常量指针
+    const AVCodec *pCodec = avcodec_find_decoder(pCodecPar->codec_id);
+    if (pCodec == NULL) {
+        printf("Cannot find codec\n");
+        return -1;
+    }
+    //利用找到的解码器，分配一个新的 AVCodecContext
+    AVCodecContext *pCodecCtx = avcodec_alloc_context3(pCodec);
+    if (pCodecCtx == NULL) {
+        printf("Cannot allocate memory for codec context\n");
+        return -1;
+    }
+    //这行代码将参数从输入流 (AVCodecParameters) 复制到输出编解码器上下文 
+    if (avcodec_parameters_to_context(pCodecCtx, pCodecPar) < 0) {
+        printf("Failed to copy codec parameters to codec context\n");
+        return -1;
+    }
 
 
 
