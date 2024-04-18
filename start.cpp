@@ -6,8 +6,10 @@
 #include <memory>
 using namespace std; //可以使用标准库里的符号和方法
 extern "C" {
-#include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+#include <libswscale/swscale.h>
+#include <libavutil/imgutils.h>
 }
 
 int asyncFunction() {
@@ -392,6 +394,10 @@ int main(){
     //cb传入
     print_if(vvv, [](int i){ return i % 2 == 0; });
     
+    // 初始化所有组件
+    // av_register_all(); //新版的会自动初始化
+    AVFormatContext *pFormatCtx = avformat_alloc_context();
+
 
 
     return  0;
