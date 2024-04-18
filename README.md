@@ -6,7 +6,7 @@ start.cpp - done
 ## Doing:
 /ffmpeg 
 1) 引入ffmpeg -done
-2) 解码 - doing
+2) 解码 - done
 3) 转码 - todo
 4) 提取合并 - todo
 5) 切割组合 - todo
