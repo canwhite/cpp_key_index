@@ -1,7 +1,17 @@
 # cpp_key_index
 c++ key index
 
-## TODO1：
+## Doing:
+1) 引入ffmpeg -done
+2) 解码 - doing
+3) 转码 - todo
+4) 提取合并 - todo
+5) 切割组合 - todo
+6) 压缩 - todo
+7) 流化 - todo
+
+
+## TODO：
 创建一个RN的项目     
 方案一：
 
@@ -15,9 +25,6 @@ c++ key index
 方案二：    
 1. 用EMScripten将C++的调用转为ES6
 2. 然后在RN中直接调用使用
-
-## TODO2:
-引入ffmpeg
 
 
 ## PS:
