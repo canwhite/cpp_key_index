@@ -1,7 +1,10 @@
 # cpp_key_index
-c++ key index
+pre:     
+c++ key index    
+start.cpp - done  
 
 ## Doing:
+/ffmpeg 
 1) 引入ffmpeg -done
 2) 解码 - doing
 3) 转码 - todo
@@ -25,6 +28,7 @@ c++ key index
 方案二：    
 1. 用EMScripten将C++的调用转为ES6
 2. 然后在RN中直接调用使用
+
 
 
 ## PS:
