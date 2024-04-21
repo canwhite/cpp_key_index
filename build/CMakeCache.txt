@@ -23,15 +23,6 @@ APP_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 APP_SOURCE_DIR:STATIC=/Users/zack/Desktop/cpp_key_index
 
-//Path to a library.
-AVCODEC_LIBRARY:FILEPATH=/opt/homebrew/lib/libavcodec.dylib
-
-//Path to a library.
-AVFORMAT_LIBRARY:FILEPATH=/opt/homebrew/lib/libavformat.dylib
-
-//Path to a library.
-AVUTIL_LIBRARY:FILEPATH=/opt/homebrew/lib/libavutil.dylib
-
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
 
@@ -111,7 +102,7 @@ CMAKE_INSTALL_PREFIX:PATH=/usr/local
 CMAKE_LINKER:FILEPATH=/usr/bin/ld
 
 //Program used to build from build.ninja files.
-CMAKE_MAKE_PROGRAM:FILEPATH=/usr/local/bin/ninja
+CMAKE_MAKE_PROGRAM:FILEPATH=/opt/homebrew/bin/ninja
 
 //Flags used by the linker during the creation of modules during
 // all build types.
@@ -234,21 +225,6 @@ PKG_CONFIG_ARGN:STRING=
 PKG_CONFIG_EXECUTABLE:FILEPATH=/opt/homebrew/bin/pkg-config
 
 //Path to a library.
-pkgcfg_lib_AVCODEC_avcodec:FILEPATH=/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavcodec.dylib
-
-//Path to a library.
-pkgcfg_lib_AVDEVICE_avdevice:FILEPATH=/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavdevice.dylib
-
-//Path to a library.
-pkgcfg_lib_AVFILTER_avfilter:FILEPATH=/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavfilter.dylib
-
-//Path to a library.
-pkgcfg_lib_AVFORMAT_avformat:FILEPATH=/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavformat.dylib
-
-//Path to a library.
-pkgcfg_lib_AVUTIL_avutil:FILEPATH=/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavutil.dylib
-
-//Path to a library.
 pkgcfg_lib_FFMPEG_avcodec:FILEPATH=/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavcodec.dylib
 
 //Path to a library.
@@ -260,189 +236,11 @@ pkgcfg_lib_FFMPEG_avutil:FILEPATH=/opt/homebrew/Cellar/ffmpeg/7.0/lib/libavutil.
 //Path to a library.
 pkgcfg_lib_FFMPEG_swscale:FILEPATH=/opt/homebrew/Cellar/ffmpeg/7.0/lib/libswscale.dylib
 
-//Path to a library.
-pkgcfg_lib_SWSCALE_swscale:FILEPATH=/opt/homebrew/Cellar/ffmpeg/7.0/lib/libswscale.dylib
-
 
 ########################
 # INTERNAL cache entries
 ########################
 
-AVCODEC_CFLAGS:INTERNAL=-I/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVCODEC_CFLAGS_I:INTERNAL=
-AVCODEC_CFLAGS_OTHER:INTERNAL=
-AVCODEC_FOUND:INTERNAL=1
-AVCODEC_INCLUDEDIR:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVCODEC_INCLUDE_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVCODEC_LDFLAGS:INTERNAL=-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-lavcodec
-AVCODEC_LDFLAGS_OTHER:INTERNAL=
-AVCODEC_LIBDIR:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib
-AVCODEC_LIBRARIES:INTERNAL=avcodec
-AVCODEC_LIBRARY_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib
-AVCODEC_LIBS:INTERNAL=
-AVCODEC_LIBS_L:INTERNAL=
-AVCODEC_LIBS_OTHER:INTERNAL=
-AVCODEC_LIBS_PATHS:INTERNAL=
-AVCODEC_MODULE_NAME:INTERNAL=libavcodec
-AVCODEC_PREFIX:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0
-AVCODEC_STATIC_CFLAGS:INTERNAL=-I/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVCODEC_STATIC_CFLAGS_I:INTERNAL=
-AVCODEC_STATIC_CFLAGS_OTHER:INTERNAL=
-AVCODEC_STATIC_INCLUDE_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVCODEC_STATIC_LDFLAGS:INTERNAL=-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libvpx/1.13.1/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/aribb24/1.0.4/lib;-L/opt/homebrew/Cellar/dav1d/1.4.1/lib;-L/opt/homebrew/Cellar/libvmaf/3.0.0/lib;-L/opt/homebrew/Cellar/aom/3.8.2/lib;-L/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;-L/opt/homebrew/Cellar/openjpeg/2.5.2/lib;-L/opt/homebrew/Cellar/opus/1.5.1/lib;-L/opt/homebrew/Cellar/rav1e/0.7.1/lib;-L/opt/homebrew/Cellar/speex/1.2.1/lib;-L/opt/homebrew/Cellar/svt-av1/2.0.0/lib;-L/opt/homebrew/Cellar/libvorbis/1.3.7/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/x264/r3108/lib;-L/opt/homebrew/Cellar/x265/3.6/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libx11/1.8.9/lib;-lavcodec;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lwebpmux;-liconv;-lm;-llzma;-laribb24;-ldav1d;-lopencore-amrwb;-lsnappy;-lstdc++;-framework;AudioToolbox;-laom;-lvmaf;-ljxl;-ljxl_threads;-lmp3lame;-lm;-lopencore-amrnb;-lopenjp2;-lopus;-lrav1e;-lspeex;-lSvtAv1Enc;-ltheoraenc;-ltheoradec;-logg;-lvorbis;-lvorbisenc;-lwebp;-lx264;-lx265;-lxvidcore;-pthread;-lz;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-lswresample;-lm;-lsoxr;-lavutil;-pthread;-lm;-framework;VideoToolbox;-lX11;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices
-AVCODEC_STATIC_LDFLAGS_OTHER:INTERNAL=-framework;AudioToolbox;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices
-AVCODEC_STATIC_LIBDIR:INTERNAL=
-AVCODEC_STATIC_LIBRARIES:INTERNAL=avcodec;vpx;m;vpx;m;vpx;m;vpx;m;webpmux;iconv;m;lzma;aribb24;dav1d;opencore-amrwb;snappy;stdc++;aom;vmaf;jxl;jxl_threads;mp3lame;m;opencore-amrnb;openjp2;opus;rav1e;speex;SvtAv1Enc;theoraenc;theoradec;ogg;vorbis;vorbisenc;webp;x264;x265;xvidcore;z;swresample;m;soxr;avutil;m;X11
-AVCODEC_STATIC_LIBRARY_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libvpx/1.13.1/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/aribb24/1.0.4/lib;/opt/homebrew/Cellar/dav1d/1.4.1/lib;/opt/homebrew/Cellar/libvmaf/3.0.0/lib;/opt/homebrew/Cellar/aom/3.8.2/lib;/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;/opt/homebrew/Cellar/openjpeg/2.5.2/lib;/opt/homebrew/Cellar/opus/1.5.1/lib;/opt/homebrew/Cellar/rav1e/0.7.1/lib;/opt/homebrew/Cellar/speex/1.2.1/lib;/opt/homebrew/Cellar/svt-av1/2.0.0/lib;/opt/homebrew/Cellar/libvorbis/1.3.7/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/x264/r3108/lib;/opt/homebrew/Cellar/x265/3.6/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libx11/1.8.9/lib
-AVCODEC_STATIC_LIBS:INTERNAL=
-AVCODEC_STATIC_LIBS_L:INTERNAL=
-AVCODEC_STATIC_LIBS_OTHER:INTERNAL=
-AVCODEC_STATIC_LIBS_PATHS:INTERNAL=
-AVCODEC_VERSION:INTERNAL=61.3.100
-AVCODEC_libavcodec_INCLUDEDIR:INTERNAL=
-AVCODEC_libavcodec_LIBDIR:INTERNAL=
-AVCODEC_libavcodec_PREFIX:INTERNAL=
-AVCODEC_libavcodec_VERSION:INTERNAL=
-AVDEVICE_CFLAGS:INTERNAL=-I/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVDEVICE_CFLAGS_I:INTERNAL=
-AVDEVICE_CFLAGS_OTHER:INTERNAL=
-AVDEVICE_FOUND:INTERNAL=1
-AVDEVICE_INCLUDEDIR:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVDEVICE_INCLUDE_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVDEVICE_LDFLAGS:INTERNAL=-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-lavdevice
-AVDEVICE_LDFLAGS_OTHER:INTERNAL=
-AVDEVICE_LIBDIR:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib
-AVDEVICE_LIBRARIES:INTERNAL=avdevice
-AVDEVICE_LIBRARY_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib
-AVDEVICE_LIBS:INTERNAL=
-AVDEVICE_LIBS_L:INTERNAL=
-AVDEVICE_LIBS_OTHER:INTERNAL=
-AVDEVICE_LIBS_PATHS:INTERNAL=
-AVDEVICE_MODULE_NAME:INTERNAL=libavdevice
-AVDEVICE_PREFIX:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0
-AVDEVICE_STATIC_CFLAGS:INTERNAL=-I/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVDEVICE_STATIC_CFLAGS_I:INTERNAL=
-AVDEVICE_STATIC_CFLAGS_OTHER:INTERNAL=
-AVDEVICE_STATIC_INCLUDE_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVDEVICE_STATIC_LDFLAGS:INTERNAL=-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libxcb/1.16.1/lib;-L/opt/homebrew/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libsamplerate/0.2.2/lib;-L/opt/homebrew/Cellar/rubberband/3.3.0/lib;-L/opt/homebrew/Cellar/harfbuzz/8.4.0/lib;-L/opt/homebrew/Cellar/libvmaf/3.0.0/lib;-L/opt/homebrew/Cellar/tesseract/5.3.4_1/lib;-L/opt/homebrew/Cellar/libarchive/3.7.2/lib;-L/opt/homebrew/Cellar/libass/0.17.1_1/lib;-L/opt/homebrew/Cellar/libvidstab/1.1.1/lib;-L/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;-L/opt/homebrew/Cellar/zimg/3.0.5/lib;-L/opt/homebrew/opt/freetype/lib;-L/opt/homebrew/Cellar/fontconfig/2.15.0/lib;-L/opt/homebrew/opt/freetype/lib;-L/opt/homebrew/opt/openvino/lib/pkgconfig/../..//lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libbluray/1.3.4/lib;-L/opt/homebrew/Cellar/gnutls/3.8.4/lib;-L/opt/homebrew/Cellar/librist/0.2.10_1/lib;-L/opt/homebrew/Cellar/srt/1.5.3/lib;-L/opt/homebrew/Cellar/libssh/0.10.6/lib;-L/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libvpx/1.13.1/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/aribb24/1.0.4/lib;-L/opt/homebrew/Cellar/dav1d/1.4.1/lib;-L/opt/homebrew/Cellar/libvmaf/3.0.0/lib;-L/opt/homebrew/Cellar/aom/3.8.2/lib;-L/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;-L/opt/homebrew/Cellar/openjpeg/2.5.2/lib;-L/opt/homebrew/Cellar/opus/1.5.1/lib;-L/opt/homebrew/Cellar/rav1e/0.7.1/lib;-L/opt/homebrew/Cellar/speex/1.2.1/lib;-L/opt/homebrew/Cellar/svt-av1/2.0.0/lib;-L/opt/homebrew/Cellar/libvorbis/1.3.7/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/x264/r3108/lib;-L/opt/homebrew/Cellar/x265/3.6/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libx11/1.8.9/lib;-lavdevice;-framework;Foundation;-framework;AudioToolbox;-framework;CoreAudio;-lm;-framework;AVFoundation;-framework;CoreVideo;-framework;CoreMedia;-framework;CoreGraphics;-lxcb;-lxcb-shm;-lxcb-shape;-lxcb-xfixes;-framework;AudioToolbox;-pthread;-lSDL2;-lavfilter;-framework;OpenGL;-pthread;-lm;-lrubberband;-framework;Accelerate;-lsamplerate;-lstdc++;-lharfbuzz;-lvmaf;-ltesseract;-larchive;-lcurl;-lass;-lvidstab;-lm;-framework;Metal;-framework;VideoToolbox;-lzmq;-lzimg;-framework;CoreImage;-framework;AppKit;-lfontconfig;-lfreetype;-lopenvino_onnx_frontend;-lopenvino_paddle_frontend;-lopenvino_pytorch_frontend;-lopenvino_tensorflow_frontend;-lopenvino_tensorflow_lite_frontend;-lopenvino_c;-lopenvino;-ltbb;-lpugixml;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-lswscale;-lm;-lpostproc;-lm;-lavformat;-lm;-lxml2;-lbz2;-lbluray;-lz;-lgnutls;-lrist;-lsrt;-lssh;-lzmq;-lavcodec;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lwebpmux;-liconv;-lm;-llzma;-laribb24;-ldav1d;-lopencore-amrwb;-lsnappy;-lstdc++;-framework;AudioToolbox;-laom;-lvmaf;-ljxl;-ljxl_threads;-lmp3lame;-lm;-lopencore-amrnb;-lopenjp2;-lopus;-lrav1e;-lspeex;-lSvtAv1Enc;-ltheoraenc;-ltheoradec;-logg;-lvorbis;-lvorbisenc;-lwebp;-lx264;-lx265;-lxvidcore;-pthread;-lz;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-lswresample;-lm;-lsoxr;-lavutil;-pthread;-lm;-framework;VideoToolbox;-lX11;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices
-AVDEVICE_STATIC_LDFLAGS_OTHER:INTERNAL=-framework;Foundation;-framework;AudioToolbox;-framework;CoreAudio;-framework;AVFoundation;-framework;CoreVideo;-framework;CoreMedia;-framework;CoreGraphics;-framework;AudioToolbox;-pthread;-framework;OpenGL;-pthread;-framework;Accelerate;-framework;Metal;-framework;VideoToolbox;-framework;CoreImage;-framework;AppKit;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-framework;AudioToolbox;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices
-AVDEVICE_STATIC_LIBDIR:INTERNAL=
-AVDEVICE_STATIC_LIBRARIES:INTERNAL=avdevice;m;xcb;xcb-shm;xcb-shape;xcb-xfixes;SDL2;avfilter;m;rubberband;samplerate;stdc++;harfbuzz;vmaf;tesseract;archive;curl;ass;vidstab;m;zmq;zimg;fontconfig;freetype;openvino_onnx_frontend;openvino_paddle_frontend;openvino_pytorch_frontend;openvino_tensorflow_frontend;openvino_tensorflow_lite_frontend;openvino_c;openvino;tbb;pugixml;swscale;m;postproc;m;avformat;m;xml2;bz2;bluray;z;gnutls;rist;srt;ssh;zmq;avcodec;vpx;m;vpx;m;vpx;m;vpx;m;webpmux;iconv;m;lzma;aribb24;dav1d;opencore-amrwb;snappy;stdc++;aom;vmaf;jxl;jxl_threads;mp3lame;m;opencore-amrnb;openjp2;opus;rav1e;speex;SvtAv1Enc;theoraenc;theoradec;ogg;vorbis;vorbisenc;webp;x264;x265;xvidcore;z;swresample;m;soxr;avutil;m;X11
-AVDEVICE_STATIC_LIBRARY_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libxcb/1.16.1/lib;/opt/homebrew/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libsamplerate/0.2.2/lib;/opt/homebrew/Cellar/rubberband/3.3.0/lib;/opt/homebrew/Cellar/harfbuzz/8.4.0/lib;/opt/homebrew/Cellar/libvmaf/3.0.0/lib;/opt/homebrew/Cellar/tesseract/5.3.4_1/lib;/opt/homebrew/Cellar/libarchive/3.7.2/lib;/opt/homebrew/Cellar/libass/0.17.1_1/lib;/opt/homebrew/Cellar/libvidstab/1.1.1/lib;/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;/opt/homebrew/Cellar/zimg/3.0.5/lib;/opt/homebrew/opt/freetype/lib;/opt/homebrew/Cellar/fontconfig/2.15.0/lib;/opt/homebrew/opt/freetype/lib;/opt/homebrew/opt/openvino/lib/pkgconfig/../..//lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libbluray/1.3.4/lib;/opt/homebrew/Cellar/gnutls/3.8.4/lib;/opt/homebrew/Cellar/librist/0.2.10_1/lib;/opt/homebrew/Cellar/srt/1.5.3/lib;/opt/homebrew/Cellar/libssh/0.10.6/lib;/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libvpx/1.13.1/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/aribb24/1.0.4/lib;/opt/homebrew/Cellar/dav1d/1.4.1/lib;/opt/homebrew/Cellar/libvmaf/3.0.0/lib;/opt/homebrew/Cellar/aom/3.8.2/lib;/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;/opt/homebrew/Cellar/openjpeg/2.5.2/lib;/opt/homebrew/Cellar/opus/1.5.1/lib;/opt/homebrew/Cellar/rav1e/0.7.1/lib;/opt/homebrew/Cellar/speex/1.2.1/lib;/opt/homebrew/Cellar/svt-av1/2.0.0/lib;/opt/homebrew/Cellar/libvorbis/1.3.7/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/x264/r3108/lib;/opt/homebrew/Cellar/x265/3.6/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libx11/1.8.9/lib
-AVDEVICE_STATIC_LIBS:INTERNAL=
-AVDEVICE_STATIC_LIBS_L:INTERNAL=
-AVDEVICE_STATIC_LIBS_OTHER:INTERNAL=
-AVDEVICE_STATIC_LIBS_PATHS:INTERNAL=
-AVDEVICE_VERSION:INTERNAL=61.1.100
-AVDEVICE_libavdevice_INCLUDEDIR:INTERNAL=
-AVDEVICE_libavdevice_LIBDIR:INTERNAL=
-AVDEVICE_libavdevice_PREFIX:INTERNAL=
-AVDEVICE_libavdevice_VERSION:INTERNAL=
-AVFILTER_CFLAGS:INTERNAL=-I/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVFILTER_CFLAGS_I:INTERNAL=
-AVFILTER_CFLAGS_OTHER:INTERNAL=
-AVFILTER_FOUND:INTERNAL=1
-AVFILTER_INCLUDEDIR:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVFILTER_INCLUDE_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVFILTER_LDFLAGS:INTERNAL=-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-lavfilter
-AVFILTER_LDFLAGS_OTHER:INTERNAL=
-AVFILTER_LIBDIR:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib
-AVFILTER_LIBRARIES:INTERNAL=avfilter
-AVFILTER_LIBRARY_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib
-AVFILTER_LIBS:INTERNAL=
-AVFILTER_LIBS_L:INTERNAL=
-AVFILTER_LIBS_OTHER:INTERNAL=
-AVFILTER_LIBS_PATHS:INTERNAL=
-AVFILTER_MODULE_NAME:INTERNAL=libavfilter
-AVFILTER_PREFIX:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0
-AVFILTER_STATIC_CFLAGS:INTERNAL=-I/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVFILTER_STATIC_CFLAGS_I:INTERNAL=
-AVFILTER_STATIC_CFLAGS_OTHER:INTERNAL=
-AVFILTER_STATIC_INCLUDE_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVFILTER_STATIC_LDFLAGS:INTERNAL=-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libsamplerate/0.2.2/lib;-L/opt/homebrew/Cellar/rubberband/3.3.0/lib;-L/opt/homebrew/Cellar/harfbuzz/8.4.0/lib;-L/opt/homebrew/Cellar/libvmaf/3.0.0/lib;-L/opt/homebrew/Cellar/tesseract/5.3.4_1/lib;-L/opt/homebrew/Cellar/libarchive/3.7.2/lib;-L/opt/homebrew/Cellar/libass/0.17.1_1/lib;-L/opt/homebrew/Cellar/libvidstab/1.1.1/lib;-L/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;-L/opt/homebrew/Cellar/zimg/3.0.5/lib;-L/opt/homebrew/opt/freetype/lib;-L/opt/homebrew/Cellar/fontconfig/2.15.0/lib;-L/opt/homebrew/opt/freetype/lib;-L/opt/homebrew/opt/openvino/lib/pkgconfig/../..//lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libbluray/1.3.4/lib;-L/opt/homebrew/Cellar/gnutls/3.8.4/lib;-L/opt/homebrew/Cellar/librist/0.2.10_1/lib;-L/opt/homebrew/Cellar/srt/1.5.3/lib;-L/opt/homebrew/Cellar/libssh/0.10.6/lib;-L/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libvpx/1.13.1/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/aribb24/1.0.4/lib;-L/opt/homebrew/Cellar/dav1d/1.4.1/lib;-L/opt/homebrew/Cellar/libvmaf/3.0.0/lib;-L/opt/homebrew/Cellar/aom/3.8.2/lib;-L/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;-L/opt/homebrew/Cellar/openjpeg/2.5.2/lib;-L/opt/homebrew/Cellar/opus/1.5.1/lib;-L/opt/homebrew/Cellar/rav1e/0.7.1/lib;-L/opt/homebrew/Cellar/speex/1.2.1/lib;-L/opt/homebrew/Cellar/svt-av1/2.0.0/lib;-L/opt/homebrew/Cellar/libvorbis/1.3.7/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/x264/r3108/lib;-L/opt/homebrew/Cellar/x265/3.6/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libx11/1.8.9/lib;-lavfilter;-framework;OpenGL;-pthread;-lm;-lrubberband;-framework;Accelerate;-lsamplerate;-lstdc++;-lharfbuzz;-lvmaf;-ltesseract;-larchive;-lcurl;-lass;-lvidstab;-lm;-framework;Metal;-framework;VideoToolbox;-lzmq;-lzimg;-framework;CoreImage;-framework;AppKit;-lfontconfig;-lfreetype;-lopenvino_onnx_frontend;-lopenvino_paddle_frontend;-lopenvino_pytorch_frontend;-lopenvino_tensorflow_frontend;-lopenvino_tensorflow_lite_frontend;-lopenvino_c;-lopenvino;-ltbb;-lpugixml;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-lswscale;-lm;-lpostproc;-lm;-lavformat;-lm;-lxml2;-lbz2;-lbluray;-lz;-lgnutls;-lrist;-lsrt;-lssh;-lzmq;-lavcodec;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lwebpmux;-liconv;-lm;-llzma;-laribb24;-ldav1d;-lopencore-amrwb;-lsnappy;-lstdc++;-framework;AudioToolbox;-laom;-lvmaf;-ljxl;-ljxl_threads;-lmp3lame;-lm;-lopencore-amrnb;-lopenjp2;-lopus;-lrav1e;-lspeex;-lSvtAv1Enc;-ltheoraenc;-ltheoradec;-logg;-lvorbis;-lvorbisenc;-lwebp;-lx264;-lx265;-lxvidcore;-pthread;-lz;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-lswresample;-lm;-lsoxr;-lavutil;-pthread;-lm;-framework;VideoToolbox;-lX11;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices
-AVFILTER_STATIC_LDFLAGS_OTHER:INTERNAL=-framework;OpenGL;-pthread;-framework;Accelerate;-framework;Metal;-framework;VideoToolbox;-framework;CoreImage;-framework;AppKit;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-framework;AudioToolbox;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices
-AVFILTER_STATIC_LIBDIR:INTERNAL=
-AVFILTER_STATIC_LIBRARIES:INTERNAL=avfilter;m;rubberband;samplerate;stdc++;harfbuzz;vmaf;tesseract;archive;curl;ass;vidstab;m;zmq;zimg;fontconfig;freetype;openvino_onnx_frontend;openvino_paddle_frontend;openvino_pytorch_frontend;openvino_tensorflow_frontend;openvino_tensorflow_lite_frontend;openvino_c;openvino;tbb;pugixml;swscale;m;postproc;m;avformat;m;xml2;bz2;bluray;z;gnutls;rist;srt;ssh;zmq;avcodec;vpx;m;vpx;m;vpx;m;vpx;m;webpmux;iconv;m;lzma;aribb24;dav1d;opencore-amrwb;snappy;stdc++;aom;vmaf;jxl;jxl_threads;mp3lame;m;opencore-amrnb;openjp2;opus;rav1e;speex;SvtAv1Enc;theoraenc;theoradec;ogg;vorbis;vorbisenc;webp;x264;x265;xvidcore;z;swresample;m;soxr;avutil;m;X11
-AVFILTER_STATIC_LIBRARY_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libsamplerate/0.2.2/lib;/opt/homebrew/Cellar/rubberband/3.3.0/lib;/opt/homebrew/Cellar/harfbuzz/8.4.0/lib;/opt/homebrew/Cellar/libvmaf/3.0.0/lib;/opt/homebrew/Cellar/tesseract/5.3.4_1/lib;/opt/homebrew/Cellar/libarchive/3.7.2/lib;/opt/homebrew/Cellar/libass/0.17.1_1/lib;/opt/homebrew/Cellar/libvidstab/1.1.1/lib;/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;/opt/homebrew/Cellar/zimg/3.0.5/lib;/opt/homebrew/opt/freetype/lib;/opt/homebrew/Cellar/fontconfig/2.15.0/lib;/opt/homebrew/opt/freetype/lib;/opt/homebrew/opt/openvino/lib/pkgconfig/../..//lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libbluray/1.3.4/lib;/opt/homebrew/Cellar/gnutls/3.8.4/lib;/opt/homebrew/Cellar/librist/0.2.10_1/lib;/opt/homebrew/Cellar/srt/1.5.3/lib;/opt/homebrew/Cellar/libssh/0.10.6/lib;/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libvpx/1.13.1/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/aribb24/1.0.4/lib;/opt/homebrew/Cellar/dav1d/1.4.1/lib;/opt/homebrew/Cellar/libvmaf/3.0.0/lib;/opt/homebrew/Cellar/aom/3.8.2/lib;/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;/opt/homebrew/Cellar/openjpeg/2.5.2/lib;/opt/homebrew/Cellar/opus/1.5.1/lib;/opt/homebrew/Cellar/rav1e/0.7.1/lib;/opt/homebrew/Cellar/speex/1.2.1/lib;/opt/homebrew/Cellar/svt-av1/2.0.0/lib;/opt/homebrew/Cellar/libvorbis/1.3.7/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/x264/r3108/lib;/opt/homebrew/Cellar/x265/3.6/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libx11/1.8.9/lib
-AVFILTER_STATIC_LIBS:INTERNAL=
-AVFILTER_STATIC_LIBS_L:INTERNAL=
-AVFILTER_STATIC_LIBS_OTHER:INTERNAL=
-AVFILTER_STATIC_LIBS_PATHS:INTERNAL=
-AVFILTER_VERSION:INTERNAL=10.1.100
-AVFILTER_libavfilter_INCLUDEDIR:INTERNAL=
-AVFILTER_libavfilter_LIBDIR:INTERNAL=
-AVFILTER_libavfilter_PREFIX:INTERNAL=
-AVFILTER_libavfilter_VERSION:INTERNAL=
-AVFORMAT_CFLAGS:INTERNAL=-I/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVFORMAT_CFLAGS_I:INTERNAL=
-AVFORMAT_CFLAGS_OTHER:INTERNAL=
-AVFORMAT_FOUND:INTERNAL=1
-AVFORMAT_INCLUDEDIR:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVFORMAT_INCLUDE_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVFORMAT_LDFLAGS:INTERNAL=-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-lavformat
-AVFORMAT_LDFLAGS_OTHER:INTERNAL=
-AVFORMAT_LIBDIR:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib
-AVFORMAT_LIBRARIES:INTERNAL=avformat
-AVFORMAT_LIBRARY_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib
-AVFORMAT_LIBS:INTERNAL=
-AVFORMAT_LIBS_L:INTERNAL=
-AVFORMAT_LIBS_OTHER:INTERNAL=
-AVFORMAT_LIBS_PATHS:INTERNAL=
-AVFORMAT_MODULE_NAME:INTERNAL=libavformat
-AVFORMAT_PREFIX:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0
-AVFORMAT_STATIC_CFLAGS:INTERNAL=-I/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVFORMAT_STATIC_CFLAGS_I:INTERNAL=
-AVFORMAT_STATIC_CFLAGS_OTHER:INTERNAL=
-AVFORMAT_STATIC_INCLUDE_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVFORMAT_STATIC_LDFLAGS:INTERNAL=-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libbluray/1.3.4/lib;-L/opt/homebrew/Cellar/gnutls/3.8.4/lib;-L/opt/homebrew/Cellar/librist/0.2.10_1/lib;-L/opt/homebrew/Cellar/srt/1.5.3/lib;-L/opt/homebrew/Cellar/libssh/0.10.6/lib;-L/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libvpx/1.13.1/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/aribb24/1.0.4/lib;-L/opt/homebrew/Cellar/dav1d/1.4.1/lib;-L/opt/homebrew/Cellar/libvmaf/3.0.0/lib;-L/opt/homebrew/Cellar/aom/3.8.2/lib;-L/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;-L/opt/homebrew/Cellar/openjpeg/2.5.2/lib;-L/opt/homebrew/Cellar/opus/1.5.1/lib;-L/opt/homebrew/Cellar/rav1e/0.7.1/lib;-L/opt/homebrew/Cellar/speex/1.2.1/lib;-L/opt/homebrew/Cellar/svt-av1/2.0.0/lib;-L/opt/homebrew/Cellar/libvorbis/1.3.7/lib;-L/opt/homebrew/Cellar/webp/1.3.2/lib;-L/opt/homebrew/Cellar/x264/r3108/lib;-L/opt/homebrew/Cellar/x265/3.6/lib;-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libx11/1.8.9/lib;-lavformat;-lm;-lxml2;-lbz2;-lbluray;-lz;-lgnutls;-lrist;-lsrt;-lssh;-lzmq;-lavcodec;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lwebpmux;-liconv;-lm;-llzma;-laribb24;-ldav1d;-lopencore-amrwb;-lsnappy;-lstdc++;-framework;AudioToolbox;-laom;-lvmaf;-ljxl;-ljxl_threads;-lmp3lame;-lm;-lopencore-amrnb;-lopenjp2;-lopus;-lrav1e;-lspeex;-lSvtAv1Enc;-ltheoraenc;-ltheoradec;-logg;-lvorbis;-lvorbisenc;-lwebp;-lx264;-lx265;-lxvidcore;-pthread;-lz;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-lswresample;-lm;-lsoxr;-lavutil;-pthread;-lm;-framework;VideoToolbox;-lX11;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices
-AVFORMAT_STATIC_LDFLAGS_OTHER:INTERNAL=-framework;AudioToolbox;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices;-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices
-AVFORMAT_STATIC_LIBDIR:INTERNAL=
-AVFORMAT_STATIC_LIBRARIES:INTERNAL=avformat;m;xml2;bz2;bluray;z;gnutls;rist;srt;ssh;zmq;avcodec;vpx;m;vpx;m;vpx;m;vpx;m;webpmux;iconv;m;lzma;aribb24;dav1d;opencore-amrwb;snappy;stdc++;aom;vmaf;jxl;jxl_threads;mp3lame;m;opencore-amrnb;openjp2;opus;rav1e;speex;SvtAv1Enc;theoraenc;theoradec;ogg;vorbis;vorbisenc;webp;x264;x265;xvidcore;z;swresample;m;soxr;avutil;m;X11
-AVFORMAT_STATIC_LIBRARY_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libbluray/1.3.4/lib;/opt/homebrew/Cellar/gnutls/3.8.4/lib;/opt/homebrew/Cellar/librist/0.2.10_1/lib;/opt/homebrew/Cellar/srt/1.5.3/lib;/opt/homebrew/Cellar/libssh/0.10.6/lib;/opt/homebrew/Cellar/zeromq/4.3.5_1/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libvpx/1.13.1/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/aribb24/1.0.4/lib;/opt/homebrew/Cellar/dav1d/1.4.1/lib;/opt/homebrew/Cellar/libvmaf/3.0.0/lib;/opt/homebrew/Cellar/aom/3.8.2/lib;/opt/homebrew/Cellar/jpeg-xl/0.10.2/lib;/opt/homebrew/Cellar/openjpeg/2.5.2/lib;/opt/homebrew/Cellar/opus/1.5.1/lib;/opt/homebrew/Cellar/rav1e/0.7.1/lib;/opt/homebrew/Cellar/speex/1.2.1/lib;/opt/homebrew/Cellar/svt-av1/2.0.0/lib;/opt/homebrew/Cellar/libvorbis/1.3.7/lib;/opt/homebrew/Cellar/webp/1.3.2/lib;/opt/homebrew/Cellar/x264/r3108/lib;/opt/homebrew/Cellar/x265/3.6/lib;/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libx11/1.8.9/lib
-AVFORMAT_STATIC_LIBS:INTERNAL=
-AVFORMAT_STATIC_LIBS_L:INTERNAL=
-AVFORMAT_STATIC_LIBS_OTHER:INTERNAL=
-AVFORMAT_STATIC_LIBS_PATHS:INTERNAL=
-AVFORMAT_VERSION:INTERNAL=61.1.100
-AVFORMAT_libavformat_INCLUDEDIR:INTERNAL=
-AVFORMAT_libavformat_LIBDIR:INTERNAL=
-AVFORMAT_libavformat_PREFIX:INTERNAL=
-AVFORMAT_libavformat_VERSION:INTERNAL=
-AVUTIL_CFLAGS:INTERNAL=-I/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVUTIL_CFLAGS_I:INTERNAL=
-AVUTIL_CFLAGS_OTHER:INTERNAL=
-AVUTIL_FOUND:INTERNAL=1
-AVUTIL_INCLUDEDIR:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVUTIL_INCLUDE_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVUTIL_LDFLAGS:INTERNAL=-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-lavutil
-AVUTIL_LDFLAGS_OTHER:INTERNAL=
-AVUTIL_LIBDIR:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib
-AVUTIL_LIBRARIES:INTERNAL=avutil
-AVUTIL_LIBRARY_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib
-AVUTIL_LIBS:INTERNAL=
-AVUTIL_LIBS_L:INTERNAL=
-AVUTIL_LIBS_OTHER:INTERNAL=
-AVUTIL_LIBS_PATHS:INTERNAL=
-AVUTIL_MODULE_NAME:INTERNAL=libavutil
-AVUTIL_PREFIX:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0
-AVUTIL_STATIC_CFLAGS:INTERNAL=-I/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVUTIL_STATIC_CFLAGS_I:INTERNAL=
-AVUTIL_STATIC_CFLAGS_OTHER:INTERNAL=
-AVUTIL_STATIC_INCLUDE_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-AVUTIL_STATIC_LDFLAGS:INTERNAL=-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libx11/1.8.9/lib;-lavutil;-pthread;-lm;-framework;VideoToolbox;-lX11;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices
-AVUTIL_STATIC_LDFLAGS_OTHER:INTERNAL=-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices
-AVUTIL_STATIC_LIBDIR:INTERNAL=
-AVUTIL_STATIC_LIBRARIES:INTERNAL=avutil;m;X11
-AVUTIL_STATIC_LIBRARY_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libx11/1.8.9/lib
-AVUTIL_STATIC_LIBS:INTERNAL=
-AVUTIL_STATIC_LIBS_L:INTERNAL=
-AVUTIL_STATIC_LIBS_OTHER:INTERNAL=
-AVUTIL_STATIC_LIBS_PATHS:INTERNAL=
-AVUTIL_VERSION:INTERNAL=59.8.100
-AVUTIL_libavutil_INCLUDEDIR:INTERNAL=
-AVUTIL_libavutil_LIBDIR:INTERNAL=
-AVUTIL_libavutil_PREFIX:INTERNAL=
-AVUTIL_libavutil_VERSION:INTERNAL=
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -488,7 +286,7 @@ CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_DLLTOOL
 CMAKE_DLLTOOL-ADVANCED:INTERNAL=1
 //Path to cache edit program executable.
-CMAKE_EDIT_COMMAND:INTERNAL=/opt/homebrew/Cellar/cmake/3.27.3/bin/ccmake
+CMAKE_EDIT_COMMAND:INTERNAL=/opt/homebrew/Cellar/cmake/3.29.0/bin/ccmake
 //Executable file format
 CMAKE_EXECUTABLE_FORMAT:INTERNAL=MACHO
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS
@@ -635,65 +433,8 @@ FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/opt/homebrew/bin/pkg-config][v
 PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
 PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
-SWSCALE_CFLAGS:INTERNAL=-I/opt/homebrew/Cellar/ffmpeg/7.0/include
-SWSCALE_CFLAGS_I:INTERNAL=
-SWSCALE_CFLAGS_OTHER:INTERNAL=
-SWSCALE_FOUND:INTERNAL=1
-SWSCALE_INCLUDEDIR:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-SWSCALE_INCLUDE_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-SWSCALE_LDFLAGS:INTERNAL=-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-lswscale
-SWSCALE_LDFLAGS_OTHER:INTERNAL=
-SWSCALE_LIBDIR:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib
-SWSCALE_LIBRARIES:INTERNAL=swscale
-SWSCALE_LIBRARY_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib
-SWSCALE_LIBS:INTERNAL=
-SWSCALE_LIBS_L:INTERNAL=
-SWSCALE_LIBS_OTHER:INTERNAL=
-SWSCALE_LIBS_PATHS:INTERNAL=
-SWSCALE_MODULE_NAME:INTERNAL=libswscale
-SWSCALE_PREFIX:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0
-SWSCALE_STATIC_CFLAGS:INTERNAL=-I/opt/homebrew/Cellar/ffmpeg/7.0/include
-SWSCALE_STATIC_CFLAGS_I:INTERNAL=
-SWSCALE_STATIC_CFLAGS_OTHER:INTERNAL=
-SWSCALE_STATIC_INCLUDE_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/include
-SWSCALE_STATIC_LDFLAGS:INTERNAL=-L/opt/homebrew/Cellar/ffmpeg/7.0/lib;-L/opt/homebrew/Cellar/libx11/1.8.9/lib;-lswscale;-lm;-lavutil;-pthread;-lm;-framework;VideoToolbox;-lX11;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices
-SWSCALE_STATIC_LDFLAGS_OTHER:INTERNAL=-pthread;-framework;VideoToolbox;-framework;CoreFoundation;-framework;CoreMedia;-framework;CoreVideo;-framework;CoreServices
-SWSCALE_STATIC_LIBDIR:INTERNAL=
-SWSCALE_STATIC_LIBRARIES:INTERNAL=swscale;m;avutil;m;X11
-SWSCALE_STATIC_LIBRARY_DIRS:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib;/opt/homebrew/Cellar/libx11/1.8.9/lib
-SWSCALE_STATIC_LIBS:INTERNAL=
-SWSCALE_STATIC_LIBS_L:INTERNAL=
-SWSCALE_STATIC_LIBS_OTHER:INTERNAL=
-SWSCALE_STATIC_LIBS_PATHS:INTERNAL=
-SWSCALE_VERSION:INTERNAL=8.1.100
-SWSCALE_libswscale_INCLUDEDIR:INTERNAL=
-SWSCALE_libswscale_LIBDIR:INTERNAL=
-SWSCALE_libswscale_PREFIX:INTERNAL=
-SWSCALE_libswscale_VERSION:INTERNAL=
-__pkg_config_arguments_AVCODEC:INTERNAL=REQUIRED;libavcodec
-__pkg_config_arguments_AVDEVICE:INTERNAL=REQUIRED;libavdevice
-__pkg_config_arguments_AVFILTER:INTERNAL=REQUIRED;libavfilter
-__pkg_config_arguments_AVFORMAT:INTERNAL=REQUIRED;libavformat
-__pkg_config_arguments_AVUTIL:INTERNAL=REQUIRED;libavutil
 __pkg_config_arguments_FFMPEG:INTERNAL=REQUIRED;IMPORTED_TARGET;libavformat;libavcodec;libavutil;libswscale
-__pkg_config_arguments_SWSCALE:INTERNAL=REQUIRED;libswscale
-__pkg_config_checked_AVCODEC:INTERNAL=1
-__pkg_config_checked_AVDEVICE:INTERNAL=1
-__pkg_config_checked_AVFILTER:INTERNAL=1
-__pkg_config_checked_AVFORMAT:INTERNAL=1
-__pkg_config_checked_AVUTIL:INTERNAL=1
 __pkg_config_checked_FFMPEG:INTERNAL=1
-__pkg_config_checked_SWSCALE:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib_AVCODEC_avcodec
-pkgcfg_lib_AVCODEC_avcodec-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib_AVDEVICE_avdevice
-pkgcfg_lib_AVDEVICE_avdevice-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib_AVFILTER_avfilter
-pkgcfg_lib_AVFILTER_avfilter-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib_AVFORMAT_avformat
-pkgcfg_lib_AVFORMAT_avformat-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib_AVUTIL_avutil
-pkgcfg_lib_AVUTIL_avutil-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_FFMPEG_avcodec
 pkgcfg_lib_FFMPEG_avcodec-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_FFMPEG_avformat
@@ -702,7 +443,5 @@ pkgcfg_lib_FFMPEG_avformat-ADVANCED:INTERNAL=1
 pkgcfg_lib_FFMPEG_avutil-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_FFMPEG_swscale
 pkgcfg_lib_FFMPEG_swscale-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib_SWSCALE_swscale
-pkgcfg_lib_SWSCALE_swscale-ADVANCED:INTERNAL=1
 prefix_result:INTERNAL=/opt/homebrew/Cellar/ffmpeg/7.0/lib
 

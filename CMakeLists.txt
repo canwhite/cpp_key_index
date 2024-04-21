@@ -5,8 +5,8 @@ set(APP_NAME "APP")
 project(${APP_NAME})
 
 # set(SOURCE_FILES start.cpp)
-set(SOURCE_FILES ffmpeg/0_decoder.cpp)
-
+# set(SOURCE_FILES ffmpeg/0_decoder.cpp)
+set(SOURCE_FILES ffmpeg/1_transcoding.cpp)
 #vscode中除了cmake的配置也就是插件、launch和CMakeLists之外
 #关于c和c++版本，以及编译器相关在这里设置就可以了
 
@@ -24,7 +24,9 @@ set(CMAKE_CXX_COMPILER "/opt/homebrew/opt/llvm/bin/clang++")
 find_package(PkgConfig REQUIRED)
 
 # 1. ffmpeg手动导入
+
 # pkg_check_modules(FFMPEG REQUIRED libavcodec libavformat libavutil)
+
 # # 全局目标可用，如果在后边target_include_directories不行的时候可考虑这种
 # include_directories(${FFMPEG_INCLUDE_DIRS})
 # link_directories(${FFMPEG_LIBRARY_DIRS})
