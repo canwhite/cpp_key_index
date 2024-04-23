@@ -40,6 +40,18 @@ void changeValue3(Data& data) {
 }
 
 
+void changeValueWithPtr1(int* dataPtr) {
+    int newData = 50;
+    dataPtr = &newData;
+}
+void changeValueWithPtr2(int** dataPtrPtr) {
+    int newData = 50;
+    *dataPtrPtr = &newData;
+}
+void changeValueWithPtr3(int*& dataPtr) {
+    int newData = 50;
+    dataPtr = &newData;
+}
 
 int main (){
 
@@ -59,6 +71,13 @@ int main (){
     cout << data.a << " " << data.b << endl;
 
 
+    //---TOOD，如果你传入的参数本身就是一个指针呢
+    int data = 10;
+    int* ptr = &data;
+
+    changeValueWithPtr1(ptr);
+    changeValueWithPtr2(&ptr);
+    changeValueWithPtr3(ptr); //对指针的引用
 
     return 0;
 }
