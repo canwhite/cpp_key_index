@@ -175,63 +175,9 @@ int main(){
     // 删除某个，后边接index
     students.erase(students.begin() + 1);
 
-    //循环展示，注意这里的&并不是取地址符，而是表示引用
-    for(Student& student : students) {
-        student.show();
-    }
-
-    //关于auto，表示类型的自动推导
-    vector<int> v = {1, 2, 3, 4, 5};
-    //迭代器返回的是指针
-    for (auto it = v.begin(); it != v.end(); ++it) {
-        //这里为什么要加*
-        cout << *it << endl;
-    }
-
-    //上述两个的区别是：
-    //简单来说，&在此被用于创建数组元素的引用，而*在此被用于通过迭代器访问元素的值。
-    //使用引用是为了更改原对象，而*只是访问值
-
-
-    //改-一般是在遍历的过程中改
-    //for_each和transform
-   
-    auto modify = [](Student& s) 
-    {
-        if (s.getName() == "Alice") 
-        {
-            // 修改 Alice 的属性
-            s.setName("Bob");
-            // 打印信息
-            std::cout << "Modified Alice's name to Bob!" << std::endl;
-        }
-    };
-    // 使用 for_each 代替 find_if
-    for_each(students.begin(), students.end(), modify);
-
-    //transform, 这个可以类比为JS中的map
-    //注意回调里得到的是引用或者值，如果是基本数据类型就是值，如果是对象就是引用
-    transform(students.begin(), students.end(), students.begin(), [](Student& student){ 
-        student.age *= 2;
-        return student;
-    });
-
-
-    //查
-    //find，对于基本数据类型的数组
-    //注意这里返回的是一个迭代器，应该用下边的方法输出迭代器所对应的值
-    //我们可以理解为，迭代器类似于一个指向容器内部元素的指针。
-    //利用迭代器，我们可以访问到它所指向的元素。
-    auto it = find(v.begin(), v.end(), 3);
-    if (it != v.end()) {
-        std::cout <<  "Index" << *it << std::endl;
-    } else {
-        std::cout << "3 not found in vector v" << std::endl;
-    }
-
     //find_if，对于动态数组
-    //这里需要使用&，因为Student是一个引用类型
-    // 注意回调里得到的是引用或者值，如果是基本数据类型就是值，如果是对象就是引用
+    //需要使用&，因为Student是一个引用类型
+    //注意回调里得到的是引用或者值，如果是基本数据类型就是值，如果是对象就是引用
     auto compare = [](const Student& s)  { return s.getName() == "Alice"; };
     // 使用 find_if 进行查找
 
@@ -243,6 +189,58 @@ int main(){
         std::cout << "Bob not found." << std::endl;
     }
 
+    //循环展示，注意这里的&并不是取地址符，而是表示引用
+    for(Student& student : students) {
+        student.show();
+    }
+
+    auto modify = [](Student& s) 
+    {
+        if (s.getName() == "Alice") 
+        {
+            // 修改 Alice 的属性
+            s.setName("Bob");
+            // 打印信息
+            std::cout << "Modified Alice's name to Bob!" << std::endl;
+        }
+    };
+    //改-一般是在遍历的过程中改
+    //for_each和transform
+    for_each(students.begin(), students.end(), modify);
+
+    //transform, 这个可以类比为JS中的map
+    //注意回调里得到的是引用或者值，如果是基本数据类型就是值，如果是对象就是引用
+    transform(students.begin(), students.end(), students.begin(), [](Student& student){ 
+        student.age *= 2;
+        return student;
+    });
+
+
+
+    //--如果是基础数据类型
+    vector<int> v = {1, 2, 3, 4, 5};
+    //--传参2: 基础数据类型的指针传递
+    for (auto it = v.begin(); it != v.end(); ++it) {
+        //这里为什么要加*
+        cout << *it << endl;
+    }
+
+    vector<int> vvv = {1, 2, 3, 4, 5, 6};
+    //--传参3:值传递，接受一个回调
+    print_if(vvv, [](int i){ return i % 2 == 0; });
+    
+
+    auto it = find(v.begin(), v.end(), 3);
+    if (it != v.end()) {
+        std::cout <<  "Index" << *it << std::endl;
+    } else {
+        std::cout << "3 not found in vector v" << std::endl;
+    }
+
+
+    //总结：上述两个查的区别是：
+    //简单来说，&在此被用于创建数组元素的引用，而*在此被用于通过迭代器访问元素的值。
+    //使用引用是为了更改原对象，而*只是访问值
 
     //---async ，第一个参数是类方法，第二个参数是action function
     //其他基本上和别的
@@ -284,7 +282,6 @@ int main(){
     // 获取和设置std::string对象中的特定字符
     char firstChar = str3[0];
     str3[0] = 'h';
-
 
 
     //---Static Function
@@ -381,21 +378,12 @@ int main(){
         cout << pair.first  << ":" << pair.second << endl;
     }
 
-    //对于transform，实际上是先取到值在操作
-    //map转数组,这里也是初始化vector的一种方法,先根据map长度生成一个数组
-    //注意vector也是通过size获取长度
+    //改
     vector<string> values(mapStudent.size());
+    //引用传递
     transform(mapStudent.begin(), mapStudent.end(), values.begin(), [](const std::pair<int, std::string>& pair) {
         return pair.second;
     }); 
-
-
-    vector<int> vvv = {1, 2, 3, 4, 5, 6};
-    //cb传入
-    print_if(vvv, [](int i){ return i % 2 == 0; });
-    
-    
-
 
 
     return  0;

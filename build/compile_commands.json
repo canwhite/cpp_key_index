@@ -1,8 +1,8 @@
 [
 {
   "directory": "/Users/zack/Desktop/cpp_key_index/build",
-  "command": "/opt/homebrew/opt/llvm/bin/clang++ -isystem /opt/homebrew/Cellar/ffmpeg/7.0/include -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -o CMakeFiles/APP.dir/ffmpeg/1_transcoding.cpp.o -c /Users/zack/Desktop/cpp_key_index/ffmpeg/1_transcoding.cpp",
-  "file": "/Users/zack/Desktop/cpp_key_index/ffmpeg/1_transcoding.cpp",
-  "output": "CMakeFiles/APP.dir/ffmpeg/1_transcoding.cpp.o"
+  "command": "/opt/homebrew/opt/llvm/bin/clang++ -isystem /opt/homebrew/Cellar/ffmpeg/7.0/include -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -o CMakeFiles/APP.dir/ffmpeg/2_transcoding.cpp.o -c /Users/zack/Desktop/cpp_key_index/ffmpeg/2_transcoding.cpp",
+  "file": "/Users/zack/Desktop/cpp_key_index/ffmpeg/2_transcoding.cpp",
+  "output": "CMakeFiles/APP.dir/ffmpeg/2_transcoding.cpp.o"
 }
 ]
