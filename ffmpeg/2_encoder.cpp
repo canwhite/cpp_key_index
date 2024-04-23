@@ -12,6 +12,13 @@ extern "C" {
 #include <libavutil/imgutils.h>
 }
 
+/**  
+ * 1）为什么要编码？
+ * 
+ * 2）编码得到的结果有什么用？
+ *
+ */ 
+
 int main (){
     //TODO
 
