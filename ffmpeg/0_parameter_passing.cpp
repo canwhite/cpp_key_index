@@ -34,9 +34,9 @@ void changeValue2(Data* data) {
 }
 
 //引用传递-CPP
-void changeValue(Data& data) {
+void changeValue3(Data& data) {
     data.a = 100;
-    data.b = 100;
+    data.b = 200;
 }
 
 
@@ -47,14 +47,17 @@ int main (){
     //C语言主要是两种，值传递和指针传递
     //1）值传递
     changeValue1(data);
-    cout << data.a << " " << data.b;
+    cout << data.a << " " << data.b <<endl;
 
     //2）指针传递，ffmpeg是c库，所以有些时候要用指针传递修改复杂值
-    changeValue(&data);
+    changeValue2(&data);
+    cout << data.a << " " << data.b << endl;
 
     //C++多了个引用传递
     //3）引用传递
     changeValue3(data);
+    cout << data.a << " " << data.b << endl;
+
 
 
     return 0;
