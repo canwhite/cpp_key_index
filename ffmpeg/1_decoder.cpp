@@ -43,35 +43,44 @@ int main(){
         return -1;
     }
 
-    //
-    if (avformat_open_input(&pFormatCtx, videoPath, NULL, NULL) != 0) {
-        printf("Cannot open input file\n");
-        return -1;
-    }
-
+    // 视频流的索引。这个值在后面的循环中被设置。
     int video_stream_index = -1;
 
+    //循环只选择了第一个流作为视频流，这可能不总是正确的
     for(int i = 0 ; i < pFormatCtx->nb_streams; i++){
         video_stream_index = i;
         break;
     }
 
+    // 如果没有找到视频流，表明文件中没有视频。
     if (video_stream_index == -1) {
         printf("Cannot find video stream\n");
         return -1;
     }
 
+    //获取解码器参数。这里streams[video_stream_index]->codecpar可能含有解码器需要的额外信息，比如帧率、时间基准等。
     AVCodecParameters *pCodecPar =  pFormatCtx->streams[video_stream_index]->codecpar;
+
+    // 找到对应的解码器。
+    // codec_id 是解码器的标识符，对每种解码器来说都是唯一的。
     const AVCodec *pCodec = avcodec_find_decoder(pCodecPar->codec_id);
+
+    // 如果没有找到解码器。
     if (pCodec == NULL) {
         printf("Cannot find codec\n");
         return -1;
     }
+
+    // 分配一个解码器上下文。这个上下文在解码过程中，用来保存解码器的状态。
     AVCodecContext *pCodecCtx = avcodec_alloc_context3(pCodec);
+
+    // 如果没能分配上下文。
     if (pCodecCtx == NULL) {
         printf("Cannot allocate memory for codec context\n");
         return -1;
     }
+
+    // 把参数从AVCodecParameters复制到AVCodecContext。这是因为解码函数需要AVCodecContext。
     if (avcodec_parameters_to_context(pCodecCtx, pCodecPar) < 0) {
         printf("Failed to copy codec parameters to codec context\n");
         return -1;
