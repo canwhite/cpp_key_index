@@ -131,7 +131,7 @@ int main(){
 
     // 创建对象并将指针存储在数组中
     for (int i = 0; i < arraySize; ++i) {
-        myArray[i] = new MyClass();  // 使用 new 运算符为每个指针分配内存
+        myArray[i] = new MyClass();  // new在堆中分配内存，并返回地址
         myArray[i]->value = i + 1;   // 通过指针访问对象的成员变量
     }
 
