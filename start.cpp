@@ -285,7 +285,7 @@ int main(){
 
 
     //---Static Function
-    //TODO, Static，
+
     MyStatic::SetCount(10);
     int count = MyStatic::GetCount();
     cout << count << endl;
@@ -305,6 +305,8 @@ int main(){
     int r = lam(5, 6);  // result is 11
 
 
+
+    //--smart ptr
     //资源获取即初始化，独占所有权，没有引用计数的开销，所以更轻量，用的较多
     auto ptr = make_unique<int>(5); 
     int c = *ptr;  //可以解引用，取值，但是不能把地址给到其他
@@ -334,17 +336,8 @@ int main(){
     aa->setB(bb);
     bb->setA(aa);
 
-    //终于像是脚本语言了
-    auto vv = vector<int>{}; 
-    vv.push_back(1);
-    vv.push_back(2);
-    //这里用迭代器，不改变原引用
-    for (auto i = vv.begin(); i != vv.end(); i++)
-    {
-        //注意这里的begin和end是地址，我们这里取值
-        cout << *i << endl;
-    }
 
+    //--map
 
     // 定义一个map对象，map也会自动释放
     map<int, string> mapStudent;
@@ -386,7 +379,33 @@ int main(){
     }); 
 
 
-    //TODO,set
+    //--set
+
+    //增
+    set<int> s;
+    s.insert(1);  // {1}
+    s.insert(3);  // {1, 3}
+    s.insert(2);  // {1, 2, 3}
+
+    //删
+    s.erase(1);  // {2, 3}
+
+    //改
+    // 修改元素：由于set的元素具有唯一性，并且是根据某种特定规则排列的，
+    // 所以我们无法直接修改set中的元素。如果你需要修改set中的元素，
+    // 你可以先删除这个元素，然后插入新的元素
+    
+    //查
+    auto it = s.find(2);
+    if(it != s.end()) {
+        cout << "Element found";
+    } else {
+        cout << "Element not found";
+    }
+
+    cout << "Size of set: " << s.size() << endl;
+
+
 
 
     return  0;
