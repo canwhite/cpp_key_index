@@ -40,21 +40,33 @@ void changeValue3(Data& data) {
 }
 
 
-void changeValueWithPtr1(int* dataPtr) {
-    int newData = 50;
-    dataPtr = &newData;
+class Student {
+public:
+    std::string name;
+    int age;
+};
+
+
+void processStudentByValue(Student student) {
+    // Modify the student object here.
+    student.name = "New Name";  // This won't affect the original Student.
 }
-void changeValueWithPtr2(int** dataPtrPtr) {
-    int newData = 50;
-    *dataPtrPtr = &newData;
+
+void processStudentByPointer(Student* student) {
+    // Modify the student object here.
+    student->name = "New Name"; // This will affect the original Student.
 }
-void changeValueWithPtr3(int*& dataPtr) {
-    int newData = 50;
-    dataPtr = &newData;
+
+void processStudentByReference(Student& student) {
+    // Modify the student object here.
+    student.name = "New Name";  // This will affect the original Student.
 }
+
 
 int main (){
 
+
+    //一、---实际变量的情况
     Data data{1, 2};
     //C语言主要是两种，值传递和指针传递
     //1）值传递
@@ -70,14 +82,22 @@ int main (){
     changeValue3(data);
     cout << data.a << " " << data.b << endl;
 
+    //二、---指针变量的情况
+    //1) 值传递就要给一个实际的值，内部操作的也是值
+    Student* student = new Student();
+    processStudentByValue(*student);
 
-    //---TOOD，如果你传入的参数本身就是一个指针呢
-    int dt = 10;
-    int* ptr = &dt; //指针是需要赋予的，如果没有一般先初始化为null，防止出现野指针
+    //2）指针传递-就需要传地址，内部用->操作
+    processStudentByPointer(student);
 
-    changeValueWithPtr1(ptr);
-    changeValueWithPtr2(&ptr);
-    changeValueWithPtr3(ptr); //对指针的引用
+    //3）引用传递，传入的是值，&表示对原值的引用，所以可以修改原值
+    processStudentByReference(*student);
+
+
+
+
+
+
 
     return 0;
 }

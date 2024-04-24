@@ -81,7 +81,7 @@ int main(){
 
     //获取像素格式
     AVPixelFormat pixel_format = static_cast<AVPixelFormat>(pixel_format_int);
-    printf("--pix %d /n",pixel_format);
+    printf("--pix %d /n",pixel_format); //这里输出为-1，有问题
 
 
     // 找到对应的解码器。

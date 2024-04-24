@@ -148,7 +148,6 @@ int main(){
     delete[] myArray;  
     myArray = nullptr;
 
-
     //---容器--这个是自动释放的，动态数组
     // 创建一个空的 std::vector<Student> 容器
     //这个可以理解为Java的List
