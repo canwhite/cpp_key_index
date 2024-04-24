@@ -132,7 +132,7 @@ int main(){
     // 创建对象并将指针存储在数组中
     for (int i = 0; i < arraySize; ++i) {
         myArray[i] = new MyClass();  // new在堆中分配内存，并返回地址
-        myArray[i]->value = i + 1;   // 通过指针访问对象的成员变量
+        myArray[i]->value = i + 1;   //-> 是通过地址访问实例吗？
     }
 
     // 使用对象数组的元素
