@@ -5,8 +5,12 @@ set(APP_NAME "APP")
 project(${APP_NAME})
 
 # set(SOURCE_FILES start.cpp)
-# set(SOURCE_FILES ffmpeg/0_decoder.cpp)
-set(SOURCE_FILES ffmpeg/0_parameter_passing.cpp)
+# set(SOURCE_FILES ffmpeg/0_parameter_passing.cpp)
+set(SOURCE_FILES ffmpeg/1_decoder.cpp)
+# set(SOURCE_FILES ffmpeg/2_encoder.cpp)
+
+
+
 #vscode中除了cmake的配置也就是插件、launch和CMakeLists之外
 #关于c和c++版本，以及编译器相关在这里设置就可以了
 

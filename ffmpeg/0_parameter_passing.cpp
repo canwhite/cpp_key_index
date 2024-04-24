@@ -72,8 +72,8 @@ int main (){
 
 
     //---TOOD，如果你传入的参数本身就是一个指针呢
-    int data = 10;
-    int* ptr = &data; //指针是需要赋予的，如果没有一般先初始化为null，防止出现野指针
+    int dt = 10;
+    int* ptr = &dt; //指针是需要赋予的，如果没有一般先初始化为null，防止出现野指针
 
     changeValueWithPtr1(ptr);
     changeValueWithPtr2(&ptr);
