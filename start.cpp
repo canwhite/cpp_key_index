@@ -2,6 +2,7 @@
 #include <future>
 #include <vector>
 #include <map>
+#include <set>
 #include <algorithm> //find等方法
 #include <memory>
 #include "algorithm/sortnamespace.h"
@@ -384,7 +385,29 @@ int main(){
 
 
     //TODO， --set
-    
+    set<int> mySet;
+    // 添加（增）
+    mySet.insert(1);
+    mySet.insert(2);
+    mySet.insert(5);
+    mySet.insert(4);
+
+    // 查找（查）
+    auto search = mySet.find(2);
+    if(search != mySet.end()) {
+       std::cout << "元素 2 存在于集合中" << '\n';
+    } else {
+       std::cout << "元素 2 未找到" << '\n';
+    }
+    // 删除（删）
+    mySet.erase(2);
+    // 后续的查找再也找不到元素 2
+    search = mySet.find(2);
+    if(search != mySet.end()) {
+        std::cout << "元素 2 存在于集合中" << '\n';
+    } else {
+        std::cout << "元素 2 未找到" << '\n';
+    }
 
 
 

@@ -69,7 +69,8 @@
         "__memory": "cpp",
         "deque": "cpp",
         "iomanip": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "set": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
