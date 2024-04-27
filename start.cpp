@@ -378,31 +378,12 @@ int main(){
     }); 
 
 
-    //--set
+    //--namespace
+    SortNamespace::quickSort();
 
-    //增
-    set<int> s;
-    s.insert(1);  // {1}
-    s.insert(3);  // {1, 3}
-    s.insert(2);  // {1, 2, 3}
 
-    //删
-    s.erase(1);  // {2, 3}
+    //TODO， --set
 
-    //改
-    // 修改元素：由于set的元素具有唯一性，并且是根据某种特定规则排列的，
-    // 所以我们无法直接修改set中的元素。如果你需要修改set中的元素，
-    // 你可以先删除这个元素，然后插入新的元素
-    
-    //查
-    auto it = s.find(2);
-    if(it != s.end()) {
-        cout << "Element found";
-    } else {
-        cout << "Element not found";
-    }
-
-    cout << "Size of set: " << s.size() << endl;
 
 
 

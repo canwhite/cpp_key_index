@@ -4,9 +4,10 @@ set(APP_NAME "APP")
 
 project(${APP_NAME})
 
-# set(SOURCE_FILES start.cpp)
+#主文件
+set(SOURCE_FILES start.cpp)
 # set(SOURCE_FILES ffmpeg/0_parameter_passing.cpp)
-set(SOURCE_FILES ffmpeg/1_decoder.cpp)
+# set(SOURCE_FILES ffmpeg/1_decoder.cpp)
 # set(SOURCE_FILES ffmpeg/2_encoder.cpp)
 
 
@@ -37,8 +38,13 @@ find_package(PkgConfig REQUIRED)
 
 # 2. ffmpeg imported target导入，推荐
 pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavutil libswscale) 
+# include_directories(${CMAKE_SOURCE_DIR}/algorithm)
 
-add_executable(${APP_NAME} ${SOURCE_FILES})
+# 引入algorithm下的文件
+file(GLOB_RECURSE SORT_FILES  "algorithm/*.cpp" "algorithm/*.h")
+
+# 注意引入
+add_executable(${APP_NAME} ${SOURCE_FILES} ${SORT_FILES})
 
 # 1. ffmpeg手动导入
 # target_link_libraries(${APP_NAME} ${FFMPEG_LIBRARIES})
