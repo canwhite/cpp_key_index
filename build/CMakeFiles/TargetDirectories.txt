@@ -1,0 +1,3 @@
+/Users/zack/Desktop/cpp_key_index/build/CMakeFiles/APP.dir
+/Users/zack/Desktop/cpp_key_index/build/CMakeFiles/edit_cache.dir
+/Users/zack/Desktop/cpp_key_index/build/CMakeFiles/rebuild_cache.dir
