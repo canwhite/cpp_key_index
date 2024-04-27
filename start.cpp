@@ -380,10 +380,6 @@ int main(){
     }); 
 
 
-    //--namespace
-    SortNamespace::quickSort();
-
-
     //TODO， --set
     set<int> mySet;
     // 添加（增）
@@ -408,6 +404,10 @@ int main(){
     } else {
         std::cout << "元素 2 未找到" << '\n';
     }
+
+
+    //--namespace
+    SortNamespace::quickSort();
 
 
 
