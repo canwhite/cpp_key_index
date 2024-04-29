@@ -5,6 +5,7 @@ namespace SortNamespace {
     //需要指针传递
     void swap(int *a ,int *b ){
         int temp = *a;
+        //这个转换两个地址的内容需要了解一下
         *a = *b;
         *b = temp;
     }
@@ -40,7 +41,8 @@ namespace SortNamespace {
         }
 
         // 对左右子数组进行递归排序
-        // 左边递归
+        // 左边递归，
+        // 这段代码的作用是对基准值左边的部分进行递归排序，也就是对数组中小于基准值的数进行排序。
         if(left < j) {
             quickSort(arr, left, j);
         }
