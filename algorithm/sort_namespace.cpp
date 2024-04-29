@@ -25,9 +25,13 @@ namespace SortNamespace {
         int j = right;
 
         while (true) {
-            //当找到比pivot大的元素时，停止循环，左侧移动到j的前一个就可以了
+            //当找到比pivot大的元素时，停止循环，
+            //i<j , 左侧移动到j的前一个就可以了
+            //arr[i] <= pivot, 但是左侧可以和pivot相等,这个也可以理解，排序吗
             while (i < j && arr[i] <= pivot) i++; 
-            //当找到比pivot小的元素时，停止循环，右侧可以和左侧相等
+            //当找到比pivot小的元素时，停止循环，
+            //i <= j右侧可以移动到和左侧同一位置
+            //arr[j] > pivot 右侧就需要比pivot大了
             while (i <= j && arr[j] > pivot) j--; 
             //若两者相遇，则停止
             if (i >= j) break; 
