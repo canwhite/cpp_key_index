@@ -4,17 +4,9 @@ set(APP_NAME "APP")
 
 project(${APP_NAME})
 
-#主文件
-set(SOURCE_FILES start.cpp)
-# set(SOURCE_FILES ffmpeg/0_parameter_passing.cpp)
-# set(SOURCE_FILES ffmpeg/1_decoder.cpp)
-# set(SOURCE_FILES ffmpeg/2_encoder.cpp)
-
-
-
 #vscode中除了cmake的配置也就是插件、launch和CMakeLists之外
 #关于c和c++版本，以及编译器相关在这里设置就可以了
-
+#----- 
 #指定c和c++的版本
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED True)
@@ -39,6 +31,13 @@ find_package(PkgConfig REQUIRED)
 # 2. ffmpeg imported target导入，推荐
 pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavutil libswscale) 
 # include_directories(${CMAKE_SOURCE_DIR}/algorithm)
+
+#主文件
+set(SOURCE_FILES start.cpp)
+# set(SOURCE_FILES ffmpeg/0_parameter_passing.cpp)
+# set(SOURCE_FILES ffmpeg/1_decoder.cpp)
+# set(SOURCE_FILES ffmpeg/2_encoder.cpp)
+
 
 # 引入algorithm下的文件
 file(GLOB_RECURSE SORT_FILES  "algorithm/*.cpp" "algorithm/*.h")

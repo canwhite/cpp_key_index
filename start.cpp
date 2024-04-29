@@ -5,7 +5,7 @@
 #include <set>
 #include <algorithm> //find等方法
 #include <memory>
-#include "algorithm/sortnamespace.h"
+#include "algorithm/sort_namespace.h"
 using namespace std; //可以使用标准库里的符号和方法
 extern "C" {
 #include <libavcodec/avcodec.h>
@@ -406,9 +406,17 @@ int main(){
     }
 
 
-    //--namespace
-    SortNamespace::quickSort();
+    //也可以用int arr[] = {} 创建，这样的arr是个指针
+    vector<int> arr = {4,5,2,1,6,9};
+    //--namespace 
+    //1）快排
+    SortNamespace::quickSort(arr,0,arr.size()-1);
 
+    //for-in输出
+    for (const auto &value : arr) {
+        cout << value << ' ';
+    }   
+    
 
 
 
