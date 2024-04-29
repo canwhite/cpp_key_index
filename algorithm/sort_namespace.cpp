@@ -50,7 +50,9 @@ namespace SortNamespace {
         }
     }
 
-    //TODO，选择，冒泡
+    //2)选择
+    
+    //3)冒泡
 
 
 }
