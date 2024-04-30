@@ -2,7 +2,7 @@
 
 namespace SortNamespace {
 
-    //需要指针传递
+    //swap交换，需要指针传递, 作为排序的通用方法
     void swap(int *a ,int *b ){
         int temp = *a;
         //这个转换两个地址的内容需要了解一下
@@ -53,6 +53,22 @@ namespace SortNamespace {
     }
 
     //2)选择
+    void selectionSort(vector<int> &arr , int n){
+        int i, j, min_index;  //min_index用来标注最小值
+        //时间复杂度是n^2
+        // for (int i = 0; i < n-1, i++)
+        // {
+            
+
+
+        // }
+        
+        
+
+
+
+
+    }
     
     //3)冒泡
 

@@ -114,6 +114,14 @@ void print_if(vector<int> const& vec, function<bool(int)> pred) {
     }
 }
 
+void print_arr(vector<int> & arr){
+    for (const auto &value : arr) {
+        cout << value << ' ';
+    }   
+    //人为的输出一个换行
+    cout << endl;
+}
+
 
 int main(){
     
@@ -407,16 +415,18 @@ int main(){
 
 
     //也可以用int arr[] = {} 创建，这样的arr是个指针
-    vector<int> arr = {4,5,2,1,6,9};
+    vector<int> arr0 = {4,5,2,1,6,9};
     //--namespace 
     //1）快排
-    SortNamespace::quickSort(arr,0,arr.size()-1);
+    SortNamespace::quickSort(arr0,0,arr0.size()-1);
+    //输出结果
+    print_arr(arr0);
 
-    //for-in输出
-    for (const auto &value : arr) {
-        cout << value << ' ';
-    }   
+    //2）选择排序
     
+
+
+
 
 
 

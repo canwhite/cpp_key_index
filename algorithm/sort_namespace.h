@@ -6,7 +6,7 @@ namespace SortNamespace {
     //1) 快排
     void quickSort(vector<int> &arr , int left, int right);
     //2）选择
-    
+    void selectionSort(vector<int> &arr , int n);    
     //3) 冒泡
 
 }   
