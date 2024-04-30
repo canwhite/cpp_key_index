@@ -423,10 +423,9 @@ int main(){
     print_arr(arr0);
 
     //2）选择排序
-    
-
-
-
+    vector<int> arr1 = {3,45,6,45,23,2};
+    SortNamespace::selectionSort(arr1,arr1.size());
+    print_arr(arr1);
 
 
 
