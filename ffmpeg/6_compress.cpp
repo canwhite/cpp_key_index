@@ -13,7 +13,7 @@ extern "C" {
 }
 
 int main (){
-    //TODO
+    //TODO, 短视频主要考虑的就是压缩的问题，当然直播的时候也会考虑压缩
 
     return 0;
 }
