@@ -42,8 +42,6 @@ V：色彩高度，它表示的是颜色从绿色至紫色的部分的信息。
 从而平衡视觉效果和编码效率。
 */ 
 
-//TODO,1.理解一下这里的具体方法
-//2.工具集的分类
 
 int main(){
 
@@ -51,33 +49,50 @@ int main(){
     const char* videoPath = "/Users/zack/Desktop/test.mp4";
 
     // 分配一个AVFormatContext结构体
+    // avformat_alloc_context()这个函数调用的目的就是在内存中创建一个这样的结构体，
+    // 用于存储媒体文件的各种信息。
     AVFormatContext *pFormatCtx = avformat_alloc_context();
 
     
-    if (avformat_open_input(&pFormatCtx, videoPath, NULL, NULL) != 0)
-        return -1;
+    //avformat_open_input打开视频文件的函数，如果没问题就返回0
+    if (avformat_open_input(&pFormatCtx, videoPath, NULL, NULL) != 0){
+         return -1;
+    }
 
-    // 搜索流信息
-    if (avformat_find_stream_info(pFormatCtx, NULL) < 0)
+    // 搜索流信息,读取源码信息
+    // 这个函数的返回值是错误码。如果找到流的信息，函数会返回非负的值，否则会返回负值。
+    if (avformat_find_stream_info(pFormatCtx, NULL) < 0){
         return -1;
+    }
+
 
     // 查找视频流索引
     int videoStream = -1;
+    //pFormatCtx->nb_streams，是视频流的数量
     for (int i = 0; i < pFormatCtx->nb_streams; i++) {
+        //pFormatCtx->streams[i] 是指向第i个视频流的指针
+        //->codecpar->codec_type 是该媒体流的编码类型
+        //== AVMEDIA_TYPE_VIDEO 说明这个流是一个视频流
         if (pFormatCtx->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {
             videoStream = i;
             break;
         }
     }
     // 没有找到视频流
-    if (videoStream == -1)
+    if (videoStream == -1){
         return -1;
+    }
 
 
     //从视频流中获取指定视频流（videoStream）的编解码器参数，
     AVCodecParameters *pCodecPar = pFormatCtx->streams[videoStream]->codecpar;
 
-    //根据编解码器参数中的编解码器ID（codec_id）在FFmpeg的编解码器列表中查找对应的解码器
+    //根据编解码器参数中的编解码器ID（codec_id）
+    //在FFmpeg的编解码器列表中查找对应的解码器
+    //pCodecPar->codec_id 
+    //这部分的意思是获取 pCodecPar（一个指向 AVCodecParameters 的指针）所指向的结构的 codec_id 成员。
+    //codec_id 一般是由一种称为解复用器（Demuxer）的软件分析来自于压缩音视频文件的数据流，
+    //然后记录具体是何种编码算法进行压缩的。
     const AVCodec *pCodec = avcodec_find_decoder(pCodecPar->codec_id);
 
 
@@ -88,7 +103,23 @@ int main(){
     }
 
     // 分配一个解码器上下文
+    //avcodec_alloc_context3(pCodec) 是一个函数调用，
+    //其功能是为给定的编解码器 pCodec 分配一个新的 AVCodecContext 并返回其指针。
     AVCodecContext *pCodecCtx = avcodec_alloc_context3(pCodec);
+
+
+    //这个函数的作用是将 pCodecPar中的参数复制到 pCodecCtx（一个AVCodecContext 结构体的指针）中。
+    //这个函数会返回一个整数值，大于或等于 0 表示复制成功，小于 0 则表示复制失败。
+    /* 
+    PS: 为什么要复制进去呢？
+    在音视频编码过程中, AVCodecParameters是用来存储编码信息的结构体，
+    比如视频的宽、高、帧率、像素格式等实际编解码需要的参数；
+    而AVCodecContext是编解码器上下文，它包含一些更详细和更深层次的编码或解码信息。
+    将AVCodecParameters中的参数复制至AVCodecContext中，其实是为了获取并使用这些编码参数。
+    在实际的编解码操作中，AVCodecContext会被频繁访问和使用。
+    调用avcodec_parameters_to_context函数可以使程序更高效地获取到必要的编码参数，
+    比如视频帧的大小，编码类型等等，使得AVCodecContext对象在编解码过程中能够正确的获取和使用这些参数。
+    */
 
     if (avcodec_parameters_to_context(pCodecCtx, pCodecPar) < 0) {
         printf("Failed to copy codec parameters to codec context\n");
@@ -101,10 +132,26 @@ int main(){
         return -1;
     }
 
-    // 分配一个AVFrame结构体
+    // 分配一个AVFrame结构体, 来自libavcodec
+    // AVFrame *pFrame = av_frame_alloc();这行代码的作用是分配一个AVFrame类型的结构体。
+    // AVFrame是用来存储解码后的原始数据（即未压缩数据，音频或视频帧）的结构体。
+    // av_frame_alloc函数用于为AVFrame分配内存。    
+    
     AVFrame *pFrame = av_frame_alloc();
+
+    //AVPacket packet;
+    //这行代码则是定义了一个AVPacket类型的变量packet。
+    //AVPacket结构体用于存储压缩编码的数据（即编码后的数据，音频或视频帧）。
+    //也就是说，当从文件或者网络上读取数据时，获取的数据会以AVPacket形式存在。
+    //在执行解码操作后，该结构体中的数据将被转存到AVFrame结构体中。
     AVPacket packet;
 
+    //--总结：
+    //这两者共同完成了音视频数据的解码工作，
+    //先通过AVPacket读取压缩数据，再解码生成AVFrame存储解码后的原始数据
+
+
+    //TODO：
     // 初始化像素格式转换上下文
     struct SwsContext *swsContext = sws_getContext(pCodecCtx->width, pCodecCtx->height, pCodecCtx->pix_fmt,
                                                    pCodecCtx->width, pCodecCtx->height, AV_PIX_FMT_YUV420P,
