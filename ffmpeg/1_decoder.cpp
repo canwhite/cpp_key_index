@@ -148,15 +148,29 @@ int main(){
 
     //--总结：
     //这两者共同完成了音视频数据的解码工作，
-    //先通过AVPacket读取压缩数据，再解码生成AVFrame存储解码后的原始数据
+    //先通过AVPacket读取压缩数据，
+    //再解码生成AVFrame存储解码后的原始数据
 
-
-    //TODO：
-    // 初始化像素格式转换上下文
-    struct SwsContext *swsContext = sws_getContext(pCodecCtx->width, pCodecCtx->height, pCodecCtx->pix_fmt,
-                                                   pCodecCtx->width, pCodecCtx->height, AV_PIX_FMT_YUV420P,
-                                                   SWS_BICUBIC, NULL, NULL, NULL);
+    //sws_getContext函数的主要功能是得到一个用于图像缩放和像素格式转换的上下文（struct SwsContext）。
+    struct SwsContext *swsContext = sws_getContext(
+        pCodecCtx->width,  // 源图像的宽度
+        pCodecCtx->height, // 源图像的高度
+        pCodecCtx->pix_fmt,// 源图像的像素格式
+        pCodecCtx->width,  // 目标图像的宽度
+        pCodecCtx->height, // 目标图像的高度
+        AV_PIX_FMT_YUV420P,// 目标图像的像素格式，这里设定为 AV_PIX_FMT_YUV420P，即YUV420P格式。
+        SWS_BICUBIC,       // 缩放算法， 使用的是双立方插值算法进行图像缩放。FFmpeg提供了多种插值算法，比如 SWS_BICUBIC, SWS_BILINEAR, SWS_FAST_BILINEAR,等等。
+        //这三个NULL参数，分别对应param[2]，param[3]，param[4]，通常不需要设置，故设为NULL。
+        NULL, 
+        NULL, 
+        NULL
+    );
+    
     // 打开输出文件
+    // 使用 fopen 函数尝试打开一个叫做 "output.yuv" 的文件，
+    // 以二进制写模式("wb")，w代表写，b代表二进制
+    // 注意这个函数的返回值是一个 FILE 指针
+    // 如果这个文件不存在，会新建这个文件
     FILE *file = fopen("output.yuv", "wb");
     if (!file) {
         printf("Failed to open output file\n");
@@ -164,7 +178,11 @@ int main(){
     }
 
     // 读取视频帧并转换为YUV
+    //av_read_frame(pFormatCtx, &packet) 是 ffmpeg 库的函数，用于从媒体文件中读取下一帧。其中：
+    //pFormatCtx: 封装格式上下文，通常会包含媒体文件的信息（如流数、帧数等）。
+    //&packet: 用于存储读取的帧数据的结构。
     while (av_read_frame(pFormatCtx, &packet) >= 0) {
+        //TODO 
         if (packet.stream_index == videoStream) {
             avcodec_send_packet(pCodecCtx, &packet);
             while (avcodec_receive_frame(pCodecCtx, pFrame) == 0) {
