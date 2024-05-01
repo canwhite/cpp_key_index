@@ -30,7 +30,7 @@ FFmpeg进行编码的原因有以下几个：
  */ 
 
 int main (){
-    //TODO
+    //TODO.如何将yuv格式的视频转化为avi
 
     return 0;
 }

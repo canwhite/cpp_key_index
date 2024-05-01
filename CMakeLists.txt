@@ -33,9 +33,9 @@ pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavut
 # include_directories(${CMAKE_SOURCE_DIR}/algorithm)
 
 #主文件
-set(SOURCE_FILES start.cpp)
+# set(SOURCE_FILES start.cpp)
 # set(SOURCE_FILES ffmpeg/0_parameter_passing.cpp)
-# set(SOURCE_FILES ffmpeg/1_decoder.cpp)
+set(SOURCE_FILES ffmpeg/1_decoder.cpp)
 # set(SOURCE_FILES ffmpeg/2_encoder.cpp)
 
 
