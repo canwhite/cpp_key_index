@@ -52,7 +52,7 @@ namespace SortNamespace {
         }
     }
 
-    //2)选择
+    //2)选择排序，时间复杂度 n^2
     void selectionSort(vector<int> &arr , int n){
         int i, j, min_index;  //min_index用来标注最小值
         //时间复杂度是n^2
