@@ -56,21 +56,20 @@ namespace SortNamespace {
     void selectionSort(vector<int> &arr , int n){
         int i, j, min_index;  //min_index用来标注最小值
         //时间复杂度是n^2
-        // for (int i = 0; i < n-1, i++)
-        // {
-            
-
-
-        // }
-        
-        
-
-
-
-
+        for (int i = 0; i < n-1; i++)
+        {
+            //假设未排序的第一个元素是最小的数据
+            min_index = i;
+            //遍历未排序部分的其他数据 ，一一做对比
+            for (int j = i+1; j < n; j++)
+            {   
+                if(arr[j] < arr[min_index])
+                    min_index = j; //更新最小值的位置
+            }
+            swap(&arr[min_index],&arr[j]);  
+        }
     }
     
     //3)冒泡
-
 
 }
