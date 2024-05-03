@@ -427,6 +427,11 @@ int main(){
     SortNamespace::selectionSort(arr1,arr1.size());
     print_arr(arr1);
 
+    //3）冒泡排序    
+    vector<int> arr2 = {4,5,2,1,45,66};
+    //引用传值，实际上传递的是这个值本身，不需要传入地址
+    SortNamespace::bubbleSort(arr2,arr2.size());
+    print_arr(arr2);
 
 
     return  0;

@@ -8,6 +8,7 @@ namespace SortNamespace {
     //2）选择
     void selectionSort(vector<int> &arr , int n);    
     //3) 冒泡
+    void bubbleSort(vector<int> &arr, int n);
 
 }   
 
