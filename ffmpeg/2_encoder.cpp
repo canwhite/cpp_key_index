@@ -29,8 +29,110 @@ FFmpeg进行编码的原因有以下几个：
 因此，无论是在创建、编辑、分享或播放媒体内容时，编码都扮演了重要的角色。
  */ 
 
-int main (){
-    //TODO.如何将yuv格式的视频转化为avi
 
-    return 0;
+int main (){
+
+
+    //输入和输出文件的地址
+    const char* inputFileName = "/Users/zack/Desktop/cpp_key_index/ffmpeg/input.yuv";
+    const char* outputFileName = "output.avi";
+
+    FILE* inputFile = fopen(inputFileName, "rb");
+    if (!inputFile) {
+        std::cerr << "Error opening input file." << std::endl;
+        return -1;
+    }
+
+    // Create AVFormatContext for output AVI file
+    AVFormatContext* outputFormatContext = NULL;
+    avformat_alloc_output_context2(&outputFormatContext, NULL, NULL, "output.avi");
+    if (!outputFormatContext) {
+        std::cerr << "Error creating output format context." << std::endl;
+        return -1;
+    }
+
+    // Create AVFormatContext
+    AVFormatContext* formatContext = avformat_alloc_context();
+
+    // Add video stream
+    AVStream* videoStream = avformat_new_stream(formatContext, NULL);
+    if (!videoStream) {
+        std::cerr << "Error creating video stream." << std::endl;
+        return -1;
+    }
+
+    // Set codec parameters using AVCodecParameters
+    AVCodecParameters* codecParams = videoStream->codecpar;
+    codecParams->codec_id = AV_CODEC_ID_MPEG4;
+    codecParams->codec_type = AVMEDIA_TYPE_VIDEO;
+    codecParams->width = 1920;
+    codecParams->height = 1080;
+    codecParams->format = AV_PIX_FMT_YUV420P;
+    codecParams->codec_tag = 0;
+    cout << codecParams->codec_id << endl;
+
+    // Open video codec for output
+    const AVCodec* codec = avcodec_find_encoder(codecParams->codec_id);
+    if (!codec) {
+        std::cerr << "Codec not found." << std::endl;
+        return -1;
+    }
+
+    AVCodecContext* codecContext = avcodec_alloc_context3(codec);
+    if (!codecContext) {
+        std::cerr << "Error allocating codec context." << std::endl;
+        return -1;
+    }
+
+    // Set codec parameters for codec context
+    if (avcodec_parameters_to_context(codecContext, codecParams) < 0) {
+        std::cerr << "Failed to copy codec parameters to codec context." << std::endl;
+        return -1;
+    }
+
+    // Open codec
+    if (avcodec_open2(codecContext, codec, NULL) < 0) {
+        std::cerr << "Error opening codec." << std::endl;
+        return -1;
+    }
+
+    // Write header for output file
+    if (avformat_write_header(outputFormatContext, NULL) < 0) {
+        std::cerr << "Error writing header." << std::endl;
+        return -1;
+    }
+
+    // Read YUV frames, encode, and write to output file
+    AVPacket pkt;
+    pkt.data = NULL;
+    pkt.size = 0;
+
+    
+
+
+    // // Write trailer for output file
+    // av_write_trailer(outputFormatContext);
+
+    // // Cleanup
+    // avcodec_free_context(&codecContext);
+    // avformat_free_context(outputFormatContext);
+    // fclose(inputFile);
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+    
+

@@ -70,7 +70,9 @@
         "deque": "cpp",
         "iomanip": "cpp",
         "stack": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "charconv": "cpp",
+        "execution": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
