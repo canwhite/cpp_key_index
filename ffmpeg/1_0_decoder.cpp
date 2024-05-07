@@ -184,7 +184,46 @@ int main(){
     //注意这里能获取到nb_streams，是因为我们之前调用了方法avformat_find_stream_info
     for (int i = 0; i < pFormatContext->nb_streams; i++)
     {
+        //针对每个流维护一个对应的 AVCodecParameters，该结构体描述了被编码流的各种属性
+        AVCodecParameters *pLocalCodecParameters =  NULL;
+        pLocalCodecParameters = pFormatContext->streams[i]->codecpar;
+
+        logging("AVStream->time_base before open coded %d/%d", pFormatContext->streams[i]->time_base.num, pFormatContext->streams[i]->time_base.den);
+        logging("AVStream->r_frame_rate before open coded %d/%d", pFormatContext->streams[i]->r_frame_rate.num, pFormatContext->streams[i]->r_frame_rate.den);
+        logging("AVStream->start_time %" PRId64, pFormatContext->streams[i]->start_time);
+        logging("AVStream->duration %" PRId64, pFormatContext->streams[i]->duration);
+
+        logging("finding the proper decoder (CODEC)");
+        AVCodec *pLocalCodec = NULL;
+
+        // finds the registered decoder for a codec ID
+        // https://ffmpeg.org/doxygen/trunk/group__lavc__decoding.html#ga19a0ca553277f019dd5b0fec6e1f9dca
+        pLocalCodec = avcodec_find_decoder(pLocalCodecParameters->codec_id);
+
+        if (pLocalCodec==NULL) {
+            logging("ERROR unsupported codec!");
+            // In this example if the codec is not found we just skip it
+            continue; //continue，跳过这一帧
+        }
         
+        //对于视频，我们在找到第一个视频流（video_stream_index == -1，即我们还没找到视频流）的时候就保存索引和codec相关的信息。
+        //这就意味着我们只关心第一个找到的视频流。对于音频，我们只是打印出相关的音频信息，并没有保存索引和codec信息
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
