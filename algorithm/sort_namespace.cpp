@@ -72,12 +72,22 @@ namespace SortNamespace {
     
     //3)冒泡，每次迭代，一一对比将大元素冒泡到后边
     void bubbleSort(vector<int> &arr ,int n){
-        //TODO,写一个冒泡排序
-        
-
-
-
+        for (int i = 0; i < n-1; i++)
+        {
+            //i是外层循环，已经排序并冒泡到后边的个数，后续就不用再比对了
+            for (int j = 0; j < n-1-i; j++)
+            {
+                //相邻元素比较
+                if(arr[j] > arr[j+1]){
+                    swap(&arr[j],&arr[j+1]);
+                }
+            }
+        }
     }
+
+    //4)归并排序
+    
+
 
 
 }
