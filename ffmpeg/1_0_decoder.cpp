@@ -174,7 +174,7 @@ int main(){
     // the component that knows how to encode and decode the stream
     // it's the codec (audio or video)
     // http://ffmpeg.org/doxygen/trunk/structAVCodec.html
-    AVCodec * pCodec = NULL;
+    const AVCodec * pCodec = NULL;
 
     //针对每个流维护一个对应的 AVCodecParameters，该结构体描述了被编码流的各种属性。
     AVCodecParameters *pCodecParameters =  NULL;
@@ -194,7 +194,7 @@ int main(){
         logging("AVStream->duration %" PRId64, pFormatContext->streams[i]->duration);
 
         logging("finding the proper decoder (CODEC)");
-        AVCodec *pLocalCodec = NULL;
+        const AVCodec *pLocalCodec = NULL;
 
         // finds the registered decoder for a codec ID
         // https://ffmpeg.org/doxygen/trunk/group__lavc__decoding.html#ga19a0ca553277f019dd5b0fec6e1f9dca
@@ -208,26 +208,36 @@ int main(){
         
         //对于视频，我们在找到第一个视频流（video_stream_index == -1，即我们还没找到视频流）的时候就保存索引和codec相关的信息。
         //这就意味着我们只关心第一个找到的视频流。对于音频，我们只是打印出相关的音频信息，并没有保存索引和codec信息
+        if(pLocalCodecParameters->codec_type == AVMEDIA_TYPE_VIDEO){
+            //如果是视频,就给下述几个值赋值
+            if(video_stream_index == -1){
+                video_stream_index = i;
+                pCodec = pLocalCodec;
+                pCodecParameters = pLocalCodecParameters;
+            }
 
+        }else{
+            //如果是音频
+            logging("Audio Codec: %d channels, sample rate %d", 
+            // pLocalCodecParameters->channels, //好像没有这个参数，后续todo
+            0, 
+            pLocalCodecParameters->sample_rate);
 
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // print its name, id and bitrate
+        logging("\tCodec %s ID %d bit_rate %lld", pLocalCodec->name, pLocalCodec->id, pLocalCodecParameters->bit_rate);
     }
+
+    if (video_stream_index == -1) {
+        logging("File %s does not contain a video stream!", *videoPath);
+        return -1;
+    }
+
+    //然后搞一个context和codec绑定
+    
+
+
 
 
 
