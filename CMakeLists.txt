@@ -35,7 +35,7 @@ pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavut
 #主文件
 # set(SOURCE_FILES start.cpp)
 # set(SOURCE_FILES ffmpeg/pre_parameter_passing.cpp)
-set(SOURCE_FILES ffmpeg/0_1_format.cpp)
+set(SOURCE_FILES ffmpeg/0_base.cpp)
 # set(SOURCE_FILES ffmpeg/1_decoder.cpp)
 # set(SOURCE_FILES ffmpeg/2_encoder.cpp)
 
