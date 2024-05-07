@@ -138,6 +138,8 @@ static int decode_packet(AVPacket *pPacket, AVCodecContext *pCodecContext, AVFra
 
 int main(){
 
+    logging("initializing all the containers, codecs and protocols.");
+
 
     return 0;
 }
