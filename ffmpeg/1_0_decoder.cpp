@@ -140,6 +140,61 @@ int main(){
 
     logging("initializing all the containers, codecs and protocols.");
 
+    //我们首先为 AVFormatContext 分配内存，利用它可以获得相关格式（容器）的信息。
+    //AVFormatContext保存来自格式(容器)的头信息。为该组件分配内存
+    // http://ffmpeg.org/doxygen/trunk/structAVFormatContext.html
+    AVFormatContext *pFormatContext = avformat_alloc_context();
+    if (!pFormatContext) {
+        logging("ERROR could not allocate memory for Format Context");
+        return -1;
+    }
+    // 打开文件
+    const char* videoPath = "/Users/zack/Desktop/test.mp4";
+    if (avformat_open_input(&pFormatContext, videoPath, NULL, NULL) != 0) {
+        logging("ERROR could not open the file");
+        return -1;
+    }
+
+    // now we have access to some information about our file
+    // since we read its header we can say what format (container) it's
+    // and some other information related to the format itself.
+    logging("format %s, duration %lld us, bit_rate %lld", pFormatContext->iformat->name, pFormatContext->duration, pFormatContext->bit_rate);
+    
+    logging("finding stream info from format");
+
+    //为了访问数据流，我们需要从媒体文件中读取数据。
+    //需要利用函数 avformat_find_stream_info完成此步骤。
+    //pFormatContext->nb_streams 将获取所有的流信息，并且通过 pFormatContext->streams[i] 获取到指定的 i 数据流
+    // https://ffmpeg.org/doxygen/trunk/group__lavf__decoding.html#gad42172e27cddafb81096939783b157bb
+    if (avformat_find_stream_info(pFormatContext,  NULL) < 0) {
+        logging("ERROR could not get the stream info");
+        return -1;
+    }
+
+    // the component that knows how to encode and decode the stream
+    // it's the codec (audio or video)
+    // http://ffmpeg.org/doxygen/trunk/structAVCodec.html
+    AVCodec * pCodec = NULL;
+
+    //针对每个流维护一个对应的 AVCodecParameters，该结构体描述了被编码流的各种属性。
+    AVCodecParameters *pCodecParameters =  NULL;
+    int video_stream_index = -1;
+
+    //遍历数据流，输出其中的重要信息
+    //注意这里能获取到nb_streams，是因为我们之前调用了方法avformat_find_stream_info
+    for (int i = 0; i < pFormatContext->nb_streams; i++)
+    {
+        
+
+
+
+    }
+
+
+
+
+
+
 
     return 0;
 }

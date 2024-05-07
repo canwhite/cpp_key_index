@@ -62,6 +62,14 @@ void processStudentByReference(Student& student) {
     student.name = "New Name";  // This will affect the original Student.
 }
 
+//指针的指针
+void set_value(int **p, int new_value){
+    //先*p 分配内存, 注意malloc默认返回的是void *，这里需要一个强转，只要用到malloc都需要这个强转
+    *p = (int*)malloc(sizeof(int));
+    //再**p分配值，这就是一个完整的过程了
+    **p = new_value;
+}
+
 
 int main (){
 
@@ -94,8 +102,12 @@ int main (){
     processStudentByReference(*student);
 
 
-
-
+    //PS：指针传递的特例，指针的指针
+    //大多数情况就像上边那样，但是还有一种情况是，指针一开始没有分配内存，这就需要指针的指针来进行操作了
+    int *ptr = NULL;
+    set_value(&ptr, 5);
+    printf("%d\n", *ptr); // 这将打印5
+    free(ptr);
 
 
 
