@@ -90,7 +90,7 @@ static int decode_packet(AVPacket *pPacket, AVCodecContext *pCodecContext, AVFra
         //如果报错
         if (response == AVERROR(EAGAIN) || response == AVERROR_EOF) {
             break; //跳出while循环
-        }else{
+        }else if(response < 0){
             logging("Error while receiving a frame from the decoder: %s", av_err2str(response));
             return response;
         }
@@ -114,7 +114,8 @@ static int decode_packet(AVPacket *pPacket, AVCodecContext *pCodecContext, AVFra
             //size 是你想要写入的字符数组的最大长度，包括结尾的空字符（'\0'）。
             //*format 是一个格式字符串，它定义了接下来的可变参数如何转换成字符串。
             //最后一个 ... 是可变参数，它们将按照 *format 字符串所指定的格式被格式化并写入 *str。
-            // snprintf(frame_filename, sizeof(frame_filename), "%s-%d.pgm", "frame", pCodecContext->frame_number);
+            //其实这行是给frame_filename按照固定格式赋值
+            snprintf(frame_filename, sizeof(frame_filename), "%s-%lld.pgm", "frame", pCodecContext->frame_num);
             // Check if the frame is a planar YUV 4:2:0, 12bpp
             // That is the format of the provided .mp4 file
             // RGB formats will definitely not give a gray image
@@ -276,7 +277,7 @@ int main(){
     }
 
     int response = 0;
-    int how_many_packets_to_process = 8;
+    int how_many_packets_to_process = 5;
 
     //使用函数 av_read_frame 读取帧数据来填充数据包。
     //是从输入中读，未解压的packet
