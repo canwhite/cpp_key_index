@@ -234,16 +234,73 @@ int main(){
         return -1;
     }
 
-    //然后搞一个context和codec绑定
+    //利用刚刚获取的 AVCodec 为 AVCodecContext 分配内存，它将维护解码/编码过程的上下文。 
+    //然后需要使用 avcodec_parameters_to_context和被编码流的参数(AVCodecParameters) 来填充 AVCodecContext。
+    AVCodecContext *pCodecContext = avcodec_alloc_context3(pCodec);
+    if (!pCodecContext)
+    {
+        logging("failed to allocated memory for AVCodecContext");
+        return -1;
+    }
+
+    //给codec context填充参数
+    // Fill the codec context based on the values from the supplied codec parameters
+    // https://ffmpeg.org/doxygen/trunk/group__lavc__core.html#gac7b282f51540ca7a99416a3ba6ee0d16
+    if (avcodec_parameters_to_context(pCodecContext, pCodecParameters) < 0)
+    {
+        logging("failed to copy codec params to codec context");
+        return -1;
+    }
+
+    //使用avcodec_open2打开编码器
+    if (avcodec_open2(pCodecContext, pCodec, NULL) < 0)
+    {
+        logging("failed to open codec through avcodec_open2");
+        return -1;
+    }
+
+    //初始化packet和frame
+    // https://ffmpeg.org/doxygen/trunk/structAVPacket.html
+    AVPacket *pPacket = av_packet_alloc();
+    if (!pPacket)
+    {
+        logging("failed to allocate memory for AVPacket");
+        return -1;
+    }
+    // https://ffmpeg.org/doxygen/trunk/structAVFrame.html
+    AVFrame *pFrame = av_frame_alloc();
+    if (!pFrame)
+    {
+        logging("failed to allocate memory for AVFrame");
+        return -1;
+    }
+
+    int response = 0;
+    int how_many_packets_to_process = 8;
+
+    //使用函数 av_read_frame 读取帧数据来填充数据包。
+    //是从输入中读，未解压的packet
+    while (av_read_frame(pFormatContext, pPacket) >= 0)
+    {
+        // if it's the video stream
+        if (pPacket->stream_index == video_stream_index) {
+            logging("AVPacket->pts %" PRId64, pPacket->pts);
+            response = decode_packet(pPacket, pCodecContext, pFrame);
+            if (response < 0)
+                break;
+            // stop it, otherwise we'll be saving hundreds of frames
+            if (--how_many_packets_to_process <= 0) break;
+        }
+        // https://ffmpeg.org/doxygen/trunk/group__lavc__packet.html#ga63d5a489b419bd5d45cfd09091cbcbc2
+        av_packet_unref(pPacket);
+    }
+
     
+    logging("releasing all the resources");
 
-
-
-
-
-
-
-
-
+    avformat_close_input(&pFormatContext);//释放
+    av_packet_free(&pPacket);
+    av_frame_free(&pFrame);
+    avcodec_free_context(&pCodecContext);
     return 0;
 }
