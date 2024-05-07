@@ -52,7 +52,7 @@ namespace SortNamespace {
         }
     }
 
-    //2)选择排序，时间复杂度 n^2
+    //2)选择排序，时间复杂度 n^2,将小元素交换到前边
     void selectionSort(vector<int> &arr , int n){
         int i, j, min_index;  //min_index用来标注最小值
         //时间复杂度是n^2
@@ -70,9 +70,13 @@ namespace SortNamespace {
         }
     }
     
-    //3)冒泡
+    //3)冒泡，每次迭代，一一对比将大元素冒泡到后边
     void bubbleSort(vector<int> &arr ,int n){
-        //TODO,
+        
+
+
+    
+
 
     }
 
