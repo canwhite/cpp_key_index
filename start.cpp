@@ -414,10 +414,10 @@ int main(){
         std::cout << "元素 2 未找到" << '\n';
     }
 
+    //--sort and namespace
 
     //也可以用int arr[] = {} 创建，这样的arr是个指针
     vector<int> arr0 = {4,5,2,1,6,9};
-    //--namespace 
     //1）快排
     SortNamespace::quickSort(arr0,0,arr0.size()-1);
     //输出结果
@@ -433,6 +433,11 @@ int main(){
     //引用传值，实际上传递的是这个值本身，不需要传入地址
     SortNamespace::bubbleSort(arr2,arr2.size());
     print_arr(arr2);
+
+    //4) 插入排序
+    vector<int> arr3 = {7,2,3,445,34};
+    SortNamespace::insertionSort(arr3,arr3.size());
+    print_arr(arr3);
 
 
     return  0;
