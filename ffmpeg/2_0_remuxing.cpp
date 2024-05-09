@@ -188,7 +188,9 @@ int main(){
         }
         av_packet_unref(&packet);
     }
-     av_write_trailer(output_format_context);
+    //这个函数的作用是写入任何必要的文件尾信息，并且丢弃所有的编码缓冲区。
+    //对于一些格式，例如MP4，它必须在文件的末尾写入一些元信息，这些信息包含了如何有效的播放该文件所需的关键信息。
+    av_write_trailer(output_format_context);
 
 //goto end的时候走这部分    
 end: 
