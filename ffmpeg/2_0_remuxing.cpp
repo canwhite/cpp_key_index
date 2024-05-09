@@ -180,28 +180,15 @@ int main(){
         // https://ffmpeg.org/doxygen/trunk/structAVPacket.html#ab5793d8195cf4789dfb3913b7a693903
         packet.pos = -1; //pos是代表 "position"的缩写，这通常是指数据在文件中的位置。
 
-        
-
-   
-
-
+        //通过 av_interleaved_write_frame 写入输出格式的上下文。
+        ret = av_interleaved_write_frame(output_format_context, &packet);
+        if (ret < 0) {
+            fprintf(stderr, "Error muxing packet\n");
+            break;
+        }
+        av_packet_unref(&packet);
     }
-    
-
-
-    
-
-
-
-
-
-    
-
-
-
-
-
-
+     av_write_trailer(output_format_context);
 
 //goto end的时候走这部分    
 end: 
