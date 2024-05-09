@@ -26,16 +26,49 @@ int main(){
     const char* out_filename = "remuxed_small_bunny_1080p_60fps.ts";
 
     //继续定义其他可用的属性
-    int ret,i;
+    int ret,i; //ret是获取各种
     int stream_index = 0;
     int *streams_list = NULL;
     int number_of_streams = 0;
     int fragmented_mp4_options = 0; //如果加options，改为1
+
+    //打开输入文件并分配内存
+    if((ret = avformat_open_input(&input_format_context, in_filename, NULL, NULL)) < 0){
+        //fprintf格式化输出方法。参数1，输出到指定的流，参数2，格式，参数3，内容      
+        fprintf(stderr, "Could not open input file '%s'", in_filename);
+        goto end;
+    }
+
+    //获取流信息
+    if ((ret = avformat_find_stream_info(input_format_context, NULL)) < 0) {
+        fprintf(stderr, "Failed to retrieve input stream information");
+        goto end;
+    }
+
+    //给输出文件分配内存
+    avformat_alloc_output_context2(&output_format_context, NULL, NULL, out_filename);
+    if(!output_format_context){
+        fprintf(stderr, "Could not create output context\n");
+        ret = AVERROR_UNKNOWN;
+        goto end;
+    }
+
+    //
+
+
+
     
 
 
 
 
+
+
+
+//goto end的时候走这部分    
+end: 
+    //释放资源
+    
 
 
 
