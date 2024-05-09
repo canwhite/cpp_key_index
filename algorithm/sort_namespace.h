@@ -12,7 +12,8 @@ namespace SortNamespace {
     //4) 插入
     void insertionSort(vector<int> &arr, int n);
     //5) 归并
-    
+    void mergeSort(vector<int> &arr, int n);
+
 
 
 

@@ -133,6 +133,13 @@ static void logging(const char *fmt, ...){
     fprintf( stderr, "\n" ); 
 }
 int main(){
+    /*
+    AVFormatContext 是多媒体文件格式的抽象（例如：MKV，MP4，Webm，TS）。 
+    AVStream 代表给定格式的数据类型（例如：音频，视频，字幕，元数据）。
+    AVPacket 是从 AVStream 获得的压缩数据的切片，
+    可由 AVCodec（例如av1，h264，vp9，hevc）解码，
+    从而生成称为 AVFrame 的原始数据。
+    */
     logging("注释里主要是一些基础概念");
     return 0;
 }
