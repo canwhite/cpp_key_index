@@ -53,7 +53,10 @@ int main(){
         goto end;
     }
 
-    //
+    //重新封装视频、音频、字幕流，因此需要将用到的这些流存入一个数组中。
+    
+
+
 
 
 
@@ -68,16 +71,21 @@ int main(){
 //goto end的时候走这部分    
 end: 
     //释放资源
-    
+    avformat_close_input(&input_format_context);
 
+    //close output
+    if (output_format_context && !(output_format_context->oformat->flags & AVFMT_NOFILE))
+        avio_closep(&output_format_context->pb);
+    avformat_free_context(output_format_context);
 
+    //释放流赎罪
+    av_freep(&streams_list);
 
-
-
-
-
-
-
+    // judge ret
+    if (ret < 0 && ret != AVERROR_EOF) {
+        fprintf(stderr, "Error occurred: %s\n", av_err2str(ret));
+        return 1;
+    }
 
     return 0;
 }
