@@ -19,7 +19,32 @@ extern "C" {
 
 int main(){
     AVFormatContext *input_format_context = NULL, *output_format_context = NULL;
+    AVPacket packet;
+
+    //然后文件名我们自己定义
+    const char* in_filename = "/Users/zack/Desktop/test.mp4";
+    const char* out_filename = "remuxed_small_bunny_1080p_60fps.ts";
+
+    //继续定义其他可用的属性
+    int ret,i;
+    int stream_index = 0;
+    int *streams_list = NULL;
+    int number_of_streams = 0;
+    int fragmented_mp4_options = 0; //如果加options，改为1
     
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return 0;
 }
