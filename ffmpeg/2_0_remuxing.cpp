@@ -9,8 +9,7 @@ using namespace std; //可以使用标准库里的符号和方法
 extern "C" {
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>
-#include <libavutil/imgutils.h>
-#include <libswscale/swscale.h>
+#include <libavutil/timestamp.h>
 }
 
 //转封装
@@ -31,6 +30,8 @@ int main(){
     int *streams_list = NULL;
     int number_of_streams = 0;
     int fragmented_mp4_options = 0; //如果加options，改为1
+    //注意将变量定义在前边。否则goto会报错，跳转绕过了变量初始化
+    AVDictionary *opts = NULL;
 
     //打开输入文件并分配内存
     if((ret = avformat_open_input(&input_format_context, in_filename, NULL, NULL)) < 0){
@@ -106,7 +107,43 @@ int main(){
     // 参数4:0是输出，1是输出
     av_dump_format(output_format_context, 0, out_filename, 1);
     
+    //创建一个输出文件
+    if (!(output_format_context->oformat->flags & AVFMT_NOFILE)) {
+        //参数1:代表了一个指向AVIOContext类型的指针，这里我们将它作为输出，即写入的目的地。
+        //参数3:最后一个参数是打开文件的模式，AVIO_FLAG_WRITE表示以写入模式打开文件。
+        //整体的意思是：
+        //打开名为out_filename的文件以便写入，
+        //并将AVIOContext上下文指针指向这个新打开的文件，
+        //如果打开成功，ret将被赋值为0
+        ret = avio_open(&output_format_context->pb, out_filename, AVIO_FLAG_WRITE);
+        //如果没有成功
+        if (ret < 0) {
+            fprintf(stderr, "Could not open output file '%s'", out_filename);
+            goto end;
+        }
+    }
 
+    //----使用选项 start----
+    //ffmpeg -i non_fragmented.mp4 -movflags frag_keyframe+empty_moov+default_base_moof fragmented.mp4
+    if (fragmented_mp4_options) {
+        // https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API/Transcoding_assets_for_MSE
+        av_dict_set(&opts, "movflags", "frag_keyframe+empty_moov+default_base_moof", 0);
+    }
+      
+    // https://ffmpeg.org/doxygen/trunk/group__lavf__encoding.html#ga18b7b10bb5b94c4842de18166bc677cb
+    // 将options写入header
+    ret = avformat_write_header(output_format_context, &opts);
+    if (ret < 0) {
+        fprintf(stderr, "Error occurred when opening output file\n");
+        goto end;
+    }
+    //----使用选项 end----
+
+
+    //将输入流逐个数据包复制到输出流
+    
+
+    
 
 
 
@@ -122,7 +159,6 @@ int main(){
 
 //goto end的时候走这部分    
 end: 
-    //释放资源
     avformat_close_input(&input_format_context);
 
     //close output
