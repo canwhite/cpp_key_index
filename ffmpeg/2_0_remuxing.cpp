@@ -17,6 +17,8 @@ extern "C" {
 //ffmpeg -i bunny_1080p_60fps.mp4 -c copy bunny_1080p_60fps.ts
 
 int main(){
+
+    //因为用到了goto，所以该初始化的都初始化
     AVFormatContext *input_format_context = NULL, *output_format_context = NULL;
     AVPacket packet;
 
@@ -75,10 +77,11 @@ int main(){
         if (in_codecpar->codec_type != AVMEDIA_TYPE_AUDIO &&
             in_codecpar->codec_type != AVMEDIA_TYPE_VIDEO &&
             in_codecpar->codec_type != AVMEDIA_TYPE_SUBTITLE) {
+            //如果不是以上类型，直接给到-1
             streams_list[i] = -1;
             continue;
         }
-        //标记一下是第几个stream
+        //上边不满足条件stream_index就没有++了，也就是说这里是按顺序加的
         streams_list[i] = stream_index++;
         //利用 avformat_new_stream 为每一个流创建一个对应的输出流，最后的结果是挂载在output_format_context
         out_stream = avformat_new_stream(output_format_context, NULL);
@@ -141,7 +144,38 @@ int main(){
 
 
     //将输入流逐个数据包复制到输出流
+    while (1)
+    {
+        AVStream *in_stream, *out_stream;
+        //通过（av_read_frame）循环读取每一个数据包。对于每一数据包，我们都要重新计算 PTS 和 DTS
+        //PTS是展示时间戳，DTS是解码时间戳
+        //read frame是读取数据包的，获得的是压缩数据的切片
+        ret = av_read_frame(input_format_context, &packet);
+        if (ret < 0)
+            break;
+        //拿到输入流
+        in_stream  = input_format_context->streams[packet.stream_index];
+        //如果超过过了分配空间或者不在分配空间之内，释放packet
+        if (packet.stream_index >= number_of_streams || streams_list[packet.stream_index] < 0) {
+            av_packet_unref(&packet);
+            continue;
+        }
+        //正常的视频不会报错，但是不正常的估计都报错了
+        //TODO，好像也没有问题，这里就不是-1了，而是streams_list本身的自增排序序号，不过也个数是对照的
+        packet.stream_index = streams_list[packet.stream_index];
+        //从fmt ctx中取，这个之前已经赋过值了
+        out_stream = output_format_context->streams[packet.stream_index];
+        /* copy packet */
+
+
+
+
+        
+
+
+    }
     
+
 
     
 
