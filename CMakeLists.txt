@@ -41,8 +41,8 @@ pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavut
 set(SOURCE_FILES ffmpeg/2_0_remuxing.cpp)
 
 
-# 引入algorithm下的文件
-file(GLOB_RECURSE SORT_FILES  "algorithm/*.cpp" "algorithm/*.h")
+# 引入algorithm和debug下的文件的文件
+file(GLOB_RECURSE SORT_FILES  "algorithm/*.cpp" "algorithm/*.h" "debug/*.cpp" "debug/*.h")
 
 # 注意引入
 add_executable(${APP_NAME} ${SOURCE_FILES} ${SORT_FILES})
