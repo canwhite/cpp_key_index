@@ -166,11 +166,23 @@ int main(){
         //从fmt ctx中取，这个之前已经赋过值了
         out_stream = output_format_context->streams[packet.stream_index];
         /* copy packet */
-
-
-
+        //av_rescale_q_rnd 是一个用于重新缩放时间戳的函数，rnd 在这里是 "rounding" 的缩写，表示 "舍入"。
+        //q-quotient，时间基的意思
+        //rnd 是round的意思，参数用于指定在进行时间戳缩放时，采取的舍入策略。
+        packet.pts = av_rescale_q_rnd(
+            packet.pts, // 想要转化的时间戳
+            in_stream->time_base, //源时间基
+            out_stream->time_base, //目标时间基 
+            (AVRounding)(AV_ROUND_NEAR_INF | AV_ROUND_PASS_MINMAX)   //舍入规则                    //
+        );
+        packet.dts = av_rescale_q_rnd(packet.dts, in_stream->time_base, out_stream->time_base,(AVRounding)(AV_ROUND_NEAR_INF | AV_ROUND_PASS_MINMAX));
+        packet.duration = av_rescale_q(packet.duration, in_stream->time_base, out_stream->time_base);
+        // https://ffmpeg.org/doxygen/trunk/structAVPacket.html#ab5793d8195cf4789dfb3913b7a693903
+        packet.pos = -1; //pos是代表 "position"的缩写，这通常是指数据在文件中的位置。
 
         
+
+   
 
 
     }
