@@ -7,12 +7,21 @@ start.cpp - done
 /ffmpeg 
 1) 引入ffmpeg -done
 2) 解码 - done
-3) 转码 - todo
-4) 提取合并 - todo
-5) 切割组合 - todo
-6) 压缩 - todo
-7) 流化 - todo
+3) 重编码 - doing
+4) 转码 - todo
+5) 提取合并 - todo
+6) 切割组合 - todo
+7) 压缩 - todo
+8) 流化 - todo
 
+/algorithm 
+1) 排序 - doing
+2) 聚合 - todo
+3) 回溯 - todo
+4) 树   - todo
+5) 动规 - todo
+6) 单调栈 - todo
+7) ...
 
 ## TODO：
 创建一个RN的项目     
@@ -29,6 +38,8 @@ start.cpp - done
 1. 用EMScripten将C++的调用转为ES6
 2. 然后在RN中直接调用使用
 
+
+然后再引入webrtc
 
 
 ## PS:
