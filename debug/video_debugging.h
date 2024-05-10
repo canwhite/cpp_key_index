@@ -12,5 +12,6 @@ extern "C" {
 #include <inttypes.h>
 }
 
-//todo，声明方法
-
+void logging(const char *fmt,...);
+void log_packet(const AVFormatContext *fmt_ctx, const AVPacket *pkt);
+void print_timing(char *name, AVFormatContext *avf, AVCodecContext *avc, AVStream *avs);

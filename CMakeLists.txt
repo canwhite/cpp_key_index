@@ -4,7 +4,10 @@ set(APP_NAME "APP")
 
 project(${APP_NAME})
 
-#vscode中除了cmake的配置也就是插件、launch和CMakeLists之外
+#vscode中除了cmake的配置也就是
+#1)插件
+#2)launch
+#3)CMakeLists.txt
 #关于c和c++版本，以及编译器相关在这里设置就可以了
 #----- 
 #指定c和c++的版本
