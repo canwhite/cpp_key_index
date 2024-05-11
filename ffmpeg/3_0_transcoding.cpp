@@ -120,9 +120,13 @@ int main(){
     //第二个参数是size，
     //注意这几个alloc都是返回void *, 所以需要一个强转
 
-    
+    //之前还没怎么用过StreamingContext的，这里正好用一下
+    StreamingContext *decoder = (StreamingContext*) calloc(1,sizeof(StreamingContext));
+    //C++ 11 warning
+    decoder->filename = "/Users/zack/Desktop/test.mp4";
 
-
+    StreamingContext *encoder = (StreamingContext*) calloc(1,sizeof(StreamingContext));
+    decoder->filename = "output.mp4";
 
 
 
