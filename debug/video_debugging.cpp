@@ -16,5 +16,43 @@ void log_packet(const AVFormatContext *fmt_ctx, const AVPacket *pkt){
            pkt->stream_index);
 }
 void print_timing(char *name, AVFormatContext *avf, AVCodecContext *avc, AVStream *avs){
-    //
+    logging("=================================================");
+    logging("%s", name);
+
+    //输出fmt——ctx
+    logging("\tAVFormatContext");
+    if (avf != NULL) {
+        logging("\t\tstart_time=%d duration=%d bit_rate=%d start_time_realtime=%d", avf->start_time, avf->duration, avf->bit_rate, avf->start_time_realtime);
+    } else {
+        logging("\t\t->NULL");
+    }
+
+    //输出codec
+    logging("\tAVCodecContext");
+    if (avc != NULL) {
+        logging("\t\tbit_rate=%d ticks_per_frame=%d width=%d height=%d gop_size=%d keyint_min=%d sample_rate=%d profile=%d level=%d ",
+            avc->bit_rate, avc->ticks_per_frame, avc->width, avc->height, avc->gop_size, avc->keyint_min, avc->sample_rate, avc->profile, avc->level);
+        logging("\t\tavc->time_base=num/den %d/%d", avc->time_base.num, avc->time_base.den);
+        logging("\t\tavc->framerate=num/den %d/%d", avc->framerate.num, avc->framerate.den);
+        logging("\t\tavc->pkt_timebase=num/den %d/%d", avc->pkt_timebase.num, avc->pkt_timebase.den);
+    } else {
+        logging("\t\t->NULL");
+    }
+
+
+    //输出stream
+      logging("\tAVStream");
+    if (avs != NULL) {
+        logging("\t\tindex=%d start_time=%d duration=%d ", avs->index, avs->start_time, avs->duration);
+        logging("\t\tavs->time_base=num/den %d/%d", avs->time_base.num, avs->time_base.den);
+        logging("\t\tavs->sample_aspect_ratio=num/den %d/%d", avs->sample_aspect_ratio.num, avs->sample_aspect_ratio.den);
+        logging("\t\tavs->avg_frame_rate=num/den %d/%d", avs->avg_frame_rate.num, avs->avg_frame_rate.den);
+        logging("\t\tavs->r_frame_rate=num/den %d/%d", avs->r_frame_rate.num, avs->r_frame_rate.den);
+    } else {
+        logging("\t\t->NULL");
+    }
+
+    logging("=================================================");
+
+
 }
