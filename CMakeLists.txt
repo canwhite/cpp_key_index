@@ -44,9 +44,14 @@ pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavut
 # set(SOURCE_FILES ffmpeg/2_0_remuxing.cpp)
 set(SOURCE_FILES  ffmpeg/3_0_transcoding.cpp)
 
-
 # 引入algorithm和debug下的文件的文件
 file(GLOB_RECURSE SORT_FILES  "algorithm/*.cpp" "algorithm/*.h" "debug/*.cpp" "debug/*.h")
+
+# add var, 注意文件的相对位置
+set(MY_VAR "Hello World")
+set(IN_FILENAME ${CMAKE_SOURCE_DIR}/../test.mp4)
+set(OUT_FILENAME ${CMAKE_SOURCE_DIR}/output.mp4)
+configure_file(${CMAKE_SOURCE_DIR}/config.h.in ${CMAKE_SOURCE_DIR}/ffmpeg/config.h)
 
 # 注意引入
 add_executable(${APP_NAME} ${SOURCE_FILES} ${SORT_FILES})

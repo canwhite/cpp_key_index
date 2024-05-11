@@ -7,6 +7,7 @@
 #include <filesystem>
 //注意这里使用了相对路径,因为我定义的是cpp所以在这里引入
 #include "../debug/video_debugging.h" 
+#include "config.h"
 using namespace std; //可以使用标准库里的符号和方法
 extern "C" {
 #include <libavcodec/avcodec.h>
@@ -46,6 +47,10 @@ struct StreamingContext
     int audio_index;
     char *filename;
 };
+
+int open_media(){
+    
+}
 
 //todo，接着往下走
 int main(){
@@ -123,16 +128,20 @@ int main(){
     //之前还没怎么用过StreamingContext的，这里正好用一下
     StreamingContext *decoder = (StreamingContext*) calloc(1,sizeof(StreamingContext));
     //C++ 11 warning
-    decoder->filename = "/Users/zack/Desktop/test.mp4";
+    decoder->filename = IN_FLIENAME;
 
     StreamingContext *encoder = (StreamingContext*) calloc(1,sizeof(StreamingContext));
-    decoder->filename = "output.mp4";
+    decoder->filename = OUT_FILENAME;
 
-
-    //TOOD, cmake如何加变量，c++如何使用
+    //拼接，如果需要生成新的类型的话
+    if (sp.output_extension)
+        //第一个是源字符串，第二个是往后拼接的部分
+        strcat(encoder->filename, sp.output_extension);
     
+    // if (open_media(decoder->filename, &decoder->avfc)) return -1;
 
 
+    
 
 
 

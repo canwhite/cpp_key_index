@@ -1,0 +1,3 @@
+#define MY_VAR "${MY_VAR}"
+#define IN_FLIENAME "${IN_FILENAME}"
+#define OUT_FILENAME "${OUT_FILENAME}"

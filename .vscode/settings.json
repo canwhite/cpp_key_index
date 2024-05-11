@@ -72,7 +72,8 @@
         "stack": "cpp",
         "set": "cpp",
         "charconv": "cpp",
-        "execution": "cpp"
+        "execution": "cpp",
+        "*.in": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
