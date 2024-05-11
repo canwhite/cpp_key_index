@@ -7,8 +7,8 @@ start.cpp - done
 /ffmpeg 
 1) 引入ffmpeg -done
 2) 解码 - done
-3) 重编码 - doing
-4) 转码 - todo
+3) 重编码 - done
+4) 转码 - doing
 5) 提取合并 - todo
 6) 切割组合 - todo
 7) 压缩 - todo

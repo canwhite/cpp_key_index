@@ -73,7 +73,10 @@ int fill_stream_info( AVStream *avs, AVCodec **avc, AVCodecContext **avcc){
     *avc = (AVCodec*)avcodec_find_decoder(avs->codecpar->codec_id);
     //创建codec ctx，创造ctx需要avc 
     *avcc = avcodec_alloc_context3(*avc);
-    if (!*avcc) {logging("failed to alloc memory for codec context"); return -1;}
+    if (!*avcc) {
+        logging("failed to alloc memory for codec context"); 
+        return -1;
+    }
     //关键步骤，复制参数到ctx
     if(avcodec_parameters_to_context(*avcc, avs->codecpar) < 0){
         logging("failed to fill codec context"); 
@@ -229,6 +232,9 @@ int main(){
     //a.关于视频
     if(!sp.copy_video){
         //todo, 这里需要准备编码器
+        //av_guess_frame_rate函数用于猜测给定的视频流的帧率。
+        //它会尝试获取最准确的帧率信息，方法是正确地解析和返回包含在文件的元数据中的帧率。
+        AVRational input_framerate = av_guess_frame_rate(decoder->avfc, decoder->video_avs, NULL);
     }else{
         //todo
     }
