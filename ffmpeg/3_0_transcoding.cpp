@@ -47,9 +47,11 @@ struct StreamingContext
     int audio_index;
     char *filename;
 };
+//这里会涉及到指针传递的一个特殊的类型，
+int open_media(const char *in_filename, AVFormatContext **avfc){
+    //TODO
 
-int open_media(){
-    
+    return 0;
 }
 
 //todo，接着往下走
