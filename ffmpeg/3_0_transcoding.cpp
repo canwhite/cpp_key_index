@@ -47,14 +47,77 @@ struct StreamingContext
     int audio_index;
     char *filename;
 };
-//这里会涉及到指针传递的一个特殊的类型，
-int open_media(const char *in_filename, AVFormatContext **avfc){
-    //TODO
+//1）打开media
+int open_media(const char *in_filename, AVFormatContext **av_fmt_ctx){
+    //先给ctx分配内存
+    *av_fmt_ctx = avformat_alloc_context();
 
+    //然后打开输入  
+    if(avformat_open_input(av_fmt_ctx, in_filename, NULL, NULL) != 0){
+        logging("failed to open input file %s", in_filename); 
+        return -1;
+    }
+    //最后获取steam信息,这一步实际上是该fmt_ctx上
+    if (avformat_find_stream_info(*av_fmt_ctx, NULL) < 0) {
+        logging("failed to get stream info"); 
+        return -1;
+    }
+    
     return 0;
 }
 
-//todo，接着往下走
+//3）解码器的处理
+//主要是通过从stream里拿到的id去创建avcodec和avcodec ctx
+int fill_stream_info( AVStream *avs, AVCodec **avc, AVCodecContext **avcc){
+    //会有一个问题，将const赋值给非const的问题，这里做个一个非const强转
+    *avc = (AVCodec*)avcodec_find_decoder(avs->codecpar->codec_id);
+    //创建codec ctx，创造ctx需要avc 
+    *avcc = avcodec_alloc_context3(*avc);
+    if (!*avcc) {logging("failed to alloc memory for codec context"); return -1;}
+    //关键步骤，复制参数到ctx
+    if(avcodec_parameters_to_context(*avcc, avs->codecpar) < 0){
+        logging("failed to fill codec context"); 
+        return -1;
+    }
+    //打开解码器
+    if (avcodec_open2(*avcc, *avc, NULL) < 0) {
+        logging("failed to open codec"); 
+        return -1;
+    }
+    return 0;
+}
+
+
+//2）从Stream里拿到相关参数，主要是拿到AVStream里边有各种参数信息
+int prepare_decoder(StreamingContext *sc){
+    //从sc中先取avfc，再取nb_streams
+    for (int i = 0; i < sc->avfc->nb_streams; i++) {
+        if(sc ->avfc -> streams[i] ->codecpar -> codec_type == AVMEDIA_TYPE_VIDEO){
+            
+            sc->video_avs = sc->avfc->streams[i];
+            sc->video_index = i;
+            //这里传入视频的 编解码器本身和其context
+            if(fill_stream_info(sc->video_avs,&sc->video_avc, &sc->video_avcc)){
+                return -1;
+            }
+
+        }else if(sc ->avfc -> streams[i] ->codecpar -> codec_type == AVMEDIA_TYPE_AUDIO){
+            //如果是音频
+            sc->audio_avs = sc->avfc->streams[i];
+            sc->audio_index = i;
+            //这里传入音频的编解码器本身和其context
+            if(fill_stream_info(sc->audio_avs,&sc->audio_avc,&sc->audio_avcc)){
+                return -1;
+            }
+
+        }else{
+            //如果是其他
+            logging("skipping streams other than audio and video");
+        }
+    }
+    return 0;
+}
+
 int main(){
     /*
     * H264 -> H265
@@ -127,30 +190,37 @@ int main(){
     //第二个参数是size，
     //注意这几个alloc都是返回void *, 所以需要一个强转
 
+    //--decoder和encoder作为后续流转的核心
     //之前还没怎么用过StreamingContext的，这里正好用一下
     StreamingContext *decoder = (StreamingContext*) calloc(1,sizeof(StreamingContext));
-    //C++ 11 warning
-    decoder->filename = IN_FLIENAME;
+    //C++ 11 warning, ISO C++11 does not allow conversion from string literal to 'char *' 
+    decoder->filename = (char *)IN_FLIENAME;
 
     StreamingContext *encoder = (StreamingContext*) calloc(1,sizeof(StreamingContext));
-    decoder->filename = OUT_FILENAME;
+    encoder->filename = (char *)OUT_FILENAME;
 
     //拼接，如果需要生成新的类型的话
     if (sp.output_extension)
         //第一个是源字符串，第二个是往后拼接的部分
         strcat(encoder->filename, sp.output_extension);
     
-    // if (open_media(decoder->filename, &decoder->avfc)) return -1;
+    //自实现方法，打开媒体文件,注意这里指针传值，因为avfc还没有初始化
+    //对avfc的修改最后也会在decoder上
+    if (open_media(decoder->filename, &decoder->avfc)){
+        return -1;
+    } 
+    
+    //拿到stream里的par，然后处理好解码器，复制好参数
+    if(prepare_decoder(decoder)) return -1;
+
+    //搞一个输出的fmt ctx
 
 
+    //如果不是copy的时候就需要编码
     
 
 
 
-
-
-
-    
 
     return 0;
 }
