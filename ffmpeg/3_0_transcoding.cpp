@@ -129,6 +129,11 @@ int main(){
     decoder->filename = "output.mp4";
 
 
+    //TOOD, cmake如何加变量，c++如何使用
+    
+
+
+
 
 
 
