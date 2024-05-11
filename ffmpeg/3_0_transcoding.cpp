@@ -48,17 +48,17 @@ struct StreamingContext
     char *filename;
 };
 //1）打开media
-int open_media(const char *in_filename, AVFormatContext **av_fmt_ctx){
+int open_media(const char *in_filename, AVFormatContext **avfc){
     //先给ctx分配内存
-    *av_fmt_ctx = avformat_alloc_context();
+    *avfc = avformat_alloc_context();
 
     //然后打开输入  
-    if(avformat_open_input(av_fmt_ctx, in_filename, NULL, NULL) != 0){
+    if(avformat_open_input(avfc, in_filename, NULL, NULL) != 0){
         logging("failed to open input file %s", in_filename); 
         return -1;
     }
     //最后获取steam信息,这一步实际上是该fmt_ctx上
-    if (avformat_find_stream_info(*av_fmt_ctx, NULL) < 0) {
+    if (avformat_find_stream_info(*avfc, NULL) < 0) {
         logging("failed to get stream info"); 
         return -1;
     }
@@ -124,10 +124,11 @@ int main(){
     * Audio -> remuxed (untouched)
     * MP4 - MP4
     */
+    //设置一些全局参数
     //c语言的结构体初始化，可以使用= {0}或者= {}来初始化一个结构体，这样所有成员都会初始化为0
     StreamingParams sp = {0};
-    sp.copy_audio = 1;
-    sp.copy_video = 0;
+    sp.copy_audio = 1; //意思是音频是copy的
+    sp.copy_video = 0; //视频需要转码
     //注意C++11并不允许将字符串字面值赋值给非const类型的字符指针。
     sp.video_codec = "libx265";
     sp.codec_priv_key = "x265-params";
@@ -213,10 +214,31 @@ int main(){
     //拿到stream里的par，然后处理好解码器，复制好参数
     if(prepare_decoder(decoder)) return -1;
 
-    //搞一个输出的fmt ctx
+    //搞一个输出的fmt ctx，赋值的地方是encoder的avfc
+    avformat_alloc_output_context2(&encoder->avfc, NULL, NULL, encoder->filename);
+    //判断是否给encoder->avfc赋过值了
+    if(!encoder->avfc){
+        logging("could not allocate memory for output format");
+        return -1;
+    }
+    
+
 
 
     //如果不是copy的时候就需要编码
+    //a.关于视频
+    if(!sp.copy_video){
+        //todo, 这里需要准备编码器
+    }else{
+        //todo
+    }
+
+    //b.关于音频
+    if(!sp.copy_audio){
+        //todo，这里需要准备编码器
+    }else{
+        //todo
+    }
     
 
 
