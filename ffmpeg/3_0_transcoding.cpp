@@ -121,6 +121,91 @@ int prepare_decoder(StreamingContext *sc){
     return 0;
 }
 
+//4）视频和音频编码器
+//主要是发现，打开，复制参数从context
+int prepare_video_encoder(StreamingContext *sc,AVCodecContext *decoder_ctx, AVRational input_framerate,StreamingParams sp){
+    //新建流，赋予avs，第二个参数是codec，现在没有指定
+    sc->video_avs = avformat_new_stream(sc->avfc,NULL);
+    //avc获取
+    sc->video_avc = (AVCodec *)avcodec_find_encoder_by_name(sp.video_codec);
+    if(!sc->video_avc){
+        logging("could not find the proper codec"); 
+        return -1;
+    }
+    //avcc获取,需要借助avc
+    sc->video_avcc = avcodec_alloc_context3(sc->video_avc);
+    if(!sc->video_avcc){
+        logging("could not allocated memory for codec context"); 
+        return -1;
+    }
+
+    //设置视频编码器的配置选项，
+    //这里是设置H.264编码器的预设参数，让编码器工作在"fast"模式下。
+    //参数1: sc->video_avcc->priv_data是要设置的对象，priv_data是指向编译器私有数据的指针
+    //参数2: 设置属性名，preset表示预设
+    //参数3: 设置属性值
+    //参数4: 最后一个是搜寻字段的标志，一般是0
+
+    av_opt_set(sc->video_avcc->priv_data, "preset", "fast", 0);
+
+    //编码参数
+    if (sp.codec_priv_key && sp.codec_priv_value)
+        av_opt_set(sc->video_avcc->priv_data, sp.codec_priv_key, sp.codec_priv_value, 0);
+
+    sc->video_avcc->height = decoder_ctx->height; //from decoder ctx
+    sc->video_avcc->width = decoder_ctx->width; //from decoder ctx 
+    sc->video_avcc->sample_aspect_ratio = decoder_ctx->sample_aspect_ratio; //from decoder ctx
+
+
+    if (sc->video_avc->pix_fmts)
+        sc->video_avcc->pix_fmt = sc->video_avc->pix_fmts[0];
+    else
+        sc->video_avcc->pix_fmt = decoder_ctx->pix_fmt; //from decoder ctx
+
+
+    //控制码率
+    sc->video_avcc->bit_rate = 2 * 1000 * 1000;
+    sc->video_avcc->rc_buffer_size = 4 * 1000 * 1000;
+    sc->video_avcc->rc_max_rate = 2 * 1000 * 1000;
+    sc->video_avcc->rc_min_rate = 2.5 * 1000 * 1000;
+
+    //时间基数
+    sc->video_avcc->time_base = av_inv_q(input_framerate);
+    sc->video_avs->time_base = sc->video_avcc->time_base;
+
+    if (avcodec_open2(sc->video_avcc, sc->video_avc, NULL) < 0) {
+        logging("could not open the codec"); 
+        return -1;
+    }
+    //主要就是为了设置这些参数，如果是copy的话，就直接复制参数给avs了
+    avcodec_parameters_from_context(sc->video_avs->codecpar, sc->video_avcc);
+
+    return 0;
+}
+
+int prepare_audio_encoder(StreamingContext *sc,int sample_rate, StreamingParams sp){
+    //todo,音频数据
+
+    return 0;
+}
+
+//5）copy
+//fc, avs and decoder params 
+int prepare_copy(AVFormatContext *avfc, AVStream **avs, AVCodecParameters *decoder_par){
+    *avs = avformat_new_stream(avfc, NULL);
+    //直接复制参数给avs，
+    avcodec_parameters_copy((*avs)->codecpar, decoder_par);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
 int main(){
     /*
     * H264 -> H265
@@ -224,26 +309,31 @@ int main(){
         logging("could not allocate memory for output format");
         return -1;
     }
-    
-
 
 
     //如果不是copy的时候就需要编码
-    //a.关于视频
+    //a.关于视频-encoder和复制
     if(!sp.copy_video){
-        //todo, 这里需要准备编码器
+        //AVRational是有理数的意思，一般来表示帧率和时间基准
         //av_guess_frame_rate函数用于猜测给定的视频流的帧率。
         //它会尝试获取最准确的帧率信息，方法是正确地解析和返回包含在文件的元数据中的帧率。
         AVRational input_framerate = av_guess_frame_rate(decoder->avfc, decoder->video_avs, NULL);
+        //如果不是copy，就使用视频编码器，里边的一些值需要我们自己填写
+        prepare_video_encoder(encoder, decoder->video_avcc, input_framerate, sp);
+
     }else{
-        //todo
+        //如果是copy就相对很简单，从解码器里拿值就ok
+        if (prepare_copy(encoder->avfc, &encoder->video_avs, decoder->video_avs->codecpar)) {
+            return -1;
+        }
+
     }
 
-    //b.关于音频
+    //b.关于音频-encoder和复制
     if(!sp.copy_audio){
-        //todo，这里需要准备编码器
+        //todo，这里需要准备音频编码器
     }else{
-        //todo
+        //todo，copy操作
     }
     
 
