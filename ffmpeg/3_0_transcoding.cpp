@@ -184,7 +184,27 @@ int prepare_video_encoder(StreamingContext *sc,AVCodecContext *decoder_ctx, AVRa
 }
 
 int prepare_audio_encoder(StreamingContext *sc,int sample_rate, StreamingParams sp){
-    //todo,音频数据
+    //->是直接读取地址数据
+    sc->audio_avs = avformat_new_stream(sc->avfc, NULL);
+    //发现编码器
+    sc->audio_avc = (AVCodec * )avcodec_find_encoder_by_name(sp.audio_codec);
+    if (!sc->audio_avc) {
+        logging("could not find the proper codec"); 
+        return -1;
+    }
+    //然后搞一个ctx
+    sc->audio_avcc = avcodec_alloc_context3(sc->video_avc);
+    if (!sc->video_avcc) {
+        logging("could not allocated memory for codec context"); 
+        return -1;
+    }
+
+    //设置一些属性
+
+
+    //打开，参数复制
+
+
 
     return 0;
 }
@@ -312,7 +332,7 @@ int main(){
 
 
     //如果不是copy的时候就需要编码
-    //a.关于视频-encoder和复制
+    //a.关于视频--encoder和复制
     if(!sp.copy_video){
         //AVRational是有理数的意思，一般来表示帧率和时间基准
         //av_guess_frame_rate函数用于猜测给定的视频流的帧率。
@@ -322,18 +342,21 @@ int main(){
         prepare_video_encoder(encoder, decoder->video_avcc, input_framerate, sp);
 
     }else{
-        //如果是copy就相对很简单，从解码器里拿值就ok
+        //注意一些概念的理解：
+        //av-> audio  video，  f -> format , c->Codec ｜ Context ,  s-> Stream
         if (prepare_copy(encoder->avfc, &encoder->video_avs, decoder->video_avs->codecpar)) {
             return -1;
         }
-
     }
 
-    //b.关于音频-encoder和复制
+    //b.关于音频--encoder和复制
     if(!sp.copy_audio){
-        //todo，这里需要准备音频编码器
+        //todo
+        
     }else{
-        //todo，copy操作
+        if (prepare_copy(encoder->avfc, &encoder->audio_avs, decoder->audio_avs->codecpar)) {
+            return -1;
+        }
     }
     
 

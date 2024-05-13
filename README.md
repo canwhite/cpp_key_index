@@ -4,6 +4,15 @@ c++ key index
 start.cpp - done  
 
 ## Doing:
+/algorithm 
+1) 排序 - doing
+2) 聚合 - todo
+3) 回溯 - todo
+4) 树   - todo
+5) 动规 - todo
+6) 单调栈 - todo
+7) ...
+
 /ffmpeg 
 1) 引入ffmpeg -done
 2) 解码 - done
@@ -14,14 +23,25 @@ start.cpp - done
 7) 压缩 - todo
 8) 流化 - todo
 
-/algorithm 
-1) 排序 - doing
-2) 聚合 - todo
-3) 回溯 - todo
-4) 树   - todo
-5) 动规 - todo
-6) 单调栈 - todo
-7) ...
+PS: cmake设置和读取变量   
+```
+pre. --根目录下创建config.h.in
+写入变量定义
+#define IN_FLIENAME "${IN_FILENAME}"
+
+a.--CMakeLists.txt中设置变量
+set(IN_FILENAME ${CMAKE_SOURCE_DIR}/../test.mp4)
+
+b.--CMakeLists.txt命令行根据 config.h.in创建 config.h 
+configure_file(${CMAKE_SOURCE_DIR}/config.h.in ${CMAKE_SOURCE_DIR}/ffmpeg/config.h)
+
+c.--使用的地方引入config.h 
+...
+#include "config.h"
+...
+cout << IN_FLIENAME << endl;
+
+````
 
 ## TODO：
 创建一个RN的项目     
