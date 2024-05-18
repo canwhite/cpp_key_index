@@ -72,7 +72,6 @@ static int decode_packet(AVPacket *pPacket, AVCodecContext *pCodecContext, AVFra
 // 主要目的： 将原始数据包，通过解码器，解码为数据帧
 static int decode_packet(AVPacket *pPacket, AVCodecContext *pCodecContext, AVFrame *pFrame){
     // https://ffmpeg.org/doxygen/trunk/group__lavc__decoding.html#ga58bc4bf1e0ac59e27362597e467efff3
-    // 来把原始数据包（未解压的帧）发送给解码器
     int response = avcodec_send_packet(pCodecContext, pPacket);
     if(response < 0){
         //todo

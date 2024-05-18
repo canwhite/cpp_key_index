@@ -194,17 +194,34 @@ int prepare_audio_encoder(StreamingContext *sc,int sample_rate, StreamingParams 
     }
     //然后搞一个ctx
     sc->audio_avcc = avcodec_alloc_context3(sc->video_avc);
-    if (!sc->video_avcc) {
+    if (!sc->audio_avcc) {
         logging("could not allocated memory for codec context"); 
         return -1;
     }
 
     //设置一些属性
+    int OUTPUT_CHANNELS = 2;
+    int OUTPUT_BIT_RATE = 196000;
 
+    //这两个7.0没有了，我这边先去掉了
+    // sc->audio_avcc->channels       = OUTPUT_CHANNELS;
+    // sc->audio_avcc->channel_layout = av_get_default_channel_layout(OUTPUT_CHANNELS);
+
+    sc->audio_avcc->sample_rate    = sample_rate;
+    sc->audio_avcc->sample_fmt     = sc->audio_avc->sample_fmts[0];
+    sc->audio_avcc->bit_rate       = OUTPUT_BIT_RATE;
+    sc->audio_avcc->time_base      = (AVRational){1, sample_rate};
+
+    sc->audio_avcc->strict_std_compliance = FF_COMPLIANCE_EXPERIMENTAL;
+
+    sc->audio_avs->time_base = sc->audio_avcc->time_base;
 
     //打开，参数复制
-
-
+    if (avcodec_open2(sc->audio_avcc, sc->audio_avc, NULL) < 0) {
+        logging("could not open the codec"); 
+        return -1;
+    }
+    avcodec_parameters_from_context(sc->audio_avs->codecpar, sc->audio_avcc);
 
     return 0;
 }
@@ -218,10 +235,106 @@ int prepare_copy(AVFormatContext *avfc, AVStream **avs, AVCodecParameters *decod
     return 0;
 }
 
+//续copy，如果走copy路线，走remux
+//这里的AVRational是timebase的意思，区别于帧率
+int remux(AVPacket **pkt, AVFormatContext **avfc,AVRational decoder_tb, AVRational encoder_tb){
+    av_packet_rescale_ts(*pkt, decoder_tb, encoder_tb);
+    if (av_interleaved_write_frame(*avfc, *pkt) < 0) { 
+        logging("error while copying stream packet"); 
+        return -1; 
+    }
+    return 0;
+}
+
+int encoder_video(StreamingContext *decoder, StreamingContext *encoder , AVFrame *input_frame){
+    if(input_frame) input_frame-> pict_type = AV_PICTURE_TYPE_NONE;
+    //创建一个空的packet，接下来整体流程就和之前相反
+    AVPacket *output_packet = av_packet_alloc();
+    if (!output_packet) {
+        logging("could not allocate memory for output packet"); 
+        return -1;
+    }
+    //然后就是和decoder时候相反的步骤
+    int response = avcodec_send_frame(encoder->video_avcc,input_frame);
+
+    while (response >= 0)
+    {
+        response = avcodec_receive_packet(encoder->video_avcc, output_packet);
+        if (response == AVERROR(EAGAIN) || response == AVERROR_EOF) {
+            break;
+        } else if (response < 0) {
+            logging("Error while receiving packet from encoder: %s", av_err2str(response));
+            return -1;
+        }
+    }
+    
+    output_packet->stream_index = decoder->video_index;
+    //总体是用时间基数，除以平均帧率
+    output_packet->duration = encoder->video_avs->time_base.den / encoder->video_avs->time_base.num / decoder->video_avs->avg_frame_rate.num * decoder->video_avs->avg_frame_rate.den;
+
+    // "av_packet_rescale_ts"是ffmpeg库中的一个函数，其主要功能是对AVPacket中的时间戳进行重缩放。
+    // 在ffmpeg中，每个流都有自己的时间基。因此，当我们需要从一个流复制数据到另一个流时，
+    // 可能需要对时间戳进行重缩放以匹配目标流的时间基。
+    av_packet_rescale_ts(output_packet, decoder->video_avs->time_base, encoder->video_avs->time_base);
+
+
+    //"av_interleaved_write_frame"
+    //主要的作用是将一个媒体帧（AVPacket）写入到输出媒体上下文（AVFormatContext）中。
+    //interleaved是插入的意思
+    response = av_interleaved_write_frame(encoder->avfc, output_packet);
+    if (response != 0) { 
+        logging("Error %d while receiving packet from decoder: %s", response, av_err2str(response)); 
+        return -1;
+    }
+    //unref和free的区别是，unref是用于减少引用计数的，当减少到0就会释放，free是释放内存的
+    av_packet_unref(output_packet);
+    av_packet_free(&output_packet);
+
+    return 0;
+}
+
+int encode_audio(StreamingContext *decoder, StreamingContext *encoder, AVFrame *input_frame){
+
+
+    return 0;
+}
 
 
 
 
+//6)transcode video and audio
+int transcode_video(StreamingContext * decoder,StreamingContext * encoder,AVPacket *input_packet, AVFrame *input_frame ){
+
+    int response = avcodec_send_packet(decoder->video_avcc,input_packet);
+    if(response < 0){
+        logging("Error while sending packet to decoder: %s", av_err2str(response));
+        return response;
+    }
+
+    while (response >= 0){
+        response = avcodec_receive_frame(decoder->video_avcc, input_frame);
+        if (response == AVERROR(EAGAIN) || response == AVERROR_EOF) {
+            break;
+        } else if (response < 0) {
+            logging("Error while receiving frame from decoder: %s", av_err2str(response));
+            return response;
+        }
+        //如果是成功的状态
+        if(response >= 0){
+            //上边是解码，这里就需要编码了，基本上是解码的反顺序
+            if(encoder_video(decoder,encoder,input_frame)){
+                return -1;
+            }
+        }
+        av_frame_unref(input_frame);
+    }
+    return 0;
+}
+
+int transcode_audio(StreamingContext *decoder, StreamingContext *encoder, AVPacket *input_packet, AVFrame *input_frame){
+    
+    return 0;
+}
 
 
 
@@ -320,8 +433,10 @@ int main(){
     } 
     
     //拿到stream里的par，然后处理好解码器，复制好参数
-    if(prepare_decoder(decoder)) return -1;
-
+    if(prepare_decoder(decoder)) {
+        return -1;
+    }
+        
     //搞一个输出的fmt ctx，赋值的地方是encoder的avfc
     avformat_alloc_output_context2(&encoder->avfc, NULL, NULL, encoder->filename);
     //判断是否给encoder->avfc赋过值了
@@ -351,15 +466,87 @@ int main(){
 
     //b.关于音频--encoder和复制
     if(!sp.copy_audio){
-        //todo
-        
+        if (prepare_audio_encoder(encoder, decoder->audio_avcc->sample_rate, sp)) {
+            return -1;
+        }
     }else{
         if (prepare_copy(encoder->avfc, &encoder->audio_avs, decoder->audio_avs->codecpar)) {
             return -1;
         }
     }
     
+    //通过设置 AV_CODEC_FLAG_GLOBAL_HEADER 来告诉编码器可以使用这个全局头信息，
+    if (encoder->avfc->oformat->flags & AVFMT_GLOBALHEADER)
+        encoder->avfc->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
 
+    //最终打开输出文件写入文件头。
+    if (!(encoder->avfc->oformat->flags & AVFMT_NOFILE)) {
+        if (avio_open(&encoder->avfc->pb, encoder->filename, AVIO_FLAG_WRITE) < 0) {
+            logging("could not open the output file");
+            return -1;
+        }
+    }
+
+    AVDictionary* muxer_opts = NULL;
+
+    if (sp.muxer_opt_key && sp.muxer_opt_value) {
+        av_dict_set(&muxer_opts, sp.muxer_opt_key, sp.muxer_opt_value, 0);
+    }
+
+    if (avformat_write_header(encoder->avfc, &muxer_opts) < 0) {
+        logging("an error occurred when opening output file"); 
+        return -1;
+    }
+
+    //初始化packet和frame
+    AVFrame *input_frame = av_frame_alloc();
+    if (!input_frame) {
+        logging("failed to allocated memory for AVFrame"); 
+        return -1;
+    }
+
+    AVPacket *input_packet = av_packet_alloc();
+    if (!input_packet) {
+        logging("failed to allocated memory for AVPacket"); 
+        return -1;
+    }
+
+    //av_read_frame实际上是一帧帧的读取packet
+    while (av_read_frame(decoder->avfc, input_packet) >= 0)
+    {
+        //如果是视频流.packet上取的idx
+        if(decoder -> avfc -> streams[input_packet->stream_index]-> codecpar-> codec_type == AVMEDIA_TYPE_VIDEO){
+            //如果不是copy走转码
+            if (!sp.copy_video) {
+                // TODO: refactor to be generic for audio and video (receiving a function pointer to the differences)
+
+            }
+            //否则走remux
+            else{  
+                if(remux(&input_packet, &encoder->avfc, decoder->video_avs->time_base, encoder->video_avs->time_base))
+                    return -1;
+            }
+
+        }
+        //如果是音频
+        else if(decoder->avfc->streams[input_packet->stream_index]->codecpar->codec_type == AVMEDIA_TYPE_AUDIO){
+            //如果不是copy走转码
+            if (!sp.copy_audio) {
+
+            }
+            //否则走remux
+            else{
+                 if (remux(&input_packet, &encoder->avfc, decoder->audio_avs->time_base, encoder->audio_avs->time_base)) 
+                    return -1;
+            }
+        }
+        //如果都不是
+        else{
+            logging("ignoring all non video or audio packets");
+        }
+
+    }
+    
 
 
 
