@@ -17,11 +17,12 @@ start.cpp - done
 1) 引入ffmpeg -done
 2) 解码 - done
 3) 重编码 - done
-4) 转码 - doing
-5) 提取合并 - todo
-6) 切割组合 - todo
-7) 压缩 - todo
-8) 流化 - todo
+4) 转码 - done
+5) 去水印 - todo
+6) 推流 - todo
+7) 提取合并 - todo
+8) 切割组合 - todo
+9) 流化 - todo
 
 PS: cmake设置和读取变量   
 ```

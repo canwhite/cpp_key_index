@@ -246,7 +246,8 @@ int remux(AVPacket **pkt, AVFormatContext **avfc,AVRational decoder_tb, AVRation
     return 0;
 }
 
-int encoder_video(StreamingContext *decoder, StreamingContext *encoder , AVFrame *input_frame){
+
+int encode_video(StreamingContext *decoder, StreamingContext *encoder , AVFrame *input_frame){
     if(input_frame) input_frame-> pict_type = AV_PICTURE_TYPE_NONE;
     //创建一个空的packet，接下来整体流程就和之前相反
     AVPacket *output_packet = av_packet_alloc();
@@ -266,26 +267,25 @@ int encoder_video(StreamingContext *decoder, StreamingContext *encoder , AVFrame
             logging("Error while receiving packet from encoder: %s", av_err2str(response));
             return -1;
         }
+        output_packet->stream_index = decoder->video_index;
+        //总体是用时间基数，除以平均帧率
+        output_packet->duration = encoder->video_avs->time_base.den / encoder->video_avs->time_base.num / decoder->video_avs->avg_frame_rate.num * decoder->video_avs->avg_frame_rate.den;
+
+        // "av_packet_rescale_ts"是ffmpeg库中的一个函数，其主要功能是对AVPacket中的时间戳进行重缩放。
+        // 在ffmpeg中，每个流都有自己的时间基。因此，当我们需要从一个流复制数据到另一个流时，
+        // 可能需要对时间戳进行重缩放以匹配目标流的时间基。
+        av_packet_rescale_ts(output_packet, decoder->video_avs->time_base, encoder->video_avs->time_base);
+
+        //"av_interleaved_write_frame"
+        //主要的作用是将一个媒体帧（AVPacket）写入到输出媒体上下文（AVFormatContext）中。
+        //interleaved是插入的意思
+        response = av_interleaved_write_frame(encoder->avfc, output_packet);
+        if (response != 0) { 
+            logging("Error %d while receiving packet from decoder: %s", response, av_err2str(response)); 
+            return -1;
+        }
     }
-    
-    output_packet->stream_index = decoder->video_index;
-    //总体是用时间基数，除以平均帧率
-    output_packet->duration = encoder->video_avs->time_base.den / encoder->video_avs->time_base.num / decoder->video_avs->avg_frame_rate.num * decoder->video_avs->avg_frame_rate.den;
 
-    // "av_packet_rescale_ts"是ffmpeg库中的一个函数，其主要功能是对AVPacket中的时间戳进行重缩放。
-    // 在ffmpeg中，每个流都有自己的时间基。因此，当我们需要从一个流复制数据到另一个流时，
-    // 可能需要对时间戳进行重缩放以匹配目标流的时间基。
-    av_packet_rescale_ts(output_packet, decoder->video_avs->time_base, encoder->video_avs->time_base);
-
-
-    //"av_interleaved_write_frame"
-    //主要的作用是将一个媒体帧（AVPacket）写入到输出媒体上下文（AVFormatContext）中。
-    //interleaved是插入的意思
-    response = av_interleaved_write_frame(encoder->avfc, output_packet);
-    if (response != 0) { 
-        logging("Error %d while receiving packet from decoder: %s", response, av_err2str(response)); 
-        return -1;
-    }
     //unref和free的区别是，unref是用于减少引用计数的，当减少到0就会释放，free是释放内存的
     av_packet_unref(output_packet);
     av_packet_free(&output_packet);
@@ -293,9 +293,34 @@ int encoder_video(StreamingContext *decoder, StreamingContext *encoder , AVFrame
     return 0;
 }
 
-int encode_audio(StreamingContext *decoder, StreamingContext *encoder, AVFrame *input_frame){
+int encode_audio(StreamingContext *decoder, StreamingContext *encoder, AVFrame *input_frame) {
+    AVPacket *output_packet = av_packet_alloc();
+    if (!output_packet) {
+        logging("could not allocate memory for output packet"); 
+        return -1;
+    }
+    int response = avcodec_send_frame(encoder->audio_avcc, input_frame);
 
+    while (response >= 0) {
+        response = avcodec_receive_packet(encoder->audio_avcc, output_packet);
+        if (response == AVERROR(EAGAIN) || response == AVERROR_EOF) {
+            break;
+        } else if (response < 0) {
+            logging("Error while receiving packet from encoder: %s", av_err2str(response));
+            return -1;
+        }
 
+        output_packet->stream_index = decoder->audio_index;
+
+        av_packet_rescale_ts(output_packet, decoder->audio_avs->time_base, encoder->audio_avs->time_base);
+        response = av_interleaved_write_frame(encoder->avfc, output_packet);
+        if (response != 0) { 
+            logging("Error %d while receiving packet from decoder: %s", response, av_err2str(response)); 
+            return -1;
+        }
+    }
+    av_packet_unref(output_packet);
+    av_packet_free(&output_packet);
     return 0;
 }
 
@@ -322,7 +347,7 @@ int transcode_video(StreamingContext * decoder,StreamingContext * encoder,AVPack
         //如果是成功的状态
         if(response >= 0){
             //上边是解码，这里就需要编码了，基本上是解码的反顺序
-            if(encoder_video(decoder,encoder,input_frame)){
+            if(encode_video(decoder,encoder,input_frame)){
                 return -1;
             }
         }
@@ -331,12 +356,30 @@ int transcode_video(StreamingContext * decoder,StreamingContext * encoder,AVPack
     return 0;
 }
 
-int transcode_audio(StreamingContext *decoder, StreamingContext *encoder, AVPacket *input_packet, AVFrame *input_frame){
-    
+int transcode_audio(StreamingContext *decoder, StreamingContext *encoder, AVPacket *input_packet, AVFrame *input_frame) {
+    int response = avcodec_send_packet(decoder->audio_avcc, input_packet);
+    if (response < 0) {
+        logging("Error while sending packet to decoder: %s", av_err2str(response)); 
+        return response;
+    }
+
+    while (response >= 0) {
+        response = avcodec_receive_frame(decoder->audio_avcc, input_frame);
+        if (response == AVERROR(EAGAIN) || response == AVERROR_EOF) {
+            break;
+        } else if (response < 0) {
+            logging("Error while receiving frame from decoder: %s", av_err2str(response));
+            return response;
+        }
+
+        if (response >= 0) {
+            if (encode_audio(decoder, encoder, input_frame)) 
+                return -1;
+        }
+        av_frame_unref(input_frame);
+    }
     return 0;
 }
-
-
 
 
 int main(){
@@ -519,7 +562,9 @@ int main(){
             //如果不是copy走转码
             if (!sp.copy_video) {
                 // TODO: refactor to be generic for audio and video (receiving a function pointer to the differences)
-
+                if (transcode_video(decoder, encoder, input_packet, input_frame)) 
+                    return -1;
+                av_packet_unref(input_packet);
             }
             //否则走remux
             else{  
@@ -532,6 +577,9 @@ int main(){
         else if(decoder->avfc->streams[input_packet->stream_index]->codecpar->codec_type == AVMEDIA_TYPE_AUDIO){
             //如果不是copy走转码
             if (!sp.copy_audio) {
+                if (transcode_audio(decoder, encoder, input_packet, input_frame)) 
+                    return -1;
+                av_packet_unref(input_packet);
 
             }
             //否则走remux
@@ -546,6 +594,47 @@ int main(){
         }
 
     }
+    // TODO: should I also flush the audio encoder?
+    if (encode_video(decoder, encoder, NULL)) return -1;
+
+    av_write_trailer(encoder->avfc);
+
+    //清理掉dictionary
+    if (muxer_opts != NULL) {
+        av_dict_free(&muxer_opts);
+        muxer_opts = NULL;
+    }
+
+    //frame和packet置空
+    if (input_frame != NULL) {
+        av_frame_free(&input_frame);
+        input_frame = NULL;
+    }
+
+    if (input_packet != NULL) {
+        av_packet_free(&input_packet);
+        input_packet = NULL;
+    }
+
+    
+    avformat_close_input(&decoder->avfc);
+
+    avformat_free_context(decoder->avfc); 
+    decoder->avfc = NULL;
+
+    avformat_free_context(encoder->avfc); 
+    encoder->avfc = NULL;
+
+    
+    avcodec_free_context(&decoder->video_avcc); 
+    decoder->video_avcc = NULL;
+    avcodec_free_context(&decoder->audio_avcc); 
+    decoder->audio_avcc = NULL;
+
+    free(decoder); 
+    decoder = NULL;
+    free(encoder); 
+    encoder = NULL;
     
 
 
