@@ -42,7 +42,7 @@ pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavut
 # set(SOURCE_FILES ffmpeg/1_0_decoder.cpp)
 # set(SOURCE_FILES ffmpeg/1_1_decoder.cpp)
 # set(SOURCE_FILES ffmpeg/2_0_remuxing.cpp)
-set(SOURCE_FILES  ffmpeg/3_0_transcoding.cpp)
+set(SOURCE_FILES  ffmpeg/4_0_add_watermarking.cpp)
 
 # 引入algorithm和debug下的文件的文件
 file(GLOB_RECURSE SORT_FILES  "algorithm/*.cpp" "algorithm/*.h" "debug/*.cpp" "debug/*.h")

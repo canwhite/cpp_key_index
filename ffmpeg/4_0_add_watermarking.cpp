@@ -10,11 +10,36 @@ extern "C" {
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>
 #include <libavutil/timestamp.h>
+#include "libavfilter/avfilter.h"
+#include <libavfilter/buffersrc.h>
+#include <libavfilter/buffersink.h>
+#include <libavutil/imgutils.h>
+#include <libavutil/opt.h>
+#include <libswscale/swscale.h>
 }
 
-//转封装的同时把水印去掉
-//类似于下边命令行,令ffmpeg 跳过编解码过程:
-//ffmpeg -i bunny_1080p_60fps.mp4 -c copy bunny_1080p_60fps.ts
+/*全局变量。这里主要是在之前重封装的基础上添加上水印*/
+AVFilterGraph *filter_graph = nullptr; //最关键的过滤器结构体
+AVFilterContext* filter_ctx = nullptr;//上下文
+AVFilterInOut *outputs  = nullptr;
+AVFilterInOut *inputs = nullptr;
+AVFilterContext *buffersink_ctx = nullptr;
+AVFilterContext *buffersrc_ctx = nullptr;
+
+/** 实现一个初始化滤镜的方法 */
+//https://blog.csdn.net/asdasfdgdhh/article/details/119533863
+int initAVFilter(){
+    //初始化结构体开始
+
+
+
+    //初始化结束
+
+
+    return 0;
+}
+
+
 
 int main(){
 
@@ -25,6 +50,8 @@ int main(){
     //然后文件名我们自己定义
     const char* in_filename = "/Users/zack/Desktop/test.mp4";
     const char* out_filename = "remuxed_small_bunny_1080p_60fps.ts";
+
+    int filterRet =  initAVFilter();
 
     //继续定义其他可用的属性
     int ret; //ret是获取各种创建结果，最后再end统一判断
