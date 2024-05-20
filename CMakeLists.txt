@@ -32,7 +32,7 @@ find_package(PkgConfig REQUIRED)
 # link_directories(${FFMPEG_LIBRARY_DIRS})
 
 # 2. ffmpeg imported target导入，推荐
-pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavutil libswscale) 
+pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavutil libswscale libavfilter) 
 # include_directories(${CMAKE_SOURCE_DIR}/algorithm)
 
 #主文件

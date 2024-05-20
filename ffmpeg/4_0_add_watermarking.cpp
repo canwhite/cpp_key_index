@@ -30,7 +30,9 @@ AVFilterContext *buffersrc_ctx = nullptr;
 //https://blog.csdn.net/asdasfdgdhh/article/details/119533863
 int initAVFilter(){
     //初始化结构体开始
-
+    int ret = 0;
+    const AVFilter *buffersrc = avfilter_get_by_name("buffer");                 //输入，原始数据输入处
+    const AVFilter *buffersink = avfilter_get_by_name("buffersink");
 
 
     //初始化结束
