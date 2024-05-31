@@ -6,7 +6,7 @@ project(${APP_NAME})
 
 #vscode中除了cmake的配置也就是
 #1)插件
-#2)launch
+#2)launch.json
 #3)CMakeLists.txt
 #关于c和c++版本，以及编译器相关在这里设置就可以了
 #----- 
@@ -35,16 +35,26 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavutil libswscale libavfilter) 
 # include_directories(${CMAKE_SOURCE_DIR}/algorithm)
 
-#主文件
-# set(SOURCE_FILES start.cpp)
+
+# c++ feature test
+# set(SOURCE_FILES cpp/0_start.cpp)
+# set(SOURCE_FILES cpp/1_parameter_passing.cpp)
+# set(SOURCE_FILES cpp/2_inheritance_polymorphism.cpp)
+# set(SOURCE_FILES cpp/3_static.cpp)
+# set(SOURCE_FILES cpp/4_closure.cpp)
+# set(SOURCE_FILES cpp/5_vessel.cpp)
+set(SOURCE_FILES cpp/6_concurrence.cpp)
+
+
+# ffmpeg
 # set(SOURCE_FILES ffmpeg/pre_parameter_passing.cpp)
 # set(SOURCE_FILES ffmpeg/0_base.cpp)
 # set(SOURCE_FILES ffmpeg/1_0_decoder.cpp)
 # set(SOURCE_FILES ffmpeg/1_1_decoder.cpp)
-# set(SOURCE_FILES ffmpeg/2_0_remuxing.cpp)
-set(SOURCE_FILES  ffmpeg/4_0_add_watermarking.cpp)
+# set(SOURCE_FILES ffmpeg/2_0_remuxing.cpp)s
+# set(SOURCE_FILES  ffmpeg/4_0_add_watermarking.cpp)
 
-# 引入algorithm和debug下的文件的文件
+# 引入主文件需要调用的工具文件
 file(GLOB_RECURSE SORT_FILES  "algorithm/*.cpp" "algorithm/*.h" "debug/*.cpp" "debug/*.h")
 
 # add var, 注意文件的相对位置
