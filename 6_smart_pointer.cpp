@@ -1,8 +1,6 @@
 #include <iostream>
 using namespace std;
-
-
-//闭包相关
+//TOOD：智慧指针
 int main(){
     return 0;
 }
