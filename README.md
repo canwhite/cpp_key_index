@@ -1,7 +1,7 @@
 # cpp_key_index
 pre:     
 c++ key index    
-start.cpp - done  
+cpp/0_start.cpp and other features - done  
 
 ## Doing:
 /algorithm 
@@ -18,11 +18,10 @@ start.cpp - done
 2) 解码 - done
 3) 重编码 - done
 4) 转码 - done
-5) 去水印 - todo
+4) 加减水印 - doing
 6) 推流 - todo
 7) 提取合并 - todo
-8) 切割组合 - todo
-9) 流化 - todo
+8) 压缩 - todo
 
 PS: cmake设置和读取变量   
 ```
