@@ -12,6 +12,8 @@ extern "C" {
 #include <libavutil/imgutils.h>
 }
 
+
+//提取合并和切割组合合并作一个
 int main (){
     //TODO
 
