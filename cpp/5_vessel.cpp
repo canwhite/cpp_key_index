@@ -10,6 +10,7 @@ class Student {
 public:
     string name;
     int age; 
+    Student(){}
     Student(string n, int a) {
         name = n;
         age = a;
@@ -28,10 +29,22 @@ public:
         name = sname;
     } 
 
-private:
+    //这里的const意味着getAge这个函数被声明为const，不能修改对象的状态
+    int getAge() const{
+        return age;
+    }
+
+    void setAge(int a){
+        age = a;
+    }
+
+    // set添加的必须提供比较函数，以便std::set能够对元素进行排序和比较
+    bool operator<(const Student& other) const {
+        return name < other.name || (name == other.name && age< other.age);
+    }
+
 
 };
-
 
 
 //vector
@@ -69,14 +82,13 @@ static void test_vector(){
     students.push_back(Student("David", 21));
     students.push_back(Student("Eve", 22));
 
-
     //删除
     students.pop_back();
     students.erase(students.begin() + 1);
 
-
-    //TODO：单个改
-
+    //改
+    Student& alice = students[0];
+    alice.setName("Linda");
 
     //查
     auto compare = [](const Student& s)  { return s.getName() == "Alice"; };
@@ -94,10 +106,8 @@ static void test_vector(){
         student.show();
     }
 
-
     // 长度
     cout << "The size of the vector is: " << students.size() << endl;
-
 
     //循环
     //for-in循环
@@ -133,43 +143,46 @@ static void test_vector(){
 static void test_map(){
 
     // 定义一个map对象，map也会自动释放
-    map<int, string> mapStudent;
+    map<int, string> mapString;
     
     //增
-    mapStudent.insert(pair<int, string>(000, "student_zero"));
-    mapStudent.insert(map<int, string>::value_type(001, "student_one"));
+    mapString.insert(pair<int, string>(000, "student_zero"));
+    mapString.insert(map<int, string>::value_type(001, "student_one"));
     
 
     //删
-    mapStudent.erase(001);
+    mapString.erase(001);
 
     // 改
-    mapStudent[000] = "student_first";
-    mapStudent[456] = "student_second";
+    mapString[000] = "student_first";
+    mapString[456] = "student_second";
 
 
     //查 , 从key找，看这里find返回的也是迭代器指针
-    if (mapStudent.find(000) != mapStudent.end()) {
+    if (mapString.find(000) != mapString.end()) {
         cout << "Found!" << endl;
     }
 
     //循环-解构循环
-    for (const auto &[key, value] : mapStudent) {
+    for (const auto &[key, value] : mapString) {
         cout << key << ":" << value << endl;
     }
 
     //循环-pair循环
-    for(const auto &pair : mapStudent){
+    for(const auto &pair : mapString){
         cout << pair.first  << ":" << pair.second << endl;
     }
 
     //循环-迭代器循环
-    vector<string> values(mapStudent.size());
+    vector<string> values(mapString.size());
     //引用传递
-    transform(mapStudent.begin(), mapStudent.end(), values.begin(), [](const std::pair<int, std::string>& pair) {
+    transform(mapString.begin(), mapString.end(), values.begin(), [](const std::pair<int, std::string>& pair) {
         return pair.second;
     }); 
     
+
+    //TODO:添加Sutdent
+
 
 }
 
@@ -185,12 +198,19 @@ static void test_set(){
     mySet.insert(5);
     mySet.insert(4);
 
-    // 删除（删）
+    // 删除（删），删除是直接删除值
     mySet.erase(2);
 
-    //TODO,单个改
+    // 改，由于set是自动排序的，所以无法修改
+    // 由于std::set中的元素是唯一的，我们不能直接修改元素的值
+    // 但是我们可以先删除旧元素，然后插入新元素
+    int oldValue = 4;
+    int newValue = 3;
 
-    // 查找（查）
+    mySet.erase(oldValue);
+    mySet.insert(newValue);
+
+    // 查
     auto search = mySet.find(2);
     if(search != mySet.end()) {
        std::cout << "元素 2 存在于集合中" << '\n';
@@ -206,11 +226,39 @@ static void test_set(){
         std::cout << "元素 2 未找到" << '\n';
     }
 
-    //TODO：循环
+    //循环
+    for (const auto& elem : mySet) {
+        cout<< elem << " ";
+    }
+    cout <<endl;
+
+    //对象set，但是
+    set<Student> setStudent;
+    Student s1;
+    s1.setName("张三");
+    s1.setAge(20);
+    setStudent.insert(s1);
+
+    Student s2;
+    s2.setName("李四");
+    s2.setAge(22);
+    setStudent.insert(s2);
+
+    Student s3;
+    s3.setName("王五");
+    s3.setAge(19);
+    setStudent.insert(s3);
+
+    //如何查呢？
+    
 
 
 
-    //TODO: 对象set
+
+    // 使用范围for循环遍历std::set<Student>中的元素
+    for (const auto& student : setStudent) {
+        std::cout<< student.name << " "<< student.age<< std::endl;
+    }
 
 
 }
