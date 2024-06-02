@@ -1,72 +1,76 @@
 #include<iostream>
 #include<queue>
 #include <mutex>
-#include <thread>
-#include <memory>
+#include<thread>
+#include<memory>
 #include<condition_variable>
+using namespace std;
 
-
-//线程安全的队列
+// 线程安全的队列
 template<typename T>
 class ThreadSafeQueue {
 public:
+    // 向队列中添加元素
     void push(T value) {
-        std::unique_lock<std::mutex> lock(mutex_);
-        queue_.push(std::move(value));
-        lock.unlock();
-        cond_.notify_one();
+        unique_lock<mutex> lock(mutex_); // 获取互斥锁
+        queue_.push(move(value)); // 将元素添加到队列中
+        lock.unlock(); // 释放互斥锁
+        cond_.notify_one(); // 通知等待的线程
     }
 
+    // 尝试从队列中取出元素，如果队列为空则返回false
     bool try_pop(T& value) {
-        std::unique_lock<std::mutex> lock(mutex_);
-        if (queue_.empty()) {
-            return false;
+        unique_lock<mutex> lock(mutex_); // 获取互斥锁
+        if (queue_.empty()) { // 如果队列为空
+            return false; // 返回false
         }
-        value = std::move(queue_.front());
-        queue_.pop();
-        return true;
+        value = move(queue_.front()); // 取出队列中的第一个元素
+        queue_.pop(); // 删除队列中的第一个元素
+        return true; // 返回true
     }
 
+    // 从队列中取出元素，如果队列为空则等待
     T pop() {
-        std::unique_lock<std::mutex> lock(mutex_);
-        cond_.wait(lock, [this] { return !queue_.empty(); });
-        T value = std::move(queue_.front());
-        queue_.pop();
-        return value;
+        unique_lock<mutex> lock(mutex_); // 获取互斥锁
+        cond_.wait(lock, [this] { return !queue_.empty(); }); // 等待队列非空
+        T value = move(queue_.front()); // 取出队列中的第一个元素
+        queue_.pop(); // 删除队列中的第一个元素
+        return value; // 返回元素
     }
 
+    // 判断队列是否为空
     bool empty() const {
-        std::lock_guard<std::mutex> lock(mutex_);
-        return queue_.empty();
+        lock_guard<mutex> lock(mutex_); // 获取互斥锁
+        return queue_.empty(); // 返回队列是否为空
     }
 
 private:
-    std::queue<T> queue_;
-    mutable std::mutex mutex_;
-    std::condition_variable cond_;
+    queue<T> queue_; // 队列
+    mutable mutex mutex_; // 互斥锁
+    condition_variable cond_; // 条件变量
 };
 
 int main() {
-    ThreadSafeQueue<int> safe_queue;
+    ThreadSafeQueue<int> safe_queue; // 创建线程安全的队列
 
     // 生产者线程
-    std::thread producer([&safe_queue] {
+    thread producer([&safe_queue] {
         for (int i = 0; i < 10; ++i) {
-            safe_queue.push(i);
-            std::cout << "Produced: " << i << std::endl;
+            safe_queue.push(i); // 向队列中添加元素
+            cout << "Produced: " << i << endl; // 输出生产的元素
         }
     });
 
     // 消费者线程
-    std::thread consumer([&safe_queue] {
+    thread consumer([&safe_queue] {
         for (int i = 0; i < 10; ++i) {
-            int value = safe_queue.pop();
-            std::cout << "Consumed: "<< value<< std::endl;
+            int value = safe_queue.pop(); // 从队列中取出元素
+            cout << "Consumed: "<< value<< endl; // 输出消费的元素
         }
     });
 
-    producer.join();
-    consumer.join();
+    producer.join(); // 等待生产者线程结束
+    consumer.join(); // 等待消费者线程结束
 
     return 0;
 }
