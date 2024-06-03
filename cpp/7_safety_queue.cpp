@@ -55,7 +55,7 @@ int main() {
 
     // 生产者线程
     // 不接受参数的时候()可以省略
-    thread producer([&safe_queue] {
+    thread producer([&safe_queue]() {
         for (int i = 0; i < 10; ++i) {
             safe_queue.push(i); // 向队列中添加元素
             cout << "Produced: " << i << endl; // 输出生产的元素
@@ -63,7 +63,7 @@ int main() {
     });
 
     // 消费者线程
-    thread consumer([&safe_queue] {
+    thread consumer([&safe_queue]() {
         for (int i = 0; i < 10; ++i) {
             int value = safe_queue.pop(); // 从队列中取出元素
             cout << "Consumed: "<< value<< endl; // 输出消费的元素
