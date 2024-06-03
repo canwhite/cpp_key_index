@@ -201,7 +201,6 @@ void recursive_function(int n){
 }
 
 void test_recursion(){
-    //TODO
     logging("============recursion  start===========");  
     recursive_function(3);
     logging("============recursion  end===========");  
@@ -211,10 +210,70 @@ void test_recursion(){
 //FE：自旋锁不会让线程休眠，而是忙等待，一直检查，直到锁可用，适用于线程切换开销太大的场景
 //QE：哪些情况下切换线程开销大呢？
 //AN: 锁持有时间非常短，高优先级线程，实时系统，避免死锁（自旋锁会竞争过互斥锁）
-void test_spin(){
-    //TODO
-    logging("============spin  start===========");  
+class Spinlock{
+public:
+    void lock(){
+        //循环检查锁是否可用
+        while(true){
+            // 使用原子操作尝试获取锁，这里使用的是CAS操作，即比较并交换
+            // 参数1:是要和原子变量m_lock交换的值
+            // 参数2:内存顺序参数，是一个获取操作，它确保在此操作之前的所有内存访问（包括其他线程的访问）都已完成
+            // return: exchange 方法的返回值是原子变量在交换之前的值。
+            // 如果锁已被其他线程持有，则返回 true，否则返回 false
+            if(!m_lock.exchange(true, memory_order_acquire)){
+                //如果exchange返回false，则说明锁未被其他线程持有，可以安全地释放锁
+                //return退出当前函数或方法。这样，循环就会终止，锁被成功获取
+                return;
+            }
+            //关键循环：
+            //如果 m_lock 的值为 true，表示锁已被其他线程持有，
+            //当前线程需要进入自旋状态，不断检查锁是否可用。
+            //memory_order_relaxed表示没有顺序约束
+            while (m_lock.load(std::memory_order_relaxed)) {
+                // 让出 CPU 时间片，避免过度占用 CPU
+                // 这样做的目的是避免当前线程过度占用 CPU 资源，给其他线程一些执行机会。
+                this_thread::yield();
+            }
+        }
+    }
+    void unlock(){
+        //用于设置原子布尔值为false，
+        //memory_order_release 表示这个原子操作是一个释放操作，它确保在此操作之后的所有内存访问（包括其他线程的访问）都已完成
+        m_lock.store(false, memory_order_release);
+    }
+private:
+    //定义一个原子变量，用来表示锁的状态
+    atomic<bool> m_lock{false};
+};
 
+// 创建一个自旋锁对象
+Spinlock spinlock;
+// 定义一个共享数据变量
+int shared_data = 0;
+
+void test_spin(){
+    logging("============spin  start===========");  
+    const auto thread_function = [&](){
+        for (int i = 0; i < 1000; ++i) {
+            // 使用自旋锁保护共享数据的访问
+            spinlock.lock();
+            // 对共享数据进行加1操作
+            ++shared_data;
+            // 释放锁
+            spinlock.unlock();
+        }
+    };
+
+    // 创建两个线程，分别调用线程函数
+    std::thread t1(thread_function);
+    std::thread t2(thread_function);
+
+    // 等待两个线程完成执行
+    t1.join();
+    t2.join();
+
+    // 输出共享数据的值
+    cout << "共享数据的值: "<< shared_data<< endl;
     logging("============spin  end===========");  
 
 }
@@ -226,5 +285,6 @@ int main(){
     test_atomic();
     test_read_write();
     test_recursion();
+    test_spin();
     return 0;
 }
