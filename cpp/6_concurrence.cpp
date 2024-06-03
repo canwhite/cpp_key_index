@@ -27,11 +27,13 @@ void test_async(){
     cout << value << endl;
 
     //2）----获取线程返回值，这个最终结果和上述一致
-    
-
-
-
-
+    promise<int> prom;
+    future<int> fut = prom.get_future(); //可以看作get,promise的未来
+    thread t([&](){
+        prom.set_value(100);
+    });
+    int val = fut.get(); // 获取线程函数的返回值
+    std::cout << "线程返回值: "<< val<< std::endl
 
     logging("============async to sync end===========");
 }
