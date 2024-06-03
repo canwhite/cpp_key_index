@@ -74,7 +74,8 @@
         "charconv": "cpp",
         "execution": "cpp",
         "*.in": "c",
-        "queue": "cpp"
+        "queue": "cpp",
+        "shared_mutex": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
