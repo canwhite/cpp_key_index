@@ -54,6 +54,7 @@ int main() {
     ThreadSafeQueue<int> safe_queue; // 创建线程安全的队列
 
     // 生产者线程
+    // 不接受参数的时候()可以省略
     thread producer([&safe_queue] {
         for (int i = 0; i < 10; ++i) {
             safe_queue.push(i); // 向队列中添加元素

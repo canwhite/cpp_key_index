@@ -15,8 +15,9 @@ void test_base(){
 void test_reference(){
     //引用外部值并修改
     int x = 10;
-    //引用捕获，所以内部可以修改x的值
-    auto lambda = [&x]() mutable { 
+    //mutable是对整个闭包的形容
+    //c++ 23 的时候可以省略（）
+    auto lambda = [&x] () mutable { 
         //这里能换行主要是因为endl
         cout << "x = " << x << endl; 
         x += 10; 

@@ -3,6 +3,7 @@
 #include <map>
 #include <set>
 #include <algorithm> //find等方法
+#include "../debug/video_debugging.h"
 using namespace std;
 
 
@@ -49,6 +50,8 @@ public:
 
 //vector
 static void test_vector(){
+
+    logging("============vector start===========");
 
     //1）---基础数据类型
     vector<int> v = {1, 2, 3, 4, 5};
@@ -136,11 +139,16 @@ static void test_vector(){
         return student;
     });
 
+
+    logging("============vector end===========");
+
 }
 
 
 //map
 static void test_map(){
+
+    logging("============map start===========");
 
     // 定义一个map对象，map也会自动释放
     map<int, string> mapString;
@@ -148,6 +156,7 @@ static void test_map(){
     //增
     mapString.insert(pair<int, string>(000, "student_zero"));
     mapString.insert(map<int, string>::value_type(001, "student_one"));
+    mapString.insert(make_pair(002, "student_two")); //推荐这一种，不需要专门定义类型
     
 
     //删
@@ -181,7 +190,29 @@ static void test_map(){
     }); 
     
 
-    //TODO:添加Sutdent
+    map<string,Student> studentsMap;
+    //没有用new，是栈上的对象，这里向map中添加对象，但是没有new，所以这里不会释放
+    //map会复制这些对象到其内存内部，这样的好处是避免了动态内存分配的开销，简化了内存管理
+    studentsMap.insert(make_pair("001",Student("张三",20))); 
+    studentsMap.insert(make_pair("002",Student("李四",12)));
+    studentsMap.insert(make_pair("003",Student("王五",40)));
+
+    //基本数据类型也能通过引用传递，但是没有必要
+    for(const auto& pair : studentsMap){
+        cout << pair.first  << ":" << pair.second.name << endl;
+    }
+
+    //find方法接受一个键作为参数，并返回一个迭代器，指向与该键关联的元素。
+    //还是用key查的，所以用find就可以了
+    auto it = studentsMap.find("001");
+    //如果没找到，返回的迭代器等于end()
+    if(it != studentsMap.end()) {
+        // 在C++中，迭代器通常重载了->操作符，以便于访问和操作容器中的元素
+        // 迭代器通常不支持点语法
+        cout << it->second.name << endl;
+    }
+
+    logging("============map end===========");
 
 
 }
@@ -190,6 +221,8 @@ static void test_map(){
 
 //set
 static void test_set(){
+
+    logging("============set start===========");
 
     set<int> mySet;
     // 添加（增）
@@ -233,32 +266,38 @@ static void test_set(){
     cout <<endl;
 
     //对象set，但是
-    set<Student> setStudent;
-    Student s1;
-    s1.setName("张三");
-    s1.setAge(20);
-    setStudent.insert(s1);
+    
+    set<Student> studentsSet;
+    
+    //1）临时Student，利好编译器，没有额外的内存分配和复制操作
+    studentsSet.insert(Student("张三",20));
 
+    //2）相当于new了一个对象，会有额外的内存分配和复制操作
     Student s2;
     s2.setName("李四");
     s2.setAge(22);
-    setStudent.insert(s2);
+    studentsSet.insert(s2);
 
     Student s3;
     s3.setName("王五");
     s3.setAge(19);
-    setStudent.insert(s3);
+    studentsSet.insert(s3);
 
-    //如何查呢？
-    
+    //这样查的时候可以用find_if, 基础数据类型可以用find
+    auto it = find_if(studentsSet.begin(),studentsSet.end(),[](const Student& student){
+        return student.name == "李四";
+    });
 
-
-
+    if(it != studentsSet.end()) {
+        cout << it->name << endl;
+    }
 
     // 使用范围for循环遍历std::set<Student>中的元素
-    for (const auto& student : setStudent) {
+    for (const auto& student : studentsSet) {
         std::cout<< student.name << " "<< student.age<< std::endl;
     }
+
+    logging("============set end===========");
 
 
 }
