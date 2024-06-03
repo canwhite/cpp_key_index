@@ -17,6 +17,7 @@ void test_reference(){
     int x = 10;
     //mutable是对整个闭包的形容
     //c++ 23 的时候可以省略（）
+    //这里也可以只放一个&,作为默认捕获，以引用的方式捕获当前作用域中的所有变量
     auto lambda = [&x] () mutable { 
         //这里能换行主要是因为endl
         cout << "x = " << x << endl; 

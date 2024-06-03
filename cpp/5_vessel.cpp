@@ -3,6 +3,7 @@
 #include <map>
 #include <set>
 #include <algorithm> //find等方法
+#include <queue>
 #include "../debug/video_debugging.h"
 using namespace std;
 
@@ -302,6 +303,11 @@ static void test_set(){
 
 }
 
+
+
+void test_queue(){
+    //TODO:
+}
 
 
 //TOOD：主要是数组、map和Set的使用

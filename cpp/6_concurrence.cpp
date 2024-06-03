@@ -32,6 +32,7 @@ mutex mtx;
 condition_variable cv;
 queue<int> data_queue;
 
+//生产者消费者模式，是一种常见的多线程编程方式
 void test_mutex(){
     logging("============mutex start===========");  
     //生产者线程
@@ -74,17 +75,39 @@ void test_mutex(){
 
 //非互斥锁-原子操作
 //FE：原子操作是一种不可中断的操作，可以确保在多线程环境中不会发生竞争条件
+//QE: 为什么原子操作不可中断呢
+//AN: 是基于硬件锁或者内存协议来实现的
+
+atomic<int> counter(0); //一般用于技术信号量，通过load拿到值，如果<=0不执行之类的
+
 void test_atomic(){
     logging("============atomic start===========");  
+    //初始化线程个数
+    const int num_threads = 4;
+    thread threads[num_threads];
+    //循环，单个线程里边进行单个事件    
+    for(int i = 0; i < num_threads; i++){
+        //&是一个默认捕获，以引用的方式捕获当前作用域中的所有变量
+        threads[i] = thread([&](){
+            for(int i = 0; i < 1000000; i++){
+                counter.fetch_add(1);
+            }
+        });
+    }
 
+    //批量等待
+    for (auto& t : threads) {
+        t.join();
+    }
+
+    cout << "Counter value: "<< counter<< endl;
     logging("============atomic end===========");  
-    
 }
+
 
 //读写锁
 //FE：读写锁允许多个线程同时读取共享资源，但在写入时只允许一个线程访问。
 void test_read_write(){
-    //TODO
     logging("============read write start===========");  
 
     logging("============read write end==========="); 
@@ -101,6 +124,8 @@ void test_recursion(){
 
 //自旋锁
 //FE：自旋锁不会让线程休眠，而是忙等待，一直检查，直到锁可用，适用于线程切换开销太大的场景
+//QE：哪些情况下切换线程开销大呢？
+//AN: 
 void test_spin(){
     //TODO
     logging("============spin  start===========");  
@@ -113,5 +138,6 @@ void test_spin(){
 int main(){
     test_async();
     test_mutex();
+    test_atomic();
     return 0;
 }
