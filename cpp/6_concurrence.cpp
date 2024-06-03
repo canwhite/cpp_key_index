@@ -30,11 +30,14 @@ void test_async(){
     promise<int> prom;
     future<int> fut = prom.get_future(); //可以看作get,promise的未来
     //注意thread的()中是回调
-    thread t([&](){
+    thread t([&prom](){
         prom.set_value(100);
     });
     int val = fut.get(); // 获取线程函数的返回值
-    std::cout << "线程返回值: "<< val<< std::endl
+    cout << "线程返回值: " << val << endl;
+    //当您调用 t.join() 时，主线程会阻塞，直到线程 t 完成执行。
+    //如果不等待，会变成僵尸线程，导致资源泄漏
+    t.join();
 
     logging("============async to sync end===========");
 }
@@ -185,10 +188,22 @@ void test_read_write(){
 
 //4）-------------递归锁
 //FE ：递归锁允许同一线程多次获得锁，而不会导致死锁。利好递归操作
+std::recursive_mutex r_mtx;
+void recursive_function(int n){
+    if(n <= 0){
+        return;
+    }
+    unique_lock<recursive_mutex> lock(r_mtx);
+    cout << "线程 "<< this_thread::get_id() << " 进入递归函数，n = " << n << endl;
+    recursive_function(n - 1);
+    cout << "线程 "<< this_thread::get_id() << " 离开递归函数，n = " << n << endl;
+
+}
+
 void test_recursion(){
     //TODO
     logging("============recursion  start===========");  
-
+    recursive_function(3);
     logging("============recursion  end===========");  
 }
 
@@ -210,5 +225,6 @@ int main(){
     test_mutex();
     test_atomic();
     test_read_write();
+    test_recursion();
     return 0;
 }
