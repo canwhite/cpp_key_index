@@ -29,6 +29,7 @@ void test_async(){
     //2）----获取线程返回值，这个最终结果和上述一致
     promise<int> prom;
     future<int> fut = prom.get_future(); //可以看作get,promise的未来
+    //注意thread的()中是回调
     thread t([&](){
         prom.set_value(100);
     });
