@@ -36,6 +36,7 @@ public:
     }
 
     bool empty() const {
+        //PS：注意这个lock在前，它是简化版的unique_lock,没有手动部分
         lock_guard<mutex> lock(mutex_); 
         return queue_.empty(); 
     }
