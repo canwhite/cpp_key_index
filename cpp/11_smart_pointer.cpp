@@ -13,7 +13,7 @@ class B {
 public:
     void setA(shared_ptr<A> a) { a_ptr = a; }
 };
-//TOOD：智慧指针
+
 int main(){
     //--smart ptr
     //资源获取即初始化，独占所有权，没有引用计数的开销，所以更轻量，用的较多

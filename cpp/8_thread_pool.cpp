@@ -5,6 +5,7 @@
 #include <mutex>
 #include<condition_variable>
 #include<functional>
+using namespace std;
 
 class ThreadPool {
 public:
@@ -12,9 +13,9 @@ public:
         for (size_t i = 0; i < num_threads; ++i) {
             workers.emplace_back([this] {
                 while (true) {
-                    std::function<void()> task;
+                    function<void()> task;
                     {
-                        std::unique_lock<std::mutex> lock(queue_mutex);
+                        unique_lock<mutex> lock(queue_mutex);
                         condition.wait(lock, [this] { return !tasks.empty() || stop; });
                         if (stop) {
                             return;
@@ -30,7 +31,7 @@ public:
 
     ~ThreadPool() {
         {
-            std::unique_lock<std::mutex> lock(queue_mutex);
+            unique_lock<mutex> lock(queue_mutex);
             stop = true;
         }
         condition.notify_all();
@@ -42,17 +43,17 @@ public:
     template<typename F, typename... Args>
     void enqueue(F&& f, Args&&... args) {
         {
-            std::unique_lock<std::mutex> lock(queue_mutex);
+            unique_lock<mutex> lock(queue_mutex);
             tasks.emplace(std::bind(std::forward<F>(f), std::forward<Args>(args)...));
         }
         condition.notify_one();
     }
 
 private:
-    std::vector<std::thread> workers;
-    std::queue<std::function<void()>> tasks;
-    std::mutex queue_mutex;
-    std::condition_variable condition;
+    vector<thread> workers;
+    queue<function<void()>> tasks;
+    mutex queue_mutex;
+    condition_variable condition;
     bool stop = false;
 };
 
@@ -61,8 +62,8 @@ int main() {
 
     for (int i = 0; i < 10; ++i) {
         pool.enqueue([i] {
-            std::cout << "Task " << i << " is running on thread "<< std::this_thread::get_id()<< std::endl;
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            cout << "Task " << i << " is running on thread "<< this_thread::get_id()<< endl;
+            this_thread::sleep_for(chrono::seconds(1));
         });
     }
 
