@@ -304,12 +304,6 @@ static void test_set(){
 }
 
 
-
-void test_queue(){
-    //TODO:
-}
-
-
 //TOOD：主要是数组、map和Set的使用
 //这里每块儿的结构就是增删改查，如果缺失后续补充
 int main(){

@@ -6,42 +6,38 @@
 #include<condition_variable>
 using namespace std;
 
-// 线程安全的队列
+// 在 C++ 中，template<typename T> 是一个模板声明，用于定义泛型类或函数。
 template<typename T>
 class ThreadSafeQueue {
 public:
-    // 向队列中添加元素
     void push(T value) {
-        unique_lock<mutex> lock(mutex_); // 获取互斥锁
-        queue_.push(move(value)); // 将元素添加到队列中
-        lock.unlock(); // 释放互斥锁
-        cond_.notify_one(); // 通知等待的线程
+        unique_lock<mutex> lock(mutex_); 
+        queue_.push(std::move(value)); 
+        // lock.unlock(); // 释放互斥锁
+        cond_.notify_one(); 
     }
 
-    // 尝试从队列中取出元素，如果队列为空则返回false
     bool try_pop(T& value) {
-        unique_lock<mutex> lock(mutex_); // 获取互斥锁
-        if (queue_.empty()) { // 如果队列为空
-            return false; // 返回false
+        unique_lock<mutex> lock(mutex_); 
+        if (queue_.empty()) { 
+            return false; 
         }
-        value = move(queue_.front()); // 取出队列中的第一个元素
-        queue_.pop(); // 删除队列中的第一个元素
-        return true; // 返回true
+        value = move(queue_.front());
+        queue_.pop(); 
+        return true; 
     }
 
-    // 从队列中取出元素，如果队列为空则等待
     T pop() {
-        unique_lock<mutex> lock(mutex_); // 获取互斥锁
-        cond_.wait(lock, [this] { return !queue_.empty(); }); // 等待队列非空
-        T value = move(queue_.front()); // 取出队列中的第一个元素
-        queue_.pop(); // 删除队列中的第一个元素
-        return value; // 返回元素
+        unique_lock<mutex> lock(mutex_); 
+        cond_.wait(lock, [this] { return !queue_.empty(); }); 
+        T value = std::move(queue_.front()); 
+        queue_.pop(); 
+        return value; 
     }
 
-    // 判断队列是否为空
     bool empty() const {
-        lock_guard<mutex> lock(mutex_); // 获取互斥锁
-        return queue_.empty(); // 返回队列是否为空
+        lock_guard<mutex> lock(mutex_); 
+        return queue_.empty(); 
     }
 
 private:

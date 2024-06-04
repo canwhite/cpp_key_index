@@ -75,7 +75,8 @@
         "execution": "cpp",
         "*.in": "c",
         "queue": "cpp",
-        "shared_mutex": "cpp"
+        "shared_mutex": "cpp",
+        "condition_variable": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
