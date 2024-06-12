@@ -14,7 +14,7 @@ public:
     void setA(shared_ptr<A> a) { a_ptr = a; }
 };
 
-int main(){
+void test_base(){
     //--smart ptr
     //资源获取即初始化，独占所有权，没有引用计数的开销，所以更轻量，用的较多
     auto ptr = make_unique<int>(5); 
@@ -23,7 +23,6 @@ int main(){
     //所以我们不能通过以下方式创建一个unique_pt2指向这个整数，以下错误：
     // auto d = ptr;
     //作为参数和返回值
-
 
     //这里有引用计数的开销
     //1）make_shared<int>(5)创建了一个新的动态int对象，初始化为5。这时，创建的智能指针sp1是这个动态对象的唯一所有者，引用计数为1
@@ -44,5 +43,11 @@ int main(){
     auto bb = make_shared<B>();
     aa->setB(bb);
     bb->setA(aa);
+
+}
+
+
+int main(){
+
     return 0;
 }

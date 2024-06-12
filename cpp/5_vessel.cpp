@@ -4,20 +4,17 @@
 #include <set>
 #include <algorithm> //find等方法
 #include <queue>
+#include <list>
 #include "../debug/video_debugging.h"
 using namespace std;
 
 
 class Student {
 public:
-    string name;
-    int age; 
-    Student(){}
-    Student(string n, int a) {
-        name = n;
-        age = a;
-    }
 
+    Student(){}
+    //:后边是成员初始化列表，有了他们就不用在构造函数中初始化了
+    Student(string n, int a) :name(n), age(a) {}
     // public方法主要是一些get和show
     void show() {
         cout << "Name: " << name << ", Age: " << age << endl;
@@ -44,12 +41,19 @@ public:
     bool operator<(const Student& other) const {
         return name < other.name || (name == other.name && age< other.age);
     }
-
+//私有属性只能被类的内部方法访问，而不能被类外部的任何方法访问。
+//即使实例也不行，这是核心约束
+private:
+    string name;
+    int age; 
 
 };
 
 
 //vector
+//注意push_back和emplace_back可以insert闭包，这是一种很有意思的使用
+//而且相比较来说，emplace_back 可以避免创建临时对象并进行拷贝或移动操作，
+//所以，empalce_back的性能会更好
 static void test_vector(){
 
     logging("============vector start===========");
@@ -136,7 +140,8 @@ static void test_vector(){
 
     //transform循环，即map循环
     transform(students.begin(), students.end(), students.begin(), [](Student& student){ 
-        student.age *= 2;
+        // student.age *= 2;
+        student.setAge(student.getAge()*2);
         return student;
     });
 
@@ -200,7 +205,7 @@ static void test_map(){
 
     //基本数据类型也能通过引用传递，但是没有必要
     for(const auto& pair : studentsMap){
-        cout << pair.first  << ":" << pair.second.name << endl;
+        cout << pair.first  << ":" << pair.second.getName() << endl;
     }
 
     //find方法接受一个键作为参数，并返回一个迭代器，指向与该键关联的元素。
@@ -210,7 +215,7 @@ static void test_map(){
     if(it != studentsMap.end()) {
         // 在C++中，迭代器通常重载了->操作符，以便于访问和操作容器中的元素
         // 迭代器通常不支持点语法
-        cout << it->second.name << endl;
+        cout << it->second.getName() << endl;
     }
 
     logging("============map end===========");
@@ -286,22 +291,62 @@ static void test_set(){
 
     //这样查的时候可以用find_if, 基础数据类型可以用find
     auto it = find_if(studentsSet.begin(),studentsSet.end(),[](const Student& student){
-        return student.name == "李四";
+        return student.getName() == "李四";
     });
 
     if(it != studentsSet.end()) {
-        cout << it->name << endl;
+        cout << it->getName() << endl;
     }
 
     // 使用范围for循环遍历std::set<Student>中的元素
     for (const auto& student : studentsSet) {
-        std::cout<< student.name << " "<< student.age<< std::endl;
+        std::cout<< student.getName() << " "<< student.getAge()<< std::endl;
     }
 
     logging("============set end===========");
 
 
 }
+
+
+//queue
+void static test_queue(){
+    //todo
+}
+
+//list
+//PS：注意以上容器中，只有这个是非线程安全的
+//保持线程安全的主要做法是使用锁
+void static test_list(){
+    logging("============list start===========");
+
+    //增
+    list<Student> l;
+    l.push_back(Student("张三",20));
+    l.push_back(Student("李四",24));
+    l.push_back(Student("王7",67));
+
+
+    //删
+    // l.remove(Student(string("张三").c_str(),20));
+
+
+    //改
+
+    //查
+
+    //循环
+    for (const auto& student : l) {
+        std::cout<< student.getName() << " "<< student.getAge()<< std::endl;
+    }
+
+
+
+    logging("============list start===========");
+
+}
+
+
 
 
 //TOOD：主要是数组、map和Set的使用
@@ -311,5 +356,7 @@ int main(){
     test_vector();
     test_map();
     test_set();
+
+    test_list();
     return  0;
 }
