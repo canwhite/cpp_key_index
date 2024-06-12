@@ -311,7 +311,26 @@ static void test_set(){
 
 //queue
 void static test_queue(){
-    //todo
+    logging("============queue start===========");
+    queue<Student> q;
+    q.push(Student("张三",20));
+    q.push(Student("李四",24));
+    q.push(Student("王五",30));
+
+    //删除头元素，注意pop不返回值
+    q.pop();
+    
+    //修改头元素的信息
+    q.front().setName("赵六");
+    q.front().setAge(21);
+
+    // 遍历队列并输出所有学生信息
+    while (!q.empty()) {
+        cout<< q.front().getName() << " "<< q.front().getAge()<< endl;
+        q.pop();
+    }
+
+    logging("============queue end===========");
 }
 
 //list
@@ -319,35 +338,24 @@ void static test_queue(){
 //保持线程安全的主要做法是使用锁
 void static test_list(){
     logging("============list start===========");
-
     //增
     list<Student> l;
     l.push_back(Student("张三",20));
     l.push_back(Student("李四",24));
     l.push_back(Student("王7",67));
 
-
     //删
-    // l.remove(Student(string("张三").c_str(),20));
-
-
-    //改
-
-    //查
-
+    l.erase(l.begin());
+    //改,for循环改
+    //查，for循环查，我要这铁棒有何用
     //循环
+
     for (const auto& student : l) {
         std::cout<< student.getName() << " "<< student.getAge()<< std::endl;
     }
-
-
-
     logging("============list start===========");
 
 }
-
-
-
 
 //TOOD：主要是数组、map和Set的使用
 //这里每块儿的结构就是增删改查，如果缺失后续补充
@@ -356,7 +364,7 @@ int main(){
     test_vector();
     test_map();
     test_set();
-
+    test_queue();
     test_list();
     return  0;
 }
