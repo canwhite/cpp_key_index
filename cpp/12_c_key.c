@@ -51,8 +51,6 @@ int main(void){
         printf("%s \n",objects_2[i].name);
     }
 
-
-
     /**
     calloc和malloc的最大区别
     malloc只分配区间，
@@ -67,8 +65,6 @@ int main(void){
         objects_1[i] = (*createObj)(i,"object_1_name");
         printf("%s \n",objects_1[i].name);
     }
-
-
 
     //释放内存
     for (int i = 0; i < 10; i++)
