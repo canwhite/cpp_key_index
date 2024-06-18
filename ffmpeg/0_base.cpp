@@ -140,7 +140,55 @@ int main(){
     AVPacket 是从 AVStream 获得的压缩数据的切片，
     可由 AVCodec（例如av1，h264，vp9，hevc）解码，
     从而生成称为 AVFrame 的原始数据。
+
+    //这是一个基础结构
+    while(av_read_frame(pFormatCtx, pPacket) >= 0)
+    {
+        if(pPacket->stream_index == audioStream)
+        {
+            avcodec_send_packet(pAudioCodecContext, pPacket);
+            avcodec_receive_frame(pAudioCodecContext, pFrame);
+
+
+            // 创建一个新的帧，用于存储编码后的数据
+            AVFrame* pOutFrame = av_frame_alloc();
+            pOutFrame->nb_samples     = pFrame->nb_samples;
+            pOutFrame->format         = pFrame->format;
+            pOutFrame->ch_layout = pFrame->ch_layout;
+
+            AVPacket* pOutPacket = av_packet_alloc();
+
+            // 将解码后的帧复制到新帧中
+            av_frame_copy(pOutFrame, pFrame);
+            // 使用编码器将新帧编码为MP3格式
+            avcodec_send_frame(pOutAudioCodecContext, pOutFrame);
+            avcodec_receive_packet(pOutAudioCodecContext, pOutPacket);
+
+
+            // 将编码后的数据写入文件
+            fwrite(pOutPacket->data, 1, pOutPacket->size, audioFile);
+            av_frame_unref(pOutFrame);
+            av_packet_unref(pPacket);
+        }
+        av_packet_unref(pPacket);
+    }
+
+
     */
     logging("注释里主要是一些基础概念");
+
+    /**
+    音视频分析
+    1）首先，你需要在命令行中定位到你的音频文件所在的位置。
+
+    2）然后，键入下面的命令，这将输出你的音频文件的基础信息：
+    ffprobe -i yourfile.mp3  //PS：probe是调查打探的意思
+
+    3）仔细阅读输出的信息。你会看到一些关于音频流的基本信息，包括编码格式，采样率，通道数量等等。
+
+    */
+
+
+
     return 0;
 }

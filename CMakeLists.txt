@@ -35,7 +35,7 @@ find_package(PkgConfig REQUIRED)
 # pkg_check_modules(LIBMP3LAME REQUIRED libmp3lame)
 
 # 2. ffmpeg imported target导入，推荐
-pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavutil libswscale libavfilter) 
+pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavutil libswscale libavfilter libswresample) 
 # include_directories(${CMAKE_SOURCE_DIR}/algorithm)
 # pkg_check_modules(LAME REQUIRED IMPORTED_TARGET libmp3lame)
 
@@ -64,6 +64,9 @@ pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavut
 # set(SOURCE_FILES  ffmpeg/4_0_add_watermarking.cpp)
 set(SOURCE_FILES ffmpeg/12_get_audio_part.cpp)
 
+
+
+
 # 引入主文件需要调用的工具文件
 file(GLOB_RECURSE SORT_FILES  "algorithm/*.cpp" "algorithm/*.h" "debug/*.cpp" "debug/*.h")
 
@@ -72,9 +75,6 @@ set(MY_VAR "Hello World")
 set(IN_FILENAME ${CMAKE_SOURCE_DIR}/../test.mp4)
 set(OUT_FILENAME ${CMAKE_SOURCE_DIR}/output.mp4)
 configure_file(${CMAKE_SOURCE_DIR}/config.h.in ${CMAKE_SOURCE_DIR}/ffmpeg/config.h)
-
-
-
 
 
 # 注意引入
@@ -86,7 +86,6 @@ add_executable(${APP_NAME} ${SOURCE_FILES} ${SORT_FILES})
 # 2. impoted target
 target_link_libraries(${APP_NAME} PkgConfig::FFMPEG)
 # target_link_libraries(${APP_NAME} PkgConfig::LAME)
-
 
 
 ##### 引入静态库

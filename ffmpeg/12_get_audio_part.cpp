@@ -1,138 +1,119 @@
-#include<iostream>
-#include<fstream>
+#include <iostream>
 #include "config.h"
-#include <vector>
 extern "C" {
-#include <libavcodec/avcodec.h>
+#include <libavutil/log.h>
 #include <libavformat/avformat.h>
-#include <libavutil/opt.h>
-#include "lame.h"
 }
-#include<algorithm> // 添加缺少的头文件
-#include "../debug/video_debugging.h" 
-                
-using namespace std;
+// aac每帧开头都要填写对应的格式信息
+void adts_header(char *szAdtsHeader, int dataLen){
 
-int main() {
-    const char* input_video_path = (char*) IN_FLIENAME;
-    const char* output_audio_path = "output_audio.mp3";
+    int audio_object_type = 2;
+    int sampling_frequency_index = 7;
+    int channel_config = 2;
+
+    int adtsLen = dataLen + 7;
+
+    szAdtsHeader[0] = 0xff;         //syncword:0xfff                          高8bits
+    szAdtsHeader[1] = 0xf0;         //syncword:0xfff                          低4bits
+    szAdtsHeader[1] |= (0 << 3);    //MPEG Version:0 for MPEG-4,1 for MPEG-2  1bit
+    szAdtsHeader[1] |= (0 << 1);    //Layer:0                                 2bits
+    szAdtsHeader[1] |= 1;           //protection abent:1                     1bit
+
+    szAdtsHeader[2] = (audio_object_type - 1)<<6;            //profile:audio_object_type - 1                      2bits
+    szAdtsHeader[2] |= (sampling_frequency_index & 0x0f)<<2; //sampling frequency index:sampling_frequency_index  4bits
+    szAdtsHeader[2] |= (0 << 1);                             //private bit:0                                      1bit
+    szAdtsHeader[2] |= (channel_config & 0x04)>>2;           //channel configuration:channel_config               高1bit
+
+    szAdtsHeader[3] = (channel_config & 0x03)<<6;     //channel configuration:channel_config      低2bits
+    szAdtsHeader[3] |= (0 << 5);                      //original：0                               1bit
+    szAdtsHeader[3] |= (0 << 4);                      //home：0                                   1bit
+    szAdtsHeader[3] |= (0 << 3);                      //copyright id bit：0                       1bit
+    szAdtsHeader[3] |= (0 << 2);                      //copyright id start：0                     1bit
+    szAdtsHeader[3] |= ((adtsLen & 0x1800) >> 11);           //frame length：value   高2bits
+
+    szAdtsHeader[4] = (uint8_t)((adtsLen & 0x7f8) >> 3);     //frame length:value    中间8bits
+    szAdtsHeader[5] = (uint8_t)((adtsLen & 0x7) << 5);       //frame length:value    低3bits
+    szAdtsHeader[5] |= 0x1f;                                 //buffer fullness:0x7ff 高5bits
+    szAdtsHeader[6] = 0xfc;
+}
+/*
+ * 从多媒体文件中抽取媒体信息
+ * */
+
+int main(int argc, char *argv[]) {
 
 
-    AVFormatContext* format_ctx = nullptr;
-    if (avformat_open_input(&format_ctx, input_video_path, nullptr, nullptr) != 0) {
-        std::cerr << "Could not open input video file."<< std::endl;
+
+    AVFormatContext *fmt_ctx = NULL;
+
+    //设置log级别
+    av_log_set_level(AV_LOG_INFO);
+
+    //输入和输出文件名称
+    const char *input_filename = IN_FLIENAME;
+    const char *output_filename =  "test.aac";
+
+    // 1. 读取多媒体文件
+    int ret = avformat_open_input(&fmt_ctx, input_filename, NULL, NULL);
+    if (ret < 0) {
+        av_log(NULL, AV_LOG_ERROR, "can't open file.\n");
         return -1;
     }
 
-    if (avformat_find_stream_info(format_ctx, nullptr) < 0) {
-        std::cerr << "Could not find stream information."<< std::endl;
-        avformat_close_input(&format_ctx);
+    //  write audio data to AAC file
+    FILE *dst_fd = fopen(output_filename, "wb");
+    if (dst_fd == NULL) {
+        av_log(NULL, AV_LOG_ERROR, "open dst_fd failed.\n");
+        avformat_close_input(&fmt_ctx);
+        return -1;
+    }
+    
+    //打印输入文件信息，第一个参数fmt_ctx是输入文件上下文，
+    //第二个参数是流索引，
+    //第三个参数是流名称，
+    //第四个参数是打印信息级别,0表示打印所有信息，1表示打印错误信息，2表示打印警告信息，3表示打印调试信息。
+    av_dump_format(fmt_ctx, 0, input_filename, 0);
+
+    // 2. get stream
+    ret = av_find_best_stream(fmt_ctx, AVMEDIA_TYPE_AUDIO, -1, -1, NULL, 0);
+    if (ret < 0) {
+        av_log(NULL, AV_LOG_ERROR, "ret = %d\n", ret);
+        avformat_close_input(&fmt_ctx);
+        fclose(dst_fd);
         return -1;
     }
 
-    //还可以这样直接获取音频流索引
-    int audio_stream_index = av_find_best_stream(format_ctx, AVMEDIA_TYPE_AUDIO, -1, -1, nullptr, 0);
-    if (audio_stream_index < 0) {
-        std::cerr << "Could not find audio stream in input video file."<< std::endl;
-        avformat_close_input(&format_ctx);
-        return -1;
-    }
+    //
+    int audio_index = -1;
+    audio_index = ret;
+    AVPacket pkt;
+    /*Initialize optional fields of a packet with default values.*/
+    av_init_packet(&pkt);
 
-    AVCodecContext* codec_ctx = avcodec_alloc_context3(nullptr);
-    if (!codec_ctx) {
-        std::cerr << "Could not allocate audio codec context."<< std::endl;
-        avformat_close_input(&format_ctx);
-        return -1;
-    }
-
-    const AVCodec* codec = avcodec_find_decoder(format_ctx->streams[audio_stream_index]->codecpar->codec_id);
-    if (!codec) {
-        std::cerr << "Unsupported audio codec."<< std::endl;
-        avcodec_free_context(&codec_ctx);
-        avformat_close_input(&format_ctx);
-        return -1;
-    }
-
-    if (avcodec_parameters_to_context(codec_ctx, format_ctx->streams[audio_stream_index]->codecpar) < 0) {
-        std::cerr << "Failed to copy audio parameters to codec context."<< std::endl;
-        avcodec_free_context(&codec_ctx);
-        avformat_close_input(&format_ctx);
-        return -1;
-    }
-
-    if (avcodec_open2(codec_ctx, codec, nullptr) < 0) {
-        std::cerr << "Failed to open audio codec."<< std::endl;
-        avcodec_free_context(&codec_ctx);
-        avformat_close_input(&format_ctx);
-        return -1;
-    }
-
-    std::ofstream output_file(output_audio_path, std::ios::binary);
-    if (!output_file) {
-        std::cerr << "Could not open output audio file."<< std::endl;
-        avcodec_free_context(&codec_ctx);
-        avformat_close_input(&format_ctx);
-        return -1;
-    }
-    // lame_t lame = lame_init();
-    // lame_set_in_samplerate(lame, sampleRate);
-    // lame_set_num_channels(lame, channels);
-    // lame_set_brate(lame, bitRate);  
-    // lame_init_params(lame);
-
-    AVPacket packet;
-    AVFrame* decoded_frame = av_frame_alloc();
-    while (av_read_frame(format_ctx, &packet) >= 0) {
-        if (packet.stream_index == audio_stream_index) {
-            int response = avcodec_send_packet(codec_ctx, &packet);
-            if (response < 0) {
-                std::cerr << "Error sending a packet for decoding."<< std::endl;
-                break;
-            }
-
-            while (response >= 0) {
-
-                response = avcodec_receive_frame(codec_ctx, decoded_frame);
-                if (response == AVERROR(EAGAIN) || response == AVERROR_EOF) {
-                    break;
-                } else if (response < 0) {
-                    std::cerr << "Error during decoding."<< std::endl;
-                    break;
-                }
-
-                if (!decoded_frame) {
-                    std::cerr << "Could not allocate memory for decoded audio frame."<< std::endl;
-                    break;
-                }
-                int  channels = codec_ctx->ch_layout.nb_channels;
-              
-                
-                int data_size = av_samples_get_buffer_size(nullptr,  channels, decoded_frame->nb_samples, codec_ctx->sample_fmt, 1);
-                if (data_size <= 0) {
-                    std::cerr << "Could not calculate buffer size for decoded audio samples."<< std::endl;
-                    av_frame_free(&decoded_frame);
-                    break;
-                }
-                if (data_size <= 0) {
-                    std::cerr << "Could not calculate buffer size for decoded audio samples."<< std::endl;
-                    av_frame_free(&decoded_frame);
-                    break;
-                }
-
-                vector<uint8_t> audio_data(data_size);
-                av_samples_fill_arrays(decoded_frame->extended_data, nullptr, audio_data.data(), channels, decoded_frame->nb_samples, codec_ctx->sample_fmt, 1);
-
-                output_file.write((char*)audio_data.data(), data_size);
-
-                av_frame_unref(decoded_frame);
+    int len = -1;
+    /*保存原始数据，播放时需要添加AAC的音频格式说明的头*/
+    while (av_read_frame(fmt_ctx, &pkt) >= 0) {
+        if (pkt.stream_index == audio_index) {
+            /*每帧开头都要写*/
+            char adts_header_buf[7];
+            adts_header(adts_header_buf, pkt.size);
+            fwrite(adts_header_buf, 1, 7, dst_fd);
+            len = fwrite(pkt.data, 1, pkt.size, dst_fd);
+            if (len != pkt.size) {
+                av_log(NULL, AV_LOG_ERROR, "waning, length is not equl size of pkt.\n");
+                return -1;
             }
         }
-
-        av_packet_unref(&packet);
+        /*Wipe the packet.*/
+        av_packet_unref(&pkt);
     }
 
-    avcodec_free_context(&codec_ctx);
-    avformat_close_input(&format_ctx);
+
+    /*Close an opened input AVFormatContext*/
+    avformat_close_input(&fmt_ctx);
+    if (dst_fd != NULL)
+        fclose(dst_fd);
 
     return 0;
 }
+
