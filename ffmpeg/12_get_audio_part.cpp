@@ -7,12 +7,14 @@ extern "C" {
 // aac每帧开头都要填写对应的格式信息
 void adts_header(char *szAdtsHeader, int dataLen){
 
+
     int audio_object_type = 2;
     int sampling_frequency_index = 7;
     int channel_config = 2;
 
     int adtsLen = dataLen + 7;
 
+    //给buf赋值，给了7个字节的空间
     szAdtsHeader[0] = 0xff;         //syncword:0xfff                          高8bits
     szAdtsHeader[1] = 0xf0;         //syncword:0xfff                          低4bits
     szAdtsHeader[1] |= (0 << 3);    //MPEG Version:0 for MPEG-4,1 for MPEG-2  1bit
@@ -74,7 +76,7 @@ int main(int argc, char *argv[]) {
     //第四个参数是打印信息级别,0表示打印所有信息，1表示打印错误信息，2表示打印警告信息，3表示打印调试信息。
     av_dump_format(fmt_ctx, 0, input_filename, 0);
 
-    // 2. get stream
+    // 2. get stream, 这个方法实际上是对之前搜选方法的简化，返回满足条件的index
     ret = av_find_best_stream(fmt_ctx, AVMEDIA_TYPE_AUDIO, -1, -1, NULL, 0);
     if (ret < 0) {
         av_log(NULL, AV_LOG_ERROR, "ret = %d\n", ret);
@@ -83,7 +85,6 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    //
     int audio_index = -1;
     audio_index = ret;
     AVPacket pkt;
@@ -96,8 +97,11 @@ int main(int argc, char *argv[]) {
         if (pkt.stream_index == audio_index) {
             /*每帧开头都要写*/
             char adts_header_buf[7];
+            //添加AAC的音频格式说明的头
             adts_header(adts_header_buf, pkt.size);
+            //size_t fwrite(const void *__ptr, size_t __size, size_t __nitems, FILE *__stream)
             fwrite(adts_header_buf, 1, 7, dst_fd);
+            //写入具体的内容，最后一个是输出文件,直接在pkt层面就操作了
             len = fwrite(pkt.data, 1, pkt.size, dst_fd);
             if (len != pkt.size) {
                 av_log(NULL, AV_LOG_ERROR, "waning, length is not equl size of pkt.\n");
