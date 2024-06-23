@@ -6,6 +6,7 @@ extern "C" {
     #include <libavfilter/buffersrc.h>
 }
 // how to ask for answer? 关键在于如何问问题？
+// 前置条件，想要的结果，如有需要，加些细节
 // ffmpeg version7 get audio as mp3 from video  by c++，give me all the code
 int main() {
     AVFormatContext* formatContext = nullptr;
