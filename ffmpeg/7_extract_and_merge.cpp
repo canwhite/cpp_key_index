@@ -30,9 +30,10 @@ constexpr auto FPS = 30;
 constexpr auto VIDEO_WIDTH = 1920;
 constexpr auto VIDEO_HEIGHT = 1080;
 
+
 int main() {
     // 初始化FFmpeg
-    av_register_all();
+    // av_register_all();
 
     // 打开输入视频文件
     AVFormatContext* input_format_context = nullptr;

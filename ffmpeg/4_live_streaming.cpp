@@ -89,7 +89,7 @@ int stream_video(const char *output_url, const char *input_file) {
 }
 
 
-//TODO，构建RTMP服务器的方法在另外一本书上
+
 //等待验证
 int main (){
     const char *output_url = "rtmp://your_streaming_server/your_stream_path";
