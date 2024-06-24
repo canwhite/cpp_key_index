@@ -8,7 +8,7 @@ int main() {
     const char* input_url = "/Users/zack/Desktop/test.mp4";
     const char* out_url = "rtmp://127.0.0.1/live/livestream";
 
-    
+
     avformat_network_init();
     AVFormatContext* inputFormatContext = nullptr;
     if (avformat_open_input(&inputFormatContext, input_url, 0, 0) < 0) {
@@ -41,6 +41,8 @@ int main() {
     }
     AVPacket pkg;
     av_init_packet(&pkg);
+
+    //
     while (av_read_frame(inputFormatContext, &pkg) >= 0) {
         av_write_frame(outputFormatContext, &pkg);
         av_packet_unref(&pkg);

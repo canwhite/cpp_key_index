@@ -20,8 +20,7 @@ extern "C" {
 
 int add_watermark(const char *input_file, const char *output_file, const char *watermark_file) {
     // 注册所有组件
-    // av_register_all();
-    // avformat_network_init();
+    avformat_network_init();
 
     // 打开输入文件
     AVFormatContext *input_format_ctx = NULL;
@@ -45,6 +44,8 @@ int add_watermark(const char *input_file, const char *output_file, const char *w
 
     // 复制流信息
     for (int i = 0; i< input_format_ctx->nb_streams; i++) {
+
+        //TODO，建新流
         AVStream *in_stream = input_format_ctx->streams[i];
         AVStream *out_stream = avformat_new_stream(output_format_ctx, in_stream->codec->codec);
         if (!out_stream) {
@@ -74,8 +75,8 @@ int add_watermark(const char *input_file, const char *output_file, const char *w
     // 创建视频过滤器
     AVFilterContext *buffer_src_ctx = NULL;
     AVFilterContext *buffer_sink_ctx = NULL;
-    AVFilter *buffer_src = avfilter_get_by_name("buffer");
-    AVFilter *buffer_sink = avfilter_get_by_name("buffersink");
+    const AVFilter *buffer_src = avfilter_get_by_name("buffer");
+    const  AVFilter *buffer_sink = avfilter_get_by_name("buffersink");
     AVFilterInOut *inputs = avfilter_inout_alloc();
     AVFilterInOut *outputs = avfilter_inout_alloc();
     enum AVPixelFormat pix_fmts[] = { AV_PIX_FMT_YUV420P, AV_PIX_FMT_NONE };
@@ -89,8 +90,8 @@ int add_watermark(const char *input_file, const char *output_file, const char *w
     src_params->hw_frames_ctx = NULL;
 
     // 创建水印过滤器
-    AVFilter *movie_filter = avfilter_get_by_name("movie");
-    AVFilter *overlay_filter = avfilter_get_by_name("overlay");
+    const AVFilter *movie_filter = avfilter_get_by_name("movie");
+    const AVFilter *overlay_filter = avfilter_get_by_name("overlay");
     char movie_filter_args[256];
     snprintf(movie_filter_args, sizeof(movie_filter_args), "movie=%s [watermark]; [in][watermark] overlay=10:10 [out]", watermark_file);
 
@@ -148,9 +149,9 @@ int add_watermark(const char *input_file, const char *output_file, const char *w
 //TODO，等待验证
 int main(){
 
-    const char *input_file = "your_video_file.mp4";
-    const char *output_file = "your_video_file_with_watermark.mp4";
-    const char *watermark_file = "your_watermark_image.png";
+    const char *input_file = "/Users/zack/Desktop/test.mp4";
+    const char *output_file = "watermark.mp4";
+    const char *watermark_file = "/Users/zack/Desktop/bing@2x.png";
     int result = add_watermark(input_file, output_file, watermark_file);
     if (result == 0) {
         printf("添加水印成功\n");

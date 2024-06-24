@@ -50,11 +50,16 @@ int main() {
     if (outputStream == nullptr) {
         return 1;  // 创建输出流失败
     }
-    // 设置输出流参数
+    // 注意这点很重要，复制输入流参数信息设置输出流参数
     if (avcodec_parameters_copy(outputStream->codecpar, codecParameters) < 0) {
         return 1;  // 复制解码器参数到输出流失败
     }
     // 打开音频文件并将文件头写入
+    //在使用FFmpeg库时，通常在打开一个输出文件后需要写入文件头信息。
+    //写入文件头信息的目的是为了在文件中包含必要的元数据和格式信息，以便后续解码和处理这个文件。
+    //avformat_write_header函数的第二个参数是一个包含一些额外选项的字典。
+    //这个参数通常用来指定一些特定的设置或配置，例如音频编码器的参数、视频编码器的参数等。
+    //如果没有需要特殊配置的情况，可以将第二个参数设置为nullptr，表示不传递任何额外选项。 
     if (avio_open(&outputContext->pb, "output.aac", AVIO_FLAG_WRITE) < 0 || avformat_write_header(outputContext, nullptr) < 0) {
         return 1;  // 无法打开音频文件或写入文件头
     }
@@ -65,6 +70,8 @@ int main() {
         if (packet.stream_index == audioStreamIndex) {
             // packet.pts = packet.dts = AV_NOPTS_VALUE;
             packet.stream_index = 0;
+            //和av_write_frame的区别在于在交错的数据中，
+            //音频帧和视频帧会交错存储，以便在播放时能够按照正确的时间顺序呈现。
             av_interleaved_write_frame(outputContext, &packet);
         }
     }
