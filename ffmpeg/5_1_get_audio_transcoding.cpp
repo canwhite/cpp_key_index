@@ -159,6 +159,7 @@ void extract_audio_to_mp3(const char* input_filename, const char* output_filenam
                     uint8_t* converted_data[2] = { nullptr };
                     int converted_linesize;
                     av_samples_alloc(converted_data, &converted_linesize, 2, frame->nb_samples, AV_SAMPLE_FMT_FLTP, 0);
+                    //swr_convert 方法在 FFmpeg 中主要用于音频采样格式、采样率和声道布局的转换
                     swr_convert(swr_context, converted_data, frame->nb_samples, (const uint8_t**)frame->data, frame->nb_samples);
 
                     // Write converted data to output file
