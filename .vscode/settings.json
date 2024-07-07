@@ -77,7 +77,9 @@
         "queue": "cpp",
         "shared_mutex": "cpp",
         "condition_variable": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "fstream": "cpp",
+        "print": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
