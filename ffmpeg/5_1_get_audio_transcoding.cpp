@@ -1,189 +1,214 @@
-extern "C" {
-#include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
 #include <libswresample/swresample.h>
 #include <libavutil/opt.h>
-}
-#include "../debug/video_debugging.h" 
-#include <iostream>
-#include <fstream>
 
-void extract_audio_to_mp3(const char* input_filename, const char* output_filename) {
-    AVFormatContext* format_context = nullptr;
-    AVCodecContext* codec_context = nullptr;
-    AVStream* audio_stream = nullptr;
-    SwrContext* swr_context = nullptr;
-    AVPacket* packet = nullptr;
-    AVFrame* frame = nullptr;
-    int audio_stream_index = -1;
-    
-    
-    // Open input file
-    if (avformat_open_input(&format_context, input_filename, nullptr, nullptr) != 0) {
-        std::cerr << "Could not open input file." << std::endl;
-        return;
+int main(int argc, char *argv[]) {
+    AVFormatContext *input_format_context = NULL, *output_format_context = NULL;
+    AVCodecContext *input_codec_context = NULL, *output_codec_context = NULL;
+    SwrContext *resample_context = NULL;
+    AVStream *out_stream = NULL;
+    const AVCodec *output_codec;
+    int ret;
+
+    // 打开输入文件
+    if ((ret = avformat_open_input(&input_format_context, "/Users/zack/Desktop/test.mp4", NULL, NULL)) < 0) {
+        fprintf(stderr, "Could not open input file\n");
+        return 1;
     }
 
-    // Find stream info
-    if (avformat_find_stream_info(format_context, nullptr) < 0) {
-        std::cerr << "Could not find stream info." << std::endl;
-        return;
+    // 查找流信息
+    if ((ret = avformat_find_stream_info(input_format_context, NULL)) < 0) {
+        fprintf(stderr, "Could not find stream information\n");
+        return 1;
     }
 
-    // Find audio stream
-    for (unsigned int i = 0; i < format_context->nb_streams; i++) {
-        if (format_context->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_AUDIO) {
-            audio_stream_index = i;
-            audio_stream = format_context->streams[i];
-            break;
+    // 找到音频流
+    int audio_stream_index = av_find_best_stream(input_format_context, AVMEDIA_TYPE_AUDIO, -1, -1, NULL, 0);
+    if (audio_stream_index < 0) {
+        fprintf(stderr, "Could not find audio stream\n");
+        return 1;
+    }
+
+    // 创建输出格式上下文
+    avformat_alloc_output_context2(&output_format_context, NULL, NULL, "output.mp3");
+    if (!output_format_context) {
+        fprintf(stderr, "Could not create output context\n");
+        ret = AVERROR_UNKNOWN;
+        return 1;
+    }
+
+    // 找到MP3编码器
+    output_codec = avcodec_find_encoder(AV_CODEC_ID_MP3);
+    if (!output_codec) {
+        fprintf(stderr, "Could not find encoder for MP3\n");
+        return 1;
+    }
+
+    // 创建输出流
+    out_stream = avformat_new_stream(output_format_context, NULL);
+    if (!out_stream) {
+        fprintf(stderr, "Failed allocating output stream\n");
+        ret = AVERROR_UNKNOWN;
+        return 1;
+    }
+
+    output_codec_context = avcodec_alloc_context3(output_codec);
+    if (!output_codec_context) {
+        fprintf(stderr, "Could not allocate an encoding context\n");
+        ret = AVERROR(ENOMEM);
+        return 1;
+    }
+
+    // 设置输出参数
+    output_codec_context->sample_fmt  = AV_SAMPLE_FMT_S16;
+    output_codec_context->ch_layout = output_codec_context->ch_layout;
+    output_codec_context->sample_rate    = 44100;
+    // output_codec_context->channels       = 2;
+    output_codec_context->bit_rate       = 128000;
+
+    // 打开编码器
+    if ((ret = avcodec_open2(output_codec_context, output_codec, NULL)) < 0) {
+        fprintf(stderr, "Could not open output codec\n");
+        return 1;
+    }
+
+    // 复制参数到输出流
+    ret = avcodec_parameters_from_context(out_stream->codecpar, output_codec_context);
+    if (ret < 0) {
+        fprintf(stderr, "Could not copy the stream parameters\n");
+        return 1;
+    }
+
+    // 打开输出文件
+    if (!(output_format_context->oformat->flags & AVFMT_NOFILE)) {
+        ret = avio_open(&output_format_context->pb, "output.mp3", AVIO_FLAG_WRITE);
+        if (ret < 0) {
+            fprintf(stderr, "Could not open output file\n");
+            return 1;
         }
     }
 
-    if (audio_stream_index == -1) {
-        std::cerr << "Could not find audio stream." << std::endl;
-        return;
+    // 写文件头
+    ret = avformat_write_header(output_format_context, NULL);
+    if (ret < 0) {
+        fprintf(stderr, "Error occurred when opening output file\n");
+        return 1;
     }
 
-    // Find decoder
-    const AVCodec* codec = avcodec_find_decoder(audio_stream->codecpar->codec_id);
-    if (!codec) {
-        std::cerr << "Could not find decoder." << std::endl;
-        return;
+    // 初始化重采样上下文
+    resample_context = swr_alloc();
+    if (!resample_context) {
+        fprintf(stderr, "Could not allocate resample context\n");
+        ret = AVERROR(ENOMEM);
+        return 1;
     }
 
-    // Allocate codec context
-    codec_context = avcodec_alloc_context3(codec);
-    if (!codec_context) {
-        std::cerr << "Could not allocate codec context." << std::endl;
-        return;
-    }
-
-    // Copy codec parameters to codec context
-    if (avcodec_parameters_to_context(codec_context, audio_stream->codecpar) < 0) {
-        std::cerr << "Could not copy codec parameters." << std::endl;
-        return;
-    }
-
-    // Open codec
-    if (avcodec_open2(codec_context, codec, nullptr) < 0) {
-        std::cerr << "Could not open codec." << std::endl;
-        return;
-    }
-
-    // Allocate frame and packet
-    frame = av_frame_alloc();
-    packet = av_packet_alloc();
-    if (!frame || !packet) {
-        std::cerr << "Could not allocate frame or packet." << std::endl;
-        return;
-    }
-
-    // Set up resampler
-    // 这个参数是绕不过去了，需要学习一下
-    //采用双声道，44100采样率，16位采样深度，fltp格式
-    //采样格式转换和混合库
-
-
-    swr_context = swr_alloc_set_opts2(
-        nullptr, 
-        AV_CH_LAYOUT_STEREO,  //这里有参数问题，todo，需要校验一下
-        AV_SAMPLE_FMT_FLTP, 
-        44100,
-        codec_context->ch_layout, 
-        codec_context->sample_fmt, 
-        codec_context->sample_rate, 
-        0, 
-        nullptr
-    );
-
-
-    /* 
-    SwrContext *swr = swr_alloc_set_opts(
-        NULL,  // we're allocating a new context
-        AV_CH_LAYOUT_STEREO,  // out_ch_layout
-        AV_SAMPLE_FMT_S16,    // out_sample_fmt
-        44100,                // out_sample_rate
-        AV_CH_LAYOUT_5POINT1, // in_ch_layout
-        AV_SAMPLE_FMT_FLTP,   // in_sample_fmt
-        48000,                // in_sample_rate
-        0,                    // log_offset
-        NULL);                // log_ctx
-    等同于
-    SwrContext *swr = swr_alloc();
-    av_opt_set_channel_layout(swr, "in_channel_layout",  AV_CH_LAYOUT_5POINT1, 0);
-    av_opt_set_channel_layout(swr, "out_channel_layout", AV_CH_LAYOUT_STEREO,  0);
-    av_opt_set_int(swr, "in_sample_rate",     48000,                0);
-    av_opt_set_int(swr, "out_sample_rate",    44100,                0);
-    av_opt_set_sample_fmt(swr, "in_sample_fmt",  AV_SAMPLE_FMT_FLTP, 0);
-    av_opt_set_sample_fmt(swr, "out_sample_fmt", AV_SAMPLE_FMT_S16,  0);
-    */
+    // 设置重采样参数
     
+    // av_opt_set_int(resample_context, "in_channel_layout", input_format_context->streams[audio_stream_index]->codecpar->channel_layout, 0);
+    // av_opt_set_int(resample_context, "in_channel_layout", AV_CH_LAYOUT_STEREO, 0);
+    av_opt_set_int(resample_context, "out_channel_layout", AV_CH_LAYOUT_STEREO, 0);
+    av_opt_set_int(resample_context, "in_sample_rate", input_format_context->streams[audio_stream_index]->codecpar->sample_rate, 0);
+    av_opt_set_int(resample_context, "out_sample_rate", 44100, 0);
+    av_opt_set_sample_fmt(resample_context, "in_sample_fmt", (enum AVSampleFormat)input_format_context->streams[audio_stream_index]->codecpar->format, 0);
+    av_opt_set_sample_fmt(resample_context, "out_sample_fmt", AV_SAMPLE_FMT_S16, 0);
 
-    //todo，我们需要看下流信息里的参数 ，audio_stream->codecpar
-    //引入我们的logging方法
-
-
-    /** 
-     * 上述方法现在应该是改成这样了
-    int swr_alloc_set_opts2(
-        struct SwrContext **ps,
-        const AVChannelLayout *out_ch_layout, 
-        enum AVSampleFormat out_sample_fmt, 
-        int out_sample_rate,
-        const AVChannelLayout *in_ch_layout, 
-        enum AVSampleFormat  in_sample_fmt, 
-        int  in_sample_rate,
-        nt log_offset, 
-        void *log_ctx);
-    */
-
-    
-    if (!swr_context || swr_init(swr_context) < 0) {
-        std::cerr << "Could not allocate or initialize resampler." << std::endl;
-        return;
+    // 初始化重采样上下文
+    if ((ret = swr_init(resample_context)) < 0) {
+        fprintf(stderr, "Failed to initialize the resampling context\n");
+        return 1;
     }
 
-    // Open output file
-    std::ofstream output_file(output_filename, std::ios::binary);
-    if (!output_file.is_open()) {
-        std::cerr << "Could not open output file." << std::endl;
-        return;
+    // 读取输入文件并编码到输出文件
+    AVPacket *input_packet = av_packet_alloc();
+    AVFrame *input_frame = av_frame_alloc();
+    AVFrame *output_frame = av_frame_alloc();
+    AVPacket *output_packet = av_packet_alloc();
+
+    output_frame->nb_samples = output_codec_context->frame_size;
+    output_frame->format = output_codec_context->sample_fmt;
+    output_frame->ch_layout = output_codec_context->ch_layout;
+
+    ret = av_frame_get_buffer(output_frame, 0);
+    if (ret < 0) {
+        fprintf(stderr, "Could not allocate output frame samples\n");
+        return 1;
     }
 
-    // Reading packets from input file and writing to output
-    while (av_read_frame(format_context, packet) >= 0) {
-        if (packet->stream_index == audio_stream_index) {
-            if (avcodec_send_packet(codec_context, packet) >= 0) {
-                while (avcodec_receive_frame(codec_context, frame) >= 0) {
-                    // Convert samples to destination format using resampler
-                    uint8_t* converted_data[2] = { nullptr };
-                    int converted_linesize;
-                    av_samples_alloc(converted_data, &converted_linesize, 2, frame->nb_samples, AV_SAMPLE_FMT_FLTP, 0);
-                    //swr_convert 方法在 FFmpeg 中主要用于音频采样格式、采样率和声道布局的转换
-                    swr_convert(swr_context, converted_data, frame->nb_samples, (const uint8_t**)frame->data, frame->nb_samples);
+    while (av_read_frame(input_format_context, input_packet) >= 0) {
+        if (input_packet->stream_index == audio_stream_index) {
+            ret = avcodec_send_packet(input_codec_context, input_packet);
+            if (ret < 0) {
+                fprintf(stderr, "Error submitting the packet to the decoder\n");
+                break;
+            }
 
-                    // Write converted data to output file
-                    output_file.write(reinterpret_cast<char*>(converted_data[0]), frame->nb_samples * av_get_bytes_per_sample(AV_SAMPLE_FMT_FLTP) * 2);
-                    av_freep(&converted_data[0]);
+            while (ret >= 0) {
+                ret = avcodec_receive_frame(input_codec_context, input_frame);
+                if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF)
+                    break;
+                else if (ret < 0) {
+                    fprintf(stderr, "Error during decoding\n");
+                    return 1;
+                }
+
+                // 重采样
+                ret = swr_convert(resample_context,
+                                  output_frame->data, output_frame->nb_samples,
+                                  (const uint8_t **)input_frame->data, input_frame->nb_samples);
+                if (ret < 0) {
+                    fprintf(stderr, "Error while converting\n");
+                    return 1;
+                }
+                output_frame->pts = av_rescale_q(input_frame->pts,
+                                                 input_format_context->streams[audio_stream_index]->time_base,
+                                                 output_codec_context->time_base);
+
+                // 编码
+                ret = avcodec_send_frame(output_codec_context, output_frame);
+                if (ret < 0) {
+                    fprintf(stderr, "Error sending the frame to the encoder\n");
+                    break;
+                }
+
+                while (ret >= 0) {
+                    ret = avcodec_receive_packet(output_codec_context, output_packet);
+                    if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF)
+                        break;
+                    else if (ret < 0) {
+                        fprintf(stderr, "Error during encoding\n");
+                        return 1;
+                    }
+
+                    // 写入输出文件
+                    ret = av_interleaved_write_frame(output_format_context, output_packet);
+                    if (ret < 0) {
+                        fprintf(stderr, "Error while writing output packet\n");
+                        return 1;
+                    }
+                    av_packet_unref(output_packet);
                 }
             }
         }
-        av_packet_unref(packet);
+        av_packet_unref(input_packet);
     }
 
-    // Cleanup
-    output_file.close();
-    swr_free(&swr_context);
-    av_frame_free(&frame);
-    av_packet_free(&packet);
-    avcodec_free_context(&codec_context);
-    avformat_close_input(&format_context);
-}
+    // 写文件尾
+    av_write_trailer(output_format_context);
 
-int main() {
-    const char* input_filename = "/Users/zack/Desktop/test.mp4";
-    const char* output_filename = "output_audio.mp3";
-    extract_audio_to_mp3(input_filename, output_filename);
-    std::cout << "Audio extraction and conversion successful." << std::endl;
+    // 清理资源
+    avformat_close_input(&input_format_context);
+    if (output_format_context && !(output_format_context->oformat->flags & AVFMT_NOFILE))
+        avio_closep(&output_format_context->pb);
+    avformat_free_context(output_format_context);
+    avcodec_free_context(&input_codec_context);
+    avcodec_free_context(&output_codec_context);
+    swr_free(&resample_context);
+    av_frame_free(&input_frame);
+    av_frame_free(&output_frame);
+    av_packet_free(&input_packet);
+    av_packet_free(&output_packet);
+
     return 0;
 }

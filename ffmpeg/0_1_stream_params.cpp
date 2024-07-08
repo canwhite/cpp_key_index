@@ -3,6 +3,7 @@ extern "C" {
 }
 
 #include <iostream>
+using namespace std;
 /** 音视频流的相关信息
  *
 音频参数和视频参数的区别
@@ -39,7 +40,8 @@ format 表示音频的采样格式和视频的像素格式，都是数据表示�
 
 
 不同之处：
-音频有sample_rate 和 channels 等特定参数，而视频则有 width、height 和 frame_rate 等参数。
+音频有sample_rate 和 channels 等特定参数，
+而视频则有 width、height 和 frame_rate 等参数。
 视频涉及更多的图像处理参数，如 color_space 和 aspect_ratio，而音频更多关注声道和采样率。
 总的来说，尽管音频和视频参数在某些方面有相似之处，但由于它们分别处理的是不同类型的媒体数据，许多参数是特定于各自领域的。
 */
@@ -51,53 +53,77 @@ void print_audio_stream_info(const char* input_filename) {
     AVStream* audio_stream = nullptr;
     int audio_stream_index = -1;
     
-    av_register_all();
 
     // Open input file
     if (avformat_open_input(&format_context, input_filename, nullptr, nullptr) != 0) {
-        std::cerr << "Could not open input file." << std::endl;
+        cerr << "Could not open input file." << endl;
         return;
     }
 
     // Find stream info
     if (avformat_find_stream_info(format_context, nullptr) < 0) {
-        std::cerr << "Could not find stream info." << std::endl;
+        cerr << "Could not find stream info." << endl;
         return;
     }
 
     // Find audio stream
     for (unsigned int i = 0; i < format_context->nb_streams; i++) {
+        //获取音频相关
         if (format_context->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_AUDIO) {
             audio_stream_index = i;
             audio_stream = format_context->streams[i];
             break;
         }
+        //获取视频相关
+        
+
     }
 
     if (audio_stream_index == -1) {
-        std::cerr << "Could not find audio stream." << std::endl;
+        cerr << "Could not find audio stream." << endl;
         avformat_close_input(&format_context);
         return;
     }
 
-    // Print codec parameters
+    // Print codec parameters,音频部分
     AVCodecParameters* codecpar = audio_stream->codecpar;
-    std::cout << "Audio Stream Codec Parameters:" << std::endl;
-    std::cout << "Codec ID: " << codecpar->codec_id << std::endl;
-    std::cout << "Codec Tag: " << codecpar->codec_tag << std::endl;
-    std::cout << "Sample Format: " << codecpar->format << std::endl;
-    std::cout << "Sample Rate: " << codecpar->sample_rate << std::endl;
-    std::cout << "Channels: " << codecpar->channels << std::endl;
-    std::cout << "Channel Layout: " << codecpar->channel_layout << std::endl;
-    std::cout << "Frame Size: " << codecpar->frame_size << std::endl;
-    std::cout << "Bitrate: " << codecpar->bit_rate << std::endl;
-    std::cout << "Profile: " << codecpar->profile << std::endl;
+    cout << "Audio Stream Codec Parameters:" << endl;
+    cout << "Codec ID: " << codecpar->codec_id << endl;
+    cout << "Codec Tag: " << codecpar->codec_tag << endl;
+    cout << "Sample Format: " << codecpar->format << endl;
+    cout << "Sample Rate: " << codecpar->sample_rate << endl;
+    // cout << "Ch Layout: " << codecpar->ch_layout << endl;
+    cout << "Channels: " << codecpar->ch_layout.nb_channels << endl;
+    cout << "Channel Layout: " << codecpar->ch_layout.order << endl;
+    //然后如何获取
+    cout << "Frame Size: " << codecpar->frame_size << endl;
+    cout << "Bitrate: " << codecpar->bit_rate << endl;
+    cout << "Profile: " << codecpar->profile << endl;
+
+
+    //获取时间基stream和ctx里有
+    /**
+    使用场景：
+    1）时间戳转化
+    int64_t timestamp = av_rescale_q(packet->pts, stream->time_base, AV_TIME_BASE_Q);
+    2）帧的时间标记
+    每帧的显示时间戳（PTS）和解码时间戳（DTS）都基于流的时间基准。
+    frame->pts = av_rescale_q(packet->dts, stream->time_base, codec_ctx->time_base);
+    3）同步和编辑
+    在同步音频和视频流，或进行剪辑和拼接时，
+    需要使用 time_base 来确保不同流之间的时间对齐。
+    */
+    cout << "timebase: " << audio_stream -> time_base.num << ":"<< audio_stream ->time_base.den << endl;
+
+
+
+    //视频部分也可以看下
 
     avformat_close_input(&format_context);
 }
 
 int main() {
-    const char* input_filename = "input_video.mp4";
+    const char* input_filename = "/Users/zack/Desktop/test.mp4";
     print_audio_stream_info(input_filename);
     return 0;
 }
