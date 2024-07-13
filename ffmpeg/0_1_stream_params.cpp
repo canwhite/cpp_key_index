@@ -148,6 +148,30 @@ void print_audio_stream_info(const char* input_filename) {
 
     */
 
+   //packet和frame
+   /**
+   packet是压缩的数据，所以主要是一些基本属性
+    -data: 包含实际数据的缓冲区指针。
+    -size: 数据缓冲区的大小（以字节为单位）。
+    -pts: 演示时间戳（Presentation Timestamp），用于同步。
+    -dts: 解码时间戳（Decoding Timestamp），用于解码器的内部处理。
+    -duration: 此数据包的持续时间。
+    -stream_index: 该数据包所属的流的索引。
+    -flags: 标志，用于指示数据包的属性，例如是否为关键帧。
+
+   frame是解码后的数据，所以主要是一些解码后的数据
+    -data: 指向每个平面的数据缓冲区指针数组，例如视频的YUV平面或音频的多声道数据。
+    -linesize: 每个平面的行大小数组（字节数），用于指示数据行的步幅。
+    -width: 视频帧的宽度（仅用于视频）。
+    -height: 视频帧的高度（仅用于视频）。
+    -format: 数据格式，例如像素格式（视频）或采样格式（音频）。
+    -pts: 演示时间戳，指示该帧应在何时显示。
+    -ch_layout: 音频帧的声道布局（仅用于音频）。
+    -sample_rate: 音频采样率（仅用于音频）。
+    -nb_samples: 音频帧的采样数（仅用于音频）。
+   */
+
+
 
 
 

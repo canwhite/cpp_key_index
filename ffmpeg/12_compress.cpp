@@ -202,7 +202,7 @@ void compress_video(const VideoOptions &opts) {
                 int ret = av_frame_ref(frame, packet->data);
                 if (ret < 0) {
                     throw runtime_error("Could not reference video frame");
-                }
+                }   
 
                 ret = sws_scale(sws_ctx, frame->data, frame->linesize, 0, codec_params->height,
                                 codec_ctx->get_buffer(codec_ctx)->data, codec_ctx->get_buffer(codec_ctx)->linesize);

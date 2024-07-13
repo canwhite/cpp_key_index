@@ -7,6 +7,8 @@ extern "C" {
 #include <libswresample/swresample.h>
 }
 
+#include <iostream>
+using namespace std;
 
 /**
 current question
@@ -105,10 +107,12 @@ int main(int argc, char *argv[]) {
         return AVERROR(ENOMEM);
     }
 
+    //TODO，主要问题还是在于设置channel layout的方式有问题
     enc_ctx->bit_rate = 128000;
     enc_ctx->sample_fmt = enc->sample_fmts[0];
     enc_ctx->sample_rate = dec_ctx->sample_rate;
     enc_ctx->ch_layout = dec_ctx->ch_layout;
+    
     // enc_ctx->ch_layout.channels = dec_ctx->ch_layout.nb_channels;
 
     if ((ret = avcodec_open2(enc_ctx, enc, NULL)) < 0) {
@@ -123,7 +127,7 @@ int main(int argc, char *argv[]) {
         return AVERROR(ENOMEM);
     }
 
-    av_opt_set_chlayout(swr_ctx, "in_ch_layout",  &dec_ctx->ch_layout, 0);
+    // av_opt_set_chlayout(swr_ctx, "in_ch_layout",  &dec_ctx->ch_layout, 0);
     av_opt_set_int(swr_ctx, "in_sample_rate",     dec_ctx->sample_rate, 0);
     av_opt_set_sample_fmt(swr_ctx, "in_sample_fmt", dec_ctx->sample_fmt, 0);
 
@@ -166,6 +170,7 @@ int main(int argc, char *argv[]) {
     swr_frame->sample_rate = enc_ctx->sample_rate;
     swr_frame->format = enc_ctx->sample_fmt;
     swr_frame->nb_samples = enc_ctx->frame_size;
+    cout << swr_frame->ch_layout.nb_channels << endl;
 
     if ((ret = av_frame_get_buffer(swr_frame, 0)) < 0) {
         fprintf(stderr, "Could not allocate output frame samples\n");
