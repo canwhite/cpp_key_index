@@ -1,214 +1,236 @@
-#include <libavcodec/avcodec.h>
+extern "C" {
 #include <libavformat/avformat.h>
-#include <libswresample/swresample.h>
+#include <libavcodec/avcodec.h>
 #include <libavutil/opt.h>
+#include <libavutil/channel_layout.h>
+#include <libavutil/samplefmt.h>
+#include <libswresample/swresample.h>
+}
 
+
+/**
+current question
+这样设置了swr
+    swr_ctx = swr_alloc();
+    if (!swr_ctx) {
+        fprintf(stderr, "Could not allocate resampler context\n");
+        return AVERROR(ENOMEM);
+    }
+
+    av_opt_set_chlayout(swr_ctx, "in_ch_layout",  &dec_ctx->ch_layout, 0);
+    av_opt_set_int(swr_ctx, "in_sample_rate",     dec_ctx->sample_rate, 0);
+    av_opt_set_sample_fmt(swr_ctx, "in_sample_fmt", dec_ctx->sample_fmt, 0);
+
+    av_opt_set_chlayout(swr_ctx, "out_ch_layout",  &enc_ctx->ch_layout, 0);
+    av_opt_set_int(swr_ctx, "out_sample_rate",    enc_ctx->sample_rate, 0);
+    av_opt_set_sample_fmt(swr_ctx, "out_sample_fmt", enc_ctx->sample_fmt, 0);
+
+但是最终编译结果Input channel layout "" is invalid or unsupported.
+Failed to initialize the resampling context，这是什么原因额
+*/
 int main(int argc, char *argv[]) {
-    AVFormatContext *input_format_context = NULL, *output_format_context = NULL;
-    AVCodecContext *input_codec_context = NULL, *output_codec_context = NULL;
-    SwrContext *resample_context = NULL;
-    AVStream *out_stream = NULL;
-    const AVCodec *output_codec;
+    const char *input_filename = "/Users/zack/Desktop/test.mp4";
+    const char *output_filename = "output.mp3";
+
+    AVFormatContext *fmt_ctx = NULL;
+    AVCodecContext *dec_ctx = NULL, *enc_ctx = NULL;
+    SwrContext *swr_ctx = NULL;
+    AVStream *audio_stream = NULL;
+    int audio_stream_idx = -1;
+    AVPacket *pkt = NULL;
+    AVFrame *frame = NULL, *swr_frame = NULL;
     int ret;
 
-    // 打开输入文件
-    if ((ret = avformat_open_input(&input_format_context, "/Users/zack/Desktop/test.mp4", NULL, NULL)) < 0) {
-        fprintf(stderr, "Could not open input file\n");
-        return 1;
+    // av_register_all();
+
+    // Open input file
+    if ((ret = avformat_open_input(&fmt_ctx, input_filename, NULL, NULL)) < 0) {
+        fprintf(stderr, "Could not open input file '%s'\n", input_filename);
+        return ret;
     }
 
-    // 查找流信息
-    if ((ret = avformat_find_stream_info(input_format_context, NULL)) < 0) {
+    // Retrieve stream information
+    if ((ret = avformat_find_stream_info(fmt_ctx, NULL)) < 0) {
         fprintf(stderr, "Could not find stream information\n");
-        return 1;
+        return ret;
     }
 
-    // 找到音频流
-    int audio_stream_index = av_find_best_stream(input_format_context, AVMEDIA_TYPE_AUDIO, -1, -1, NULL, 0);
-    if (audio_stream_index < 0) {
-        fprintf(stderr, "Could not find audio stream\n");
-        return 1;
-    }
-
-    // 创建输出格式上下文
-    avformat_alloc_output_context2(&output_format_context, NULL, NULL, "output.mp3");
-    if (!output_format_context) {
-        fprintf(stderr, "Could not create output context\n");
-        ret = AVERROR_UNKNOWN;
-        return 1;
-    }
-
-    // 找到MP3编码器
-    output_codec = avcodec_find_encoder(AV_CODEC_ID_MP3);
-    if (!output_codec) {
-        fprintf(stderr, "Could not find encoder for MP3\n");
-        return 1;
-    }
-
-    // 创建输出流
-    out_stream = avformat_new_stream(output_format_context, NULL);
-    if (!out_stream) {
-        fprintf(stderr, "Failed allocating output stream\n");
-        ret = AVERROR_UNKNOWN;
-        return 1;
-    }
-
-    output_codec_context = avcodec_alloc_context3(output_codec);
-    if (!output_codec_context) {
-        fprintf(stderr, "Could not allocate an encoding context\n");
-        ret = AVERROR(ENOMEM);
-        return 1;
-    }
-
-    // 设置输出参数
-    output_codec_context->sample_fmt  = AV_SAMPLE_FMT_S16;
-    output_codec_context->ch_layout = output_codec_context->ch_layout;
-    output_codec_context->sample_rate    = 44100;
-    // output_codec_context->channels       = 2;
-    output_codec_context->bit_rate       = 128000;
-
-    // 打开编码器
-    if ((ret = avcodec_open2(output_codec_context, output_codec, NULL)) < 0) {
-        fprintf(stderr, "Could not open output codec\n");
-        return 1;
-    }
-
-    // 复制参数到输出流
-    ret = avcodec_parameters_from_context(out_stream->codecpar, output_codec_context);
-    if (ret < 0) {
-        fprintf(stderr, "Could not copy the stream parameters\n");
-        return 1;
-    }
-
-    // 打开输出文件
-    if (!(output_format_context->oformat->flags & AVFMT_NOFILE)) {
-        ret = avio_open(&output_format_context->pb, "output.mp3", AVIO_FLAG_WRITE);
-        if (ret < 0) {
-            fprintf(stderr, "Could not open output file\n");
-            return 1;
+    // Find the audio stream
+    for (int i = 0; i < fmt_ctx->nb_streams; i++) {
+        if (fmt_ctx->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_AUDIO) {
+            audio_stream_idx = i;
+            audio_stream = fmt_ctx->streams[i];
+            break;
         }
     }
 
-    // 写文件头
-    ret = avformat_write_header(output_format_context, NULL);
-    if (ret < 0) {
-        fprintf(stderr, "Error occurred when opening output file\n");
-        return 1;
+    if (audio_stream_idx == -1) {
+        fprintf(stderr, "Could not find audio stream in the input, aborting\n");
+        return -1;
     }
 
-    // 初始化重采样上下文
-    resample_context = swr_alloc();
-    if (!resample_context) {
-        fprintf(stderr, "Could not allocate resample context\n");
-        ret = AVERROR(ENOMEM);
-        return 1;
+    // Find decoder for the audio stream
+    const AVCodec *dec = avcodec_find_decoder(audio_stream->codecpar->codec_id);
+    if (!dec) {
+        fprintf(stderr, "Failed to find audio codec\n");
+        return AVERROR(EINVAL);
     }
 
-    // 设置重采样参数
-    
-    // av_opt_set_int(resample_context, "in_channel_layout", input_format_context->streams[audio_stream_index]->codecpar->channel_layout, 0);
-    // av_opt_set_int(resample_context, "in_channel_layout", AV_CH_LAYOUT_STEREO, 0);
-    av_opt_set_int(resample_context, "out_channel_layout", AV_CH_LAYOUT_STEREO, 0);
-    av_opt_set_int(resample_context, "in_sample_rate", input_format_context->streams[audio_stream_index]->codecpar->sample_rate, 0);
-    av_opt_set_int(resample_context, "out_sample_rate", 44100, 0);
-    av_opt_set_sample_fmt(resample_context, "in_sample_fmt", (enum AVSampleFormat)input_format_context->streams[audio_stream_index]->codecpar->format, 0);
-    av_opt_set_sample_fmt(resample_context, "out_sample_fmt", AV_SAMPLE_FMT_S16, 0);
+    dec_ctx = avcodec_alloc_context3(dec);
+    if (!dec_ctx) {
+        fprintf(stderr, "Failed to allocate the audio codec context\n");
+        return AVERROR(ENOMEM);
+    }
 
-    // 初始化重采样上下文
-    if ((ret = swr_init(resample_context)) < 0) {
+    if ((ret = avcodec_parameters_to_context(dec_ctx, audio_stream->codecpar)) < 0) {
+        fprintf(stderr, "Failed to copy audio codec parameters to decoder context\n");
+        return ret;
+    }
+
+    if ((ret = avcodec_open2(dec_ctx, dec, NULL)) < 0) {
+        fprintf(stderr, "Failed to open audio codec\n");
+        return ret;
+    }
+
+    // Find the MP3 encoder
+    const AVCodec *enc = avcodec_find_encoder(AV_CODEC_ID_MP3);
+    if (!enc) {
+        fprintf(stderr, "Necessary encoder not found\n");
+        return AVERROR_INVALIDDATA;
+    }
+
+    enc_ctx = avcodec_alloc_context3(enc);
+    if (!enc_ctx) {
+        fprintf(stderr, "Failed to allocate the encoder context\n");
+        return AVERROR(ENOMEM);
+    }
+
+    enc_ctx->bit_rate = 128000;
+    enc_ctx->sample_fmt = enc->sample_fmts[0];
+    enc_ctx->sample_rate = dec_ctx->sample_rate;
+    enc_ctx->ch_layout = dec_ctx->ch_layout;
+    // enc_ctx->ch_layout.channels = dec_ctx->ch_layout.nb_channels;
+
+    if ((ret = avcodec_open2(enc_ctx, enc, NULL)) < 0) {
+        fprintf(stderr, "Cannot open audio encoder\n");
+        return ret;
+    }
+
+    // Initialize SwrContext
+    swr_ctx = swr_alloc();
+    if (!swr_ctx) {
+        fprintf(stderr, "Could not allocate resampler context\n");
+        return AVERROR(ENOMEM);
+    }
+
+    av_opt_set_chlayout(swr_ctx, "in_ch_layout",  &dec_ctx->ch_layout, 0);
+    av_opt_set_int(swr_ctx, "in_sample_rate",     dec_ctx->sample_rate, 0);
+    av_opt_set_sample_fmt(swr_ctx, "in_sample_fmt", dec_ctx->sample_fmt, 0);
+
+    av_opt_set_chlayout(swr_ctx, "out_ch_layout",  &enc_ctx->ch_layout, 0);
+    av_opt_set_int(swr_ctx, "out_sample_rate",    enc_ctx->sample_rate, 0);
+    av_opt_set_sample_fmt(swr_ctx, "out_sample_fmt", enc_ctx->sample_fmt, 0);
+
+    if ((ret = swr_init(swr_ctx)) < 0) {
         fprintf(stderr, "Failed to initialize the resampling context\n");
-        return 1;
+        return ret;
     }
 
-    // 读取输入文件并编码到输出文件
-    AVPacket *input_packet = av_packet_alloc();
-    AVFrame *input_frame = av_frame_alloc();
-    AVFrame *output_frame = av_frame_alloc();
-    AVPacket *output_packet = av_packet_alloc();
+    // Open output file
+    FILE *output_file = fopen(output_filename, "wb");
+    if (!output_file) {
+        fprintf(stderr, "Could not open output file '%s'\n", output_filename);
+        return AVERROR(errno);
+    }
 
-    output_frame->nb_samples = output_codec_context->frame_size;
-    output_frame->format = output_codec_context->sample_fmt;
-    output_frame->ch_layout = output_codec_context->ch_layout;
+    // Allocate frames and packet
+    pkt = av_packet_alloc();
+    if (!pkt) {
+        fprintf(stderr, "Could not allocate AVPacket\n");
+        return AVERROR(ENOMEM);
+    }
 
-    ret = av_frame_get_buffer(output_frame, 0);
-    if (ret < 0) {
+    frame = av_frame_alloc();
+    if (!frame) {
+        fprintf(stderr, "Could not allocate AVFrame\n");
+        return AVERROR(ENOMEM);
+    }
+
+    swr_frame = av_frame_alloc();
+    if (!swr_frame) {
+        fprintf(stderr, "Could not allocate SWR AVFrame\n");
+        return AVERROR(ENOMEM);
+    }
+
+    swr_frame->ch_layout = enc_ctx->ch_layout;
+    swr_frame->sample_rate = enc_ctx->sample_rate;
+    swr_frame->format = enc_ctx->sample_fmt;
+    swr_frame->nb_samples = enc_ctx->frame_size;
+
+    if ((ret = av_frame_get_buffer(swr_frame, 0)) < 0) {
         fprintf(stderr, "Could not allocate output frame samples\n");
-        return 1;
+        return ret;
     }
 
-    while (av_read_frame(input_format_context, input_packet) >= 0) {
-        if (input_packet->stream_index == audio_stream_index) {
-            ret = avcodec_send_packet(input_codec_context, input_packet);
-            if (ret < 0) {
-                fprintf(stderr, "Error submitting the packet to the decoder\n");
-                break;
+    while (av_read_frame(fmt_ctx, pkt) >= 0) {
+        if (pkt->stream_index == audio_stream_idx) {
+            if ((ret = avcodec_send_packet(dec_ctx, pkt)) < 0) {
+                fprintf(stderr, "Error while sending a packet to the decoder\n");
+                return ret;
             }
 
             while (ret >= 0) {
-                ret = avcodec_receive_frame(input_codec_context, input_frame);
+                ret = avcodec_receive_frame(dec_ctx, frame);
                 if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF)
                     break;
                 else if (ret < 0) {
-                    fprintf(stderr, "Error during decoding\n");
-                    return 1;
+                    fprintf(stderr, "Error while receiving a frame from the decoder\n");
+                    return ret;
                 }
 
-                // 重采样
-                ret = swr_convert(resample_context,
-                                  output_frame->data, output_frame->nb_samples,
-                                  (const uint8_t **)input_frame->data, input_frame->nb_samples);
-                if (ret < 0) {
+                if ((ret = swr_convert_frame(swr_ctx, swr_frame, frame)) < 0) {
                     fprintf(stderr, "Error while converting\n");
-                    return 1;
+                    return ret;
                 }
-                output_frame->pts = av_rescale_q(input_frame->pts,
-                                                 input_format_context->streams[audio_stream_index]->time_base,
-                                                 output_codec_context->time_base);
 
-                // 编码
-                ret = avcodec_send_frame(output_codec_context, output_frame);
-                if (ret < 0) {
+                if ((ret = avcodec_send_frame(enc_ctx, swr_frame)) < 0) {
                     fprintf(stderr, "Error sending the frame to the encoder\n");
-                    break;
+                    return ret;
                 }
 
                 while (ret >= 0) {
-                    ret = avcodec_receive_packet(output_codec_context, output_packet);
+                    ret = avcodec_receive_packet(enc_ctx, pkt);
                     if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF)
                         break;
                     else if (ret < 0) {
-                        fprintf(stderr, "Error during encoding\n");
-                        return 1;
+                        fprintf(stderr, "Error encoding audio frame\n");
+                        return ret;
                     }
 
-                    // 写入输出文件
-                    ret = av_interleaved_write_frame(output_format_context, output_packet);
-                    if (ret < 0) {
-                        fprintf(stderr, "Error while writing output packet\n");
-                        return 1;
-                    }
-                    av_packet_unref(output_packet);
+                    fwrite(pkt->data, 1, pkt->size, output_file);
+                    av_packet_unref(pkt);
                 }
             }
         }
-        av_packet_unref(input_packet);
+        av_packet_unref(pkt);
     }
 
-    // 写文件尾
-    av_write_trailer(output_format_context);
+    // Flush the encoder
+    avcodec_send_frame(enc_ctx, NULL);
+    while (avcodec_receive_packet(enc_ctx, pkt) >= 0) {
+        fwrite(pkt->data, 1, pkt->size, output_file);
+        av_packet_unref(pkt);
+    }
 
-    // 清理资源
-    avformat_close_input(&input_format_context);
-    if (output_format_context && !(output_format_context->oformat->flags & AVFMT_NOFILE))
-        avio_closep(&output_format_context->pb);
-    avformat_free_context(output_format_context);
-    avcodec_free_context(&input_codec_context);
-    avcodec_free_context(&output_codec_context);
-    swr_free(&resample_context);
-    av_frame_free(&input_frame);
-    av_frame_free(&output_frame);
-    av_packet_free(&input_packet);
-    av_packet_free(&output_packet);
+    // Cleanup
+    fclose(output_file);
+    av_frame_free(&swr_frame);
+    av_frame_free(&frame);
+    av_packet_free(&pkt);
+    swr_free(&swr_ctx);
+    avcodec_free_context(&enc_ctx);
+    avcodec_free_context(&dec_ctx);
+    avformat_close_input(&fmt_ctx);
 
     return 0;
 }

@@ -86,6 +86,7 @@ void print_audio_stream_info(const char* input_filename) {
     }
 
     // Print codec parameters,音频部分
+    // 这些主要用在编码设置使用：在设置输出流的参数时，codecpar_out（输出流的编解码参数）通常从解码器上下文复制而来，然后根据需要进行调整
     AVCodecParameters* codecpar = audio_stream->codecpar;
     cout << "Audio Stream Codec Parameters:" << endl;
     cout << "Codec ID: " << codecpar->codec_id << endl;
@@ -101,8 +102,11 @@ void print_audio_stream_info(const char* input_filename) {
     cout << "Profile: " << codecpar->profile << endl;
 
 
-    //获取时间基stream和ctx里有
+    //获取时间基
     /**
+
+    muxing的时候有用
+    哪里有？stream和ctx里有
     使用场景：
     1）时间戳转化
     int64_t timestamp = av_rescale_q(packet->pts, stream->time_base, AV_TIME_BASE_Q);
@@ -117,7 +121,37 @@ void print_audio_stream_info(const char* input_filename) {
 
 
 
-    //视频部分也可以看下
+    //视频部分也可以看下,PTS和DTS是怎样的概念，在什么时候使用
+    //DTS是解码顺序的时间戳，而PTS是播放顺序的时间戳。
+    //这两个属性主要在packet上，主要用于muxing
+    /**
+    AVFormatContext *input_format_context = ...;  // 输入格式上下文
+    AVFormatContext *output_format_context = ...; // 输出格式上下文
+    AVStream *input_stream = input_format_context->streams[video_stream_index];
+    AVStream *output_stream = output_format_context->streams[video_stream_index];
+
+    AVPacket packet;
+    while (av_read_frame(input_format_context, &packet) >= 0) {
+        if (packet.stream_index == video_stream_index) {
+            // 重新缩放时间戳到输出流的时间基
+            packet.pts = av_rescale_q(packet.pts, input_stream->time_base, output_stream->time_base);
+            packet.dts = av_rescale_q(packet.dts, input_stream->time_base, output_stream->time_base);
+            packet.duration = av_rescale_q(packet.duration, input_stream->time_base, output_stream->time_base);
+            
+            packet.pos = -1; // 重置包的位置
+            
+            // 写入输出格式上下文
+            av_interleaved_write_frame(output_format_context, &packet);
+        }
+        av_packet_unref(&packet);
+    }
+
+    */
+
+
+
+
+
 
     avformat_close_input(&format_context);
 }
