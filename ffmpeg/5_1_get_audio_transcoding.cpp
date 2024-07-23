@@ -30,6 +30,7 @@ current question
 但是最终编译结果Input channel layout "" is invalid or unsupported.
 Failed to initialize the resampling context，这是什么原因额
 */
+//todo, 这里还有问题，先pass了
 int main(int argc, char *argv[]) {
     const char *input_filename = "/Users/zack/Desktop/test.mp4";
     const char *output_filename = "output.mp3";

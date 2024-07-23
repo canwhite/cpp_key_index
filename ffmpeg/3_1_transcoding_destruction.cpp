@@ -33,3 +33,5 @@ struct StreamingParams
     const char *codec_priv_key;
     const char *codec_priv_value;
 };
+//包含muxing和transcoding的所有内容
+
