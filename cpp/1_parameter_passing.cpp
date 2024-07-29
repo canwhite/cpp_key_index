@@ -11,7 +11,7 @@ struct Data {
     int a;
     int b;
 };
-
+//C的定义
 /** 
 typedef struct 
 {
@@ -51,6 +51,7 @@ void processStudentByValue(Student student) {
     student.name = "New Name";  // This won't affect the original Student.
 }
 
+//有一个地址就能访问，就能访问地址上的值
 void processStudentByPointer(Student* student) {
     // Modify the student object here.
     student->name = "New Name"; // This will affect the original Student.

@@ -162,7 +162,8 @@ static void test_map(){
     //增
     mapString.insert(pair<int, string>(000, "student_zero"));
     mapString.insert(map<int, string>::value_type(001, "student_one"));
-    mapString.insert(make_pair(002, "student_two")); //推荐这一种，不需要专门定义类型
+    //推荐这一种，不需要专门定义类型
+    mapString.insert(make_pair(002, "student_two")); 
     
 
     //删

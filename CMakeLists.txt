@@ -61,10 +61,10 @@ pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libavut
 # set(SOURCE_FILES ffmpeg/1_0_decoder.cpp)
 # set(SOURCE_FILES ffmpeg/1_1_decoder.cpp)
 # set(SOURCE_FILES ffmpeg/2_0_remuxing.cpp)
-# set(SOURCE_FILES  ffmpeg/4_0_add_watermarking.cpp)
+set(SOURCE_FILES  ffmpeg/3_1_transcoding_destruction.cpp)
 # set(SOURCE_FILES ffmpeg/12_get_audio_part.cpp)
 # set(SOURCE_FILES ffmpeg/5_0_get_audio_muxing.cpp)
-set(SOURCE_FILES ffmpeg/5_1_get_audio_transcoding.cpp)
+# set(SOURCE_FILES ffmpeg/5_1_get_audio_transcoding.cpp)
 # set(SOURCE_FILES ffmpeg/4_0_live_streaming.cpp)
 
 # set(SOURCE_FILES ffmpeg/6_0_add_watermark.cpp)
