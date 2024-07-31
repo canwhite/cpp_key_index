@@ -166,8 +166,35 @@ int main(){
     //=====================5.为encoder做一些准备工作，主要是预配置encoder参数=================================
     //a.如果是视频转码，以下是预转码过程
     if(!sp.copy_video){
-        //AVRational是有理数的意思，一般来表示帧率和时间基准
-        //av_guess_frame_rate函数用于猜测给定的视频流的帧率。
+。
+
+        /**
+        时间基准 是一个表示单位时间的分数，通常定义为 AVRational 类型，格式为 time_base = num/den，
+        其中 num 是分子，den 是分母。它表示每一帧的时间长度。例如，如果 time_base 是 1/30，
+        则每一帧的持续时间为 1/30 秒。
+         
+        av_guess_frame_rate 返回一个 AVRational 类型的值，
+        表示估计的帧率，通常用分数形式表示（例如，30/1 表示每秒30帧）
+
+        帧率和时间基准是导数的关系撒
+
+        假设你有以下数据：
+
+        我们知道：
+        time_base 为 1/30（即每帧持续 1/30 秒）。
+        duration 为 3000000（即 3000000 个 time_base 单位）。
+        有效帧数为 90。可以通过解析视频流的包或者使用流的元数据获得。
+
+        计算总时长(秒): 
+        总时长 = duration * time_base
+        = 3000000 * (1/30)
+        = 100000 秒 = 100 秒
+
+        计算帧率:将有效帧数除以转化后的时长（秒）即可得到帧率。
+        帧率 = 有效帧数 / 总时长
+        = 90 / 100
+        = 0.9 fps (每秒帧数)
+        */
         AVRational input_framerate = av_guess_frame_rate(decoder_all_info->avfc, decoder_all_info->video_avs, NULL);
 
         encoder_all_info->video_avs = avformat_new_stream(encoder_all_info->avfc,NULL);
@@ -177,6 +204,7 @@ int main(){
             logging("could not find the proper codec"); 
             return -1;
         }
+
         //avcc获取,需要借助avc
         encoder_all_info->video_avcc = avcodec_alloc_context3(encoder_all_info->video_avc);
         if(!encoder_all_info->video_avcc){
@@ -184,8 +212,9 @@ int main(){
             return -1;
         }
 
-        //设置视频编码器的配置选项，这些值是自己设置
+        //1）---设置视频编码器的配置选项，这些值是自己设置
         av_opt_set(encoder_all_info->video_avcc->priv_data, "preset", "fast", 0);
+
         //编码参数
         if (sp.codec_priv_key && sp.codec_priv_value)
             av_opt_set(encoder_all_info->video_avcc->priv_data, sp.codec_priv_key, sp.codec_priv_value, 0);
@@ -197,10 +226,13 @@ int main(){
         encoder_all_info->video_avcc->rc_min_rate = 2.5 * 1000 * 1000;
 
 
-        //这些值是从decoder拿；
-        encoder_all_info->video_avcc->height = decoder_all_info->video_avcc->height; //from decoder ctx
-        encoder_all_info->video_avcc->width = decoder_all_info->video_avcc->width; //from decoder ctx 
-        encoder_all_info->video_avcc->sample_aspect_ratio = decoder_all_info->video_avcc->sample_aspect_ratio; //from decoder ctx
+        //2）---这些值是从decoder的ctx中拿，ctx中持有的是输入流的信息
+        //宽
+        encoder_all_info->video_avcc->height = decoder_all_info->video_avcc->height; 
+        //高
+        encoder_all_info->video_avcc->width = decoder_all_info->video_avcc->width; 
+        //样本长宽比，aspect外观，方面
+        encoder_all_info->video_avcc->sample_aspect_ratio = decoder_all_info->video_avcc->sample_aspect_ratio; 
 
         //
         if (encoder_all_info->video_avc->pix_fmts)
@@ -208,9 +240,7 @@ int main(){
         else
             encoder_all_info->video_avcc->pix_fmt = decoder_all_info->video_avcc->pix_fmt; //from decoder ctx
 
-
-
-        //设置时间基数
+        //time_base  => avcc和avs
         encoder_all_info->video_avcc->time_base = av_inv_q(input_framerate);
         encoder_all_info->video_avs->time_base = encoder_all_info->video_avcc->time_base;
 
@@ -230,16 +260,11 @@ int main(){
     }
 
     //音频也操作下
-
-
-    
-
-
-
-
-    
-    
-
+    if(!sp.copy_audio){
+        //编译
+    }else{
+        //然后是copy部分
+    }   
 
 
 
