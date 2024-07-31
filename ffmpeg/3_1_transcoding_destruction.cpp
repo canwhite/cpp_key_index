@@ -163,8 +163,75 @@ int main(){
         return -1;
     }
 
-    //=====================5.为encoder做一些准备工作，主要是配置encoder参数=================================
-    //a.关于视频--encoder和参数的一些设定
+    //=====================5.为encoder做一些准备工作，主要是预配置encoder参数=================================
+    //a.如果是视频转码，以下是预转码过程
+    if(!sp.copy_video){
+        //AVRational是有理数的意思，一般来表示帧率和时间基准
+        //av_guess_frame_rate函数用于猜测给定的视频流的帧率。
+        AVRational input_framerate = av_guess_frame_rate(decoder_all_info->avfc, decoder_all_info->video_avs, NULL);
+
+        encoder_all_info->video_avs = avformat_new_stream(encoder_all_info->avfc,NULL);
+        //avc获取
+        encoder_all_info->video_avc = (AVCodec *)avcodec_find_encoder_by_name(sp.video_codec);
+        if(!encoder_all_info->video_avc){
+            logging("could not find the proper codec"); 
+            return -1;
+        }
+        //avcc获取,需要借助avc
+        encoder_all_info->video_avcc = avcodec_alloc_context3(encoder_all_info->video_avc);
+        if(!encoder_all_info->video_avcc){
+            logging("could not allocated memory for codec context"); 
+            return -1;
+        }
+
+        //设置视频编码器的配置选项，这些值是自己设置
+        av_opt_set(encoder_all_info->video_avcc->priv_data, "preset", "fast", 0);
+        //编码参数
+        if (sp.codec_priv_key && sp.codec_priv_value)
+            av_opt_set(encoder_all_info->video_avcc->priv_data, sp.codec_priv_key, sp.codec_priv_value, 0);
+
+        //控制码率
+        encoder_all_info->video_avcc->bit_rate = 2 * 1000 * 1000;
+        encoder_all_info->video_avcc->rc_buffer_size = 4 * 1000 * 1000;
+        encoder_all_info->video_avcc->rc_max_rate = 2 * 1000 * 1000;
+        encoder_all_info->video_avcc->rc_min_rate = 2.5 * 1000 * 1000;
+
+
+        //这些值是从decoder拿；
+        encoder_all_info->video_avcc->height = decoder_all_info->video_avcc->height; //from decoder ctx
+        encoder_all_info->video_avcc->width = decoder_all_info->video_avcc->width; //from decoder ctx 
+        encoder_all_info->video_avcc->sample_aspect_ratio = decoder_all_info->video_avcc->sample_aspect_ratio; //from decoder ctx
+
+        //
+        if (encoder_all_info->video_avc->pix_fmts)
+            encoder_all_info->video_avcc->pix_fmt = encoder_all_info->video_avc->pix_fmts[0];
+        else
+            encoder_all_info->video_avcc->pix_fmt = decoder_all_info->video_avcc->pix_fmt; //from decoder ctx
+
+
+
+        //设置时间基数
+        encoder_all_info->video_avcc->time_base = av_inv_q(input_framerate);
+        encoder_all_info->video_avs->time_base = encoder_all_info->video_avcc->time_base;
+
+        if (avcodec_open2(encoder_all_info->video_avcc, encoder_all_info->video_avc, NULL) < 0) {
+            logging("could not open the codec"); 
+            return -1;
+        }
+        //主要就是为了设置这些参数，如果是copy的话，就直接复制参数给avs了
+        avcodec_parameters_from_context(encoder_all_info->video_avs->codecpar, encoder_all_info->video_avcc);
+        
+    }else{  
+        //copy就相对简单了，新建流，给新建流赋予参数
+        encoder_all_info->video_avs =  avformat_new_stream(encoder_all_info->avfc, NULL);
+        //直接复制参数给avs，
+        avcodec_parameters_copy(encoder_all_info->video_avs->codecpar,decoder_all_info->video_avs->codecpar);
+
+    }
+
+    //音频也操作下
+
+
     
 
 
